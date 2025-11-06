@@ -26,7 +26,9 @@
     animation: logo-spin infinite 20s linear;
   }
 }
-
+html, body {
+  overflow-x: hidden;
+}
 .card {
   padding: 2em;
 }
@@ -34,3 +36,180 @@
 .read-the-docs {
   color: #888;
 }
+/* ==== INICIO <Paso 1> — App.css (clases nuevas, no toco lo demás) ==== */
+.appContainer {
+  max-width: 1200px;         /* límite de ancho en desktop */
+  width: 100%;               /* responde en móvil/tablet */
+  margin-inline: auto;       /* centra en horizontal */
+  padding-inline: 16px;      /* respiración a los lados */
+  box-sizing: border-box;
+}
+
+/* Grid responsivo para los 2 "celulares" (y preparado para crecer en pasos siguientes) */
+.phonesGrid {
+  display: grid;
+  grid-template-columns: 1fr;              /* móvil primero: apilado */
+  gap: 20px;
+  align-items: start;
+  justify-items: center;
+}
+
+/* ≥480px: respiración ligera */
+@media (min-width: 480px) {
+  .phonesGrid { gap: 20px; }
+}
+
+/* ≥768px: dos columnas estables */
+@media (min-width: 768px) {
+  .phonesGrid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 22px;
+  }
+}
+
+/* ≥1024px: un poco más de aire */
+@media (min-width: 1024px) {
+  .phonesGrid { gap: 24px; }
+}
+
+/* ≥1280px: contenedor ya limita el ancho; solo refinamos spacing */
+@media (min-width: 1280px) {
+  .phonesGrid { gap: 28px; }
+}
+/* ==== FIN <Paso 1> ==== */
+/* ==== INICIO <Paso 2> — App.css (clases nuevas) ==== */
+/* Grid que agrupa los dos celulares + el texto lateral */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr;  /* móvil: todo en columna */
+  gap: 20px;
+  align-items: start;
+}
+
+/* Desktop: celulares a la izquierda, texto lateral a la derecha */
+@media (min-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* Tarjeta del texto lateral */
+.phonesAside {
+  background: rgba(231, 233, 238, 0.03); /* sutil, mantiene paleta */
+  border: 1px solid rgba(231, 233, 238, 0.12);
+  border-radius: 12px;
+  padding: 16px 16px 14px;
+}
+
+.heroTitle {
+  margin: 0 0 10px 0;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.25;
+  color: #e7e9ee;
+}
+
+/* Lista corta y legible */
+.heroList {
+  margin: 0 0 12px 0;
+  padding-left: 18px;
+}
+.heroList li {
+  margin: 6px 0;
+  color: #e7e9ee;
+}
+
+.heroLink {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(231, 233, 238, 0.2);
+  text-decoration: none;
+  color: #e7e9ee;
+}
+.heroLink:focus-visible {
+  outline: 2px solid #e7e9ee;
+  outline-offset: 2px;
+}
+/* ==== FIN <Paso 2> ==== */
+/* ==== INICIO <Revisar> — App.css: layout y aside ==== */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr; /* móvil: todo en columna */
+  gap: 20px;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .heroGrid {
+    grid-template-columns: 2fr 1fr; /* celulares | texto lateral */
+    gap: 24px;
+  }
+}
+
+/* Grilla de los "celulares": columna única en móvil; dos desde 768px */
+.phonesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+  justify-items: center;
+}
+@media (min-width: 768px) {
+  .phonesGrid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 22px;
+}}
+
+/* Tarjeta lateral: mantiene tu paleta oscura */
+.phonesAside {
+  background: rgba(231, 233, 238, 0.03);
+  border: 1px solid rgba(231, 233, 238, 0.12);
+  border-radius: 12px;
+  padding: 16px 16px 14px;
+}
+.heroTitle {
+  margin: 0 0 10px 0;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.25;
+  color: #e7e9ee;
+}
+.heroList { margin: 0 0 12px 0; padding-left: 18px; }
+.heroList li { margin: 6px 0; color: #e7e9ee; }
+/* ==== FIN <Revisar> ==== */
+
+@media (min-width: 1440px) {
+  .appContainer { max-width: 1320px; }
+}
+
+
+/* ==== INICIO <Paso 2 — estilos mínimos para credenciales> ==== */
+/* Contenedor de cada “teléfono” + tarjeta de credenciales */
+.phoneItem {
+  width: 100%;
+  max-width: 440px; /* no ahoga el grid; ajusta si tu PhoneFrame es más ancho */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Tarjeta simple, acorde a la paleta */
+.phoneCreds {
+  background: rgba(231, 233, 238, 0.03);
+  border: 1px solid rgba(231, 233, 238, 0.12);
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #e7e9ee;
+}
+
+/* Lista compacta */
+.credList {
+  margin: 0;
+  padding-left: 18px;
+}
+.credList li {
+  margin: 4px 0;
+}
+/* ==== FIN <Paso 2 — estilos mínimos para credenciales> ==== */

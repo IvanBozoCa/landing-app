@@ -23,7 +23,7 @@ export default function PhoneFrame({ title, src }: Props) {
     };
   }, [src]); // <-- solo depende de src (sin warnings)
 
-  const forceReload = () => {
+ /* const forceReload = () => {
     const el = document.getElementById(`frame-${title}`) as HTMLIFrameElement | null;
     if (el) {
       const u = new URL(el.src || src);
@@ -33,7 +33,7 @@ export default function PhoneFrame({ title, src }: Props) {
       setErr(null);
     }
   };
-
+*/
   if (!src) {
     return (
       <div style={{
@@ -58,15 +58,7 @@ export default function PhoneFrame({ title, src }: Props) {
       <div style={{ position:"absolute", top:8, left:8, right:8, display:"flex", justifyContent:"space-between", zIndex:3 }}>
         <div style={{color:"#fff", fontSize:12, opacity:.85}}>{title}</div>
         <div style={{display:"flex", gap:6}}>
-          <button onClick={forceReload}
-            style={{padding:"4px 8px", borderRadius:8, border:"1px solid #334155", background:"#0f172a", color:"#e2e8f0", fontSize:12, cursor:"pointer"}}
-          >
-            Recargar
-          </button>
-          <a href={src} target="_blank" rel="noreferrer"
-             style={{padding:"4px 8px", borderRadius:8, border:"1px solid #334155", background:"#0f172a", color:"#e2e8f0", fontSize:12, textDecoration:"none"}}>
-            Abrir directo
-          </a>
+          
         </div>
       </div>
 

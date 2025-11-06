@@ -112,13 +112,26 @@ export default function App() {
   aria-label="Descripción de la demo"
 >
   <h2 id="demo-hero-title" className="heroTitle">
-    Transporte Escolar, claro y en vivo
-  </h2>
-  <ul className="heroList" aria-label="Beneficios principales">
-    <li>Rutas del día con un solo clic</li>
-    <li>Notificaciones al apoderado en tiempo real</li>
-    <li>Recogido/Entregado con trazabilidad</li>
-  </ul>
+  Transporte Escolar, claro y en vivo
+</h2>
+
+<p className="heroLead">
+  Administra rutas del día, asistencia y notificaciones en tiempo real. 
+  Esta demo muestra el flujo completo entre <strong>Conductor</strong> y <strong>Apoderado</strong>, 
+  desde iniciar la ruta hasta marcar <em>recogido/entregado</em>.
+</p>
+
+<ul className="heroList" aria-label="Beneficios principales">
+  <li>Rutas del día con un solo clic</li>
+  <li>Notificaciones al apoderado en tiempo real</li>
+  <li>Recogido/Entregado con trazabilidad</li>
+</ul>
+
+<ol className="heroTry" aria-label="Prueba rápida">
+  <li><strong>Conductor</strong>: genera la <em>Ruta del día</em> y pulsa <em>Iniciar ruta</em>. Marca uno o dos estudiantes como <em>recogidos</em>.</li>
+  <li><strong>Apoderado</strong>: observa el cambio de estado en vivo. 
+    Si habilitas notificaciones del navegador en la vista de Apoderado (ver abajo), también recibirás un aviso.</li>
+</ol>
   {/* (El bloque heroActions con enlaces fue removido) */}
 </aside>
         </section>

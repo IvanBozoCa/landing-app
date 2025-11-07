@@ -120,9 +120,6 @@ export default function App() {
       <strong>Operación delegable:</strong> las rutas quedan parametrizadas y documentadas; cualquier conductor
       asignado puede iniciar la <em>Ruta del día</em> y ejecutar el recorrido previsto.
     </li>
-    <li>
-      <strong>Cierre de jornada:</strong> finalización de ruta y registro de eventos, útil para control interno y trazabilidad.
-    </li>
   </ul>
 </div>
 
@@ -167,7 +164,7 @@ export default function App() {
 
 {/* Texto lateral */}
 <aside className="phonesAside" role="complementary" aria-label="Descripción de la demo">
-  <h2 id="demo-hero-title" className="heroTitle">Qué puedes probar:</h2>
+  <h2 id="demo-hero-title" className="heroTitle">Puedes probar:</h2>
 
   <p className="heroLead">
     Flujo entre <strong>Conductor</strong> y <strong>Apoderado</strong>: el administrador ya asignó
@@ -277,7 +274,7 @@ export default function App() {
           </ul>
 
           <ol className="heroTry" aria-label="Recorrido sugerido (2 minutos)">
-            <li><strong>Crear Conductor:</strong> “Conductores” → <em>Nuevo</em> → completa formulario → <em>Guardar</em>.</li>
+            <li><strong>Crear Conductor:</strong> “Conductores” → <em>Nuevo</em> → completa el formulario → <em>Guardar</em>.</li>
             <li><strong>Crear Apoderado + Estudiante(s):</strong> “Apoderados” → <em>Nuevo</em> → añade hijos y <em>vincúlalos</em> a un conductor.</li>
             <li><strong>Crear Ruta fija (ida):</strong> “Rutas fijas” → <em>Nueva</em> → ingresa <em>nombre</em>, selecciona <em>conductor</em>, define <em>orden</em> (1…n) → <em>Guardar</em>.</li>
             <li><strong>Ver ruta de vuelta:</strong> se crea automáticamente con el orden invertido (n…1).</li>

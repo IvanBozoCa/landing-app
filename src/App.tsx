@@ -46,113 +46,249 @@ export default function App() {
             margin: "8px 0 12px",
           }}
         >
-          <h1 style={{ margin: 0, fontSize: "clamp(18px, 2.6vw, 24px)" }}>
+          <h1 style={{ margin: 0, fontSize: "clamp(18px, 2.6vw, 24px)", alignContent:"center"}}>
             Demo — Transporte Escolar
           </h1>
           <div style={{ display: "flex", gap: 8 }} />
         </header>
+          {/* Contexto en rectángulo bajo el título */}
+<div
+  role="region"
+  aria-label="Contexto de la demo"
+  style={{
+    width: "100%",
+    margin: "12px 0 20px",
+    padding: "16px 18px",
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(255,255,255,0.10)",
+    borderRadius: 14,
+    boxSizing: "border-box",
+    wordBreak: "break-word",
+    overflowWrap: "anywhere",
+    hyphens: "auto",
+  }}
+>
+  {/* Columna con ancho consistente para P y UL */}
+  <div style={{ maxWidth: "none", width: "100%", display: "grid", rowGap: 10 }}>
+    <p className="heroLead" style={{ marginTop: 0, maxWidth: "inherit", lineHeight: 1.55 }}>
+      <strong>Contexto real:</strong> mi padre, administrador de dos <em>furgones</em> escolares,
+      no podía delegar porque las rutas vivían “en su cabeza”, lo que le impedía tomar días libres.
+      En pandemia, además, los apoderados pedían su ubicación por WhatsApp, generando fricción
+      y errores al compartirla.
+    </p>
+
+    <p className="heroLead" style={{ maxWidth: "none", lineHeight: 1.55 }}>
+      <strong>Solución implementada:</strong> (1) panel de administración para crear apoderados
+      y vincular hijos con conductores; (2) <em>rutas fijas</em>, con orden definido por el
+      administrador, que el conductor activa como <em>Ruta del día</em> (pueden incluir estudiantes
+      de distintos colegios y horarios); y (3) asistencia declarada por el apoderado que excluye
+      automáticamente a los ausentes al iniciar la ruta. Resultado: operación delegable y menos
+      llamadas/mensajes para coordinar.
+    </p>
+
+    <div aria-hidden="true" style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "2px 0 6px" }} />
+
+    <ul
+      className="heroList"
+      aria-label="Resultados en la operación diaria"
+      style={{
+        maxWidth: "none",
+        listStyle: "disc",
+        listStylePosition: "outside",
+        paddingLeft: "1.25rem",
+        margin: 0,
+      }}
+    ><h3>Resultados Esperados </h3>
+              
+      <li style={{ marginBottom: 6 }}>
+        <strong>Menos tiempo al teléfono:</strong> el conductor no necesita responder llamadas o
+        mensajes para confirmar <em>recogido/entregado</em> o llegada al colegio; el apoderado lo
+        ve en la aplicación en tiempo real.
+      </li>
+      <li style={{ marginBottom: 6 }}>
+        <strong>Seguimiento claro:</strong> estados de cada estudiante (<em>recogido</em> /
+        <em>entregado</em>) y avance de la ruta visibles por rol (móvil: notificaciones push;
+        web: actualización directa en pantalla).
+      </li>
+      <li>
+        <strong>Cierre de jornada:</strong> el conductor puede <em>finalizar la ruta</em> y queda
+        registro de los eventos realizados.
+      </li>
+    </ul>
+  </div>
+</div>
 
         {/* Celulares + texto lateral */}
         <section aria-labelledby="demo-hero-title" className="heroGrid" style={{ margin: "12px 0 20px" }}>
           <div
-            key={reloadKey}
-            className="phonesGrid"
-            style={{ display: "grid", gap: 20, alignItems: "start", justifyItems: "center" }}
-          >
-            {/* CONDUCTOR */}
-            <div className="phoneItem" aria-label="Vista Conductor y credenciales">
-              <PhoneFrame title="" src={conductorURL} />
-              <div className="phoneCreds" role="group" aria-label="Credenciales de prueba - Conductor">
-                <ul className="credList">
-                  <li><strong>Usuario:</strong> Conductor@gmail.com</li>
-                  <li><strong>Clave:</strong> Conductor#123</li>
-                </ul>
-              </div>
-            </div>
+  key={reloadKey}
+  className="phonesGrid"
+  style={{ display: "grid", gap: 20, alignItems: "start", justifyItems: "center" }}
+>
+  {/* CONDUCTOR */}
+  <div className="phoneItem" aria-label="Vista Conductor y credenciales">
+    <h2 id="admin-title" className="heroTitle" style={{ marginBottom: 0, textAlign:"center"}} >
+                Conductor
+              </h2>
+    <PhoneFrame title="" src={conductorURL} />
+    <div className="phoneCreds" role="group" aria-label="Credenciales de prueba - Conductor">
+      <ul className="credList">
+        <li><strong>Usuario:</strong> Conductor@gmail.com</li>
+        <li><strong>Clave:</strong> Conductor#123</li>
+      </ul>
+    </div>
+  </div>
 
-            {/* APODERADO */}
-            <div className="phoneItem" aria-label="Vista Apoderado y credenciales">
-              <PhoneFrame title="" src={apoderadoURL} />
-              <div className="phoneCreds" role="group" aria-label="Credenciales de prueba - Apoderado">
-                <ul className="credList">
-                  <li><strong>Usuario:</strong> Apoderado@gmail.com</li>
-                  <li><strong>Clave:</strong> Apoderado#123</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+  {/* APODERADO */}
+  <div className="phoneItem" aria-label="Vista Apoderado y credenciales">
+    <h2 id="admin-title" className="heroTitle" style={{ marginBottom: 0, textAlign:"center"}} >
+                Apoderado
+              </h2>
+    <PhoneFrame title="" src={apoderadoURL} />
+    <div className="phoneCreds" role="group" aria-label="Credenciales de prueba - Apoderado">
+      <ul className="credList">
+        <li><strong>Usuario:</strong> Apoderado@gmail.com</li>
+        <li><strong>Clave:</strong> Apoderado#123</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-          {/* Texto lateral */}
-          <aside className="phonesAside" role="complementary" aria-label="Descripción de la demo">
-            <h2 id="demo-hero-title" className="heroTitle">Transporte Escolar, claro y en vivo</h2>
 
-            <p className="heroLead">
-              Administra rutas del día, asistencia y notificaciones en tiempo real.
-              Esta demo muestra el flujo completo entre <strong>Conductor</strong> y <strong>Apoderado</strong>,
-              desde iniciar la ruta hasta marcar <em>recogido/entregado</em>.
-            </p>
+{/* Texto lateral */}
+<aside className="phonesAside" role="complementary" aria-label="Descripción de la demo">
+  <h2 id="demo-hero-title" className="heroTitle">Qué puedes probar:</h2>
 
-            <ul className="heroList" aria-label="Beneficios principales">
-              <li>Rutas del día con un solo clic</li>
-              <li>Notificaciones al apoderado en tiempo real</li>
-              <li>Recogido/Entregado con trazabilidad</li>
-            </ul>
+  <p className="heroLead">
+    Flujo entre <strong>Conductor</strong> y <strong>Apoderado</strong>: el administrador ya asignó
+    <em> rutas fijas</em> al conductor. Desde ellas se genera la <em>Ruta del día</em> con solo los
+    estudiantes que <em>asistirán</em> (según marca el apoderado). El apoderado ve en tiempo real
+    el estado <em>recogido/entregado</em> de su(s) hijo(s).
+  </p>
 
-            <ol className="heroTry" aria-label="Prueba rápida">
-              <li><strong>Conductor</strong>: genera la <em>Ruta del día</em> y pulsa <em>Iniciar ruta</em>. Marca uno o dos estudiantes como <em>recogidos</em>.</li>
-              <li><strong>Apoderado</strong>: observa el cambio de estado en vivo. Si habilitas las notificaciones del navegador en la vista de Apoderado, también recibirás un aviso.</li>
-            </ol>
-          </aside>
+  <ul className="heroList" aria-label="Qué muestra esta demo">
+    <li>Generación de Ruta del día desde rutas fijas asignadas por el administrador</li>
+    <li>Filtro automático por asistencia declarada por el apoderado</li>
+    <li>Trazabilidad por estudiante: recogido y entregado visibles para el apoderado</li>
+  </ul>
+
+  <ol className="heroTry" aria-label="Pasos rápidos (1 minuto)">
+    <li><strong>Apoderado:</strong> en su vista, marca la asistencia de su(s) hijo(s). Si no asistirá, selecciona <em>No asiste</em>.</li>
+    <li><strong>Conductor:</strong> en su vista, genera la <em>Ruta del día</em> desde su ruta fija y pulsa <em>Iniciar ruta</em>.</li>
+    <li><strong>Conductor:</strong> marca a un estudiante como <em>recogido</em> y luego <em>entregado</em>.</li>
+    <li><strong>Apoderado:</strong> observa el cambio de estado en vivo en el listado de hijos.</li>
+  </ol>
+
+  <p className="heroLead">
+    <strong>Notificaciones:</strong> en la app <em>móvil</em> están implementadas las push con Firebase.
+    En esta <em>demo web</em> no se envían notificaciones; los cambios se visualizan directamente en pantalla.
+  </p>
+</aside>
+
+
         </section>
 
         {/* Panel del Administrador */}
-        <section aria-labelledby="admin-title" className="adminBlock" style={{ marginTop: 8 }}>
-          <div style={{ maxWidth: "min(100vw, 1600px)", margin: "0 auto", padding: "0 16px" }}>
-            <div className="adminHeader" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
-              <h2 id="admin-title" className="heroTitle" style={{ marginBottom: 0 }}>
-                Panel del Administrador
-              </h2>
-            </div>
+<section aria-labelledby="admin-title" className="adminBlock" style={{ marginTop: 8 }}>
+  <div style={{ maxWidth: "min(100vw, 1600px)", margin: "0 auto", padding: "0 16px" }}>
+    <div className="adminHeader" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
+      <h2 id="admin-title" className="heroTitle" style={{ marginBottom: 0 }}>
+        Panel del Administrador
+      </h2>
+    </div>
 
-            {adminURL ? (
-              <>
-                <div
-                  role="region"
-                  aria-label="Vista embebida del Admin"
-                  style={{
-                    width: "100%",
-                    height: "clamp(720px, 85vh, 1400px)",
-                    border: "1px solid rgba(231, 233, 238, 0.12)",
-                    borderRadius: 12,
-                    background: "rgba(231, 233, 238, 0.02)",
-                    overflow: "hidden",
-                    boxSizing: "border-box",
-                  }}
-                >
-                  <iframe
-                    src={adminURL}
-                    title="Admin - Plataforma de gestión"
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%", border: 0, display: "block" }}
-                  />
-                </div>
+    {/* Layout: 1 col en móvil, 2 cols >=1024px */}
+    <style>{`
+      @media (min-width: 1024px) {
+        .adminGrid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) clamp(420px, 34vw, 560px); /* ⬅️ sidebar más ancho */
+          gap: 18px;                     /* ⬅️ único “margen” entre columnas */
+          align-items: start;
+        }
+      }
+    `}</style>
 
-                {/* AJUSTE: credenciales con la MISMA estructura visual que conductor/apoderado */}
-                <div className="phoneCreds" role="group" aria-label="Credenciales de prueba - Administrador" style={{ marginTop: 8 }}>
-                  <ul className="credList">
-                    <li><strong>Usuario:</strong> AdminDemo@gmail.com</li>
-                    <li><strong>Clave:</strong> Admindemo#123</li>
-                  </ul>
-                </div>
-              </>
-            ) : (
-              <div className="adminFallback" role="status" aria-live="polite">
-                No se encontró <code>VITE_URL_ADMIN</code> / <code>VITE_ADMIN_URL</code>.
-                Configura la variable o usa <code>?admin=URL</code>.
-              </div>
-            )}
+    {adminURL ? (
+      <div className="adminGrid">
+        {/* Columna izquierda: IFRAME + credenciales */}
+        <div>
+          <div
+            role="region"
+            aria-label="Vista embebida del Admin"
+            style={{
+              width: "100%",
+              height: "clamp(640px, 78vh, 1200px)",
+              border: "1px solid rgba(231, 233, 238, 0.12)",
+              borderRadius: 12,
+              background: "rgba(231, 233, 238, 0.02)",
+              overflow: "hidden",
+              boxSizing: "border-box",
+            }}
+          >
+            <iframe
+              src={adminURL}
+              title="Admin - Plataforma de gestión"
+              loading="lazy"
+              style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+            />
           </div>
-        </section>
+
+          {/* Credenciales compactas (cuadro ajustado al contenido) */}
+          <div className= "phoneCreds" role="group" aria-label="Credenciales de prueba - Administrador" style={{ marginTop: 10 }}>
+            <ul
+              className="credList"
+            >
+              <li><strong>Usuario:</strong> AdminDemo@gmail.com</li>
+              <li><strong>Clave:</strong> Admindemo#123</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Columna derecha: Texto lateral (un solo cuadro, sin relleno gris extra) */}
+        
+        <aside
+          className="phonesAside"
+          role="complementary"
+          aria-label="Instrucciones del Panel del Administrador"
+        >
+          <h3 className="heroTitle" style={{ marginTop: 0 }}>Qué puedes gestionar (Administrador):</h3>
+
+          <p className="heroLead">
+            Administra <strong>conductores, apoderados y estudiantes</strong>, y define
+            <strong> rutas fijas</strong> con un orden de paradas. El panel ofrece CRUD completo.
+          </p>
+
+          <ul className="heroList" aria-label="Capacidades del panel" style={{ listStylePosition: "outside", paddingLeft: "1.25rem" }}>
+            <li>CRUD de <strong>Conductores</strong>, <strong>Apoderados</strong> y <strong>Estudiantes</strong>.</li>
+            <li>Vincular hijos (estudiantes) a un <strong>Conductor</strong>.</li>
+            <li>Crear <strong>Rutas fijas</strong> con nombre, conductor y <em>orden</em> de paradas.</li>
+            <li>Al guardar la ida, se genera la <strong>ruta de vuelta</strong> en orden invertido (<em>ida:</em> 1,2,3 → <em>vuelta:</em> 3,2,1).</li>
+          </ul>
+
+          <ol className="heroTry" aria-label="Recorrido sugerido (2 minutos)">
+            <li><strong>Crear Conductor:</strong> “Conductores” → <em>Nuevo</em> → completa formulario → <em>Guardar</em>.</li>
+            <li><strong>Crear Apoderado + Estudiante(s):</strong> “Apoderados” → <em>Nuevo</em> → añade hijos y <em>vincúlalos</em> a un conductor.</li>
+            <li><strong>Crear Ruta fija (ida):</strong> “Rutas fijas” → <em>Nueva</em> → ingresa <em>nombre</em>, selecciona <em>conductor</em>, define <em>orden</em> (1…n) → <em>Guardar</em>.</li>
+            <li><strong>Ver ruta de vuelta:</strong> se crea automáticamente con el orden invertido (n…1).</li>
+            <li><strong>Probar CRUD:</strong> edita un registro y elimina otro (con confirmación).</li>
+          </ol>
+
+          <p className="heroLead">
+            <strong>Tip:</strong> el <em>orden</em> determina la secuencia real de recogida/entrega.
+            Reordena y guarda para actualizar la planificación.
+          </p>
+        </aside>
+      </div>
+    ) : (
+      <div className="adminFallback" role="status" aria-live="polite" style={{ marginTop: 8 }}>
+        No se encontró <code>VITE_URL_ADMIN</code> / <code>VITE_ADMIN_URL</code>.
+        Configura la variable o usa <code>?admin=URL</code>.
+      </div>
+    )}
+  </div>
+</section>
+
 
         {/* Swagger */}
         <div style={{ marginLeft: "calc(50% - 50vw)", marginRight: "calc(50% - 50vw)" }}>
@@ -160,7 +296,7 @@ export default function App() {
             <div style={{ maxWidth: "min(100vw, 1600px)", margin: "0 auto", padding: "0 16px" }}>
               <div className="swaggerHeader" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
                 <h2 id="swagger-title" className="heroTitle" style={{ marginBottom: 0 }}>
-                  API de la demo (Swagger)
+                  API (Swagger)
                 </h2>
               </div>
 

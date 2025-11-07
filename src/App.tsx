@@ -86,8 +86,7 @@ export default function App() {
   <p className="heroLead" style={{ maxWidth: "none", lineHeight: 1.6 }}>
     <strong>Solución implementada:</strong> (1) panel de administración para crear apoderados y
     vincular hijos con conductores; (2) <em>rutas fijas</em> con orden definido por el administrador
-    que el conductor activa como <em>Ruta del día</em> (pueden incluir estudiantes de distintos
-    colegios y horarios); (3) asistencia declarada por el apoderado que excluye automáticamente a
+    que el conductor activa como <em>Ruta del día</em>; (3) asistencia declarada por el apoderado que excluye automáticamente a
     los ausentes al iniciar la ruta; (4) generación automática de la <em>ruta de vuelta</em> con el
     orden invertido (<em>ida:</em> 1,2,3 → <em>vuelta:</em> 3,2,1); (5) actualización
   dinámica de ruta activa: al marcar a un estudiante como <em>recogido</em> o

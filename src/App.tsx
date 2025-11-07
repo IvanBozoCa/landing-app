@@ -383,7 +383,6 @@ export default function App() {
                 <li><strong>Proximidad:</strong> estimación de llegada y aviso “próximo a entregar” (geofencing).</li>
                 <li><strong>Historial y analítica:</strong> tiempos, recorridos y exportación a Excel.</li>
                 <li><strong>Importación desde Excel:</strong> alta masiva de estudiantes/apoderados según planilla del cliente.</li>
-                <li><strong>Permisos y auditoría:</strong> bitácora de cambios y permisos granulares por rol.</li>
               </ul>
             </details>
           </aside>

@@ -71,7 +71,7 @@ export default function App() {
   {/* Columna con ancho consistente para P y UL */}
   <div style={{ maxWidth: "none", width: "100%", display: "grid", rowGap: 10 }}>
   <p className="heroLead" style={{ marginTop: 0, maxWidth: "inherit", lineHeight: 1.6 }}>
-    <strong>Contexto real:</strong> un cliente administrador de transporte escolar no podía delegar
+    <strong>Contexto real:</strong> Un cliente administrador de transporte escolar no podía delegar
     eficazmente porque las rutas vivían como conocimiento tácito, lo que impedía tomar días libres
     y generaba dependencias. Durante la pandemia, además, las familias solicitaban ubicación por
     WhatsApp, elevando la fricción operativa y el riesgo de errores al compartirla.
@@ -89,7 +89,10 @@ export default function App() {
     que el conductor activa como <em>Ruta del día</em> (pueden incluir estudiantes de distintos
     colegios y horarios); (3) asistencia declarada por el apoderado que excluye automáticamente a
     los ausentes al iniciar la ruta; (4) generación automática de la <em>ruta de vuelta</em> con el
-    orden invertido (<em>ida:</em> 1,2,3 → <em>vuelta:</em> 3,2,1).
+    orden invertido (<em>ida:</em> 1,2,3 → <em>vuelta:</em> 3,2,1); (5) actualización
+  dinámica de ruta activa: al marcar a un estudiante como <em>recogido</em> o
+  <em> entregado</em>, se retira de las paradas pendientes y el cambio se refleja de inmediato
+  en la vista del conductor y del apoderado.
   </p>
 
   <div aria-hidden="true" style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "2px 0 6px" }} />
@@ -299,44 +302,105 @@ export default function App() {
 
 
         {/* Swagger */}
-        <div style={{ marginLeft: "calc(50% - 50vw)", marginRight: "calc(50% - 50vw)" }}>
-          <section aria-labelledby="swagger-title" className="swaggerBlock" style={{ marginTop: 24 }}>
-            <div style={{ maxWidth: "min(100vw, 1600px)", margin: "0 auto", padding: "0 16px" }}>
-              <div className="swaggerHeader" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
-                <h2 id="swagger-title" className="heroTitle" style={{ marginBottom: 0 }}>
-                  API (Swagger)
-                </h2>
-              </div>
+<div style={{ marginLeft: "calc(50% - 50vw)", marginRight: "calc(50% - 50vw)" }}>
+  <section aria-labelledby="swagger-title" className="swaggerBlock" style={{ marginTop: 24 }}>
+    <div style={{ maxWidth: "min(100vw, 1600px)", margin: "0 auto", padding: "0 16px" }}>
+      <div className="swaggerHeader" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
+        <h2 id="swagger-title" className="heroTitle" style={{ marginBottom: 0 }}>
+          API (Swagger)
+        </h2>
+      </div>
 
-              {dashboardURL ? (
-                <div
-                  role="region"
-                  aria-label="Vista embebida de Swagger"
-                  style={{
-                    width: "100%",
-                    height: "clamp(720px, 85vh, 1400px)",
-                    border: "1px solid rgba(231, 233, 238, 0.12)",
-                    borderRadius: 12,
-                    background: "rgba(231, 233, 238, 0.02)",
-                    overflow: "hidden",
-                    boxSizing: "border-box",
-                  }}
-                >
-                  <iframe
-                    src={dashboardURL}
-                    title="Swagger - API de la demo"
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%", border: 0, display: "block" }}
-                  />
-                </div>
-              ) : (
-                <div className="swaggerFallback" role="status" aria-live="polite">
-                  No se encontró <code>VITE_DASHBOARD_URL</code>. Configura la variable o usa <code>?swagger=URL</code>.
-                </div>
-              )}
+      {/* Layout: 1 col en móvil, 2 cols >=1024px (igual que Admin) */}
+      <style>{`
+        @media (min-width: 1024px) {
+          .swaggerGrid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) clamp(420px, 34vw, 560px);
+            gap: 18px; /* único margen entre columnas */
+            align-items: start;
+          }
+        }
+
+        /* Tipografía del aside un poco más grande */
+        #swagger-aside .heroTitle {
+          font-size: clamp(18px, 2.2vw, 22px);
+        }
+        #swagger-aside .heroLead {
+          font-size: clamp(15px, 1.35vw, 18px);
+          line-height: 1.6;
+          max-width: none;
+        }
+        #swagger-aside .heroList li {
+          font-size: clamp(14px, 1.2vw, 17px);
+          line-height: 1.55;
+          margin-bottom: 8px;
+        }
+      `}</style>
+
+      {dashboardURL ? (
+        <div className="swaggerGrid">
+          {/* Columna izquierda: IFRAME */}
+          <div>
+            <div
+              role="region"
+              aria-label="Vista embebida de Swagger"
+              style={{
+                width: "100%",
+                height: "clamp(640px, 78vh, 1200px)", // mismo tamaño que Admin
+                border: "1px solid rgba(231, 233, 238, 0.12)",
+                borderRadius: 12,
+                background: "rgba(231, 233, 238, 0.02)",
+                overflow: "hidden",
+                boxSizing: "border-box",
+              }}
+            >
+              <iframe
+                src={dashboardURL}
+                title="Swagger - API de la demo"
+                loading="lazy"
+                style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+              />
             </div>
-          </section>
+          </div>
+
+          {/* Columna derecha: Alcance + Roadmap (un solo cuadro, sin relleno) */}
+          <aside
+            id="swagger-aside"
+            className="phoneCreds"
+            role="complementary"
+            aria-label="Alcance y próximas iteraciones"
+            
+          >
+            <h3 className="heroTitle" style={{ marginTop: 0 }}>Alcance de esta demo</h3>
+            <ul className="heroList" style={{ listStylePosition: "outside", paddingLeft: "1.25rem", marginTop: 6 }}>
+              <li>Roles: Administrador, Conductor y Apoderado.</li>
+              <li>Rutas fijas con orden definido y <em>Ruta del día</em>.</li>
+              <li>Asistencia declarada por el apoderado (incluye solo asistentes).</li>
+              <li>Estados por estudiante: <em>recogido</em> / <em>entregado</em>.</li>
+              <li>Notificaciones push en <strong>app móvil</strong> (en web, actualización en pantalla).</li>
+            </ul>
+
+            <details style={{ marginTop: 10 }}>
+              <summary style={{ cursor: "pointer", fontWeight: 600 }}>Próximas iteraciones (roadmap)</summary>
+              <ul className="heroList" style={{ listStylePosition: "outside", paddingLeft: "1.25rem", marginTop: 8 }}>
+                <li><strong>Proximidad:</strong> estimación de llegada y aviso “próximo a entregar” (geofencing).</li>
+                <li><strong>Historial y analítica:</strong> tiempos, recorridos y exportación a Excel.</li>
+                <li><strong>Importación desde Excel:</strong> alta masiva de estudiantes/apoderados según planilla del cliente.</li>
+                <li><strong>Permisos y auditoría:</strong> bitácora de cambios y permisos granulares por rol.</li>
+              </ul>
+            </details>
+          </aside>
         </div>
+      ) : (
+        <div className="swaggerFallback" role="status" aria-live="polite">
+          No se encontró <code>VITE_DASHBOARD_URL</code>. Configura la variable o usa <code>?swagger=URL</code>.
+        </div>
+      )}
+    </div>
+  </section>
+</div>
+
 
         <footer style={{ textAlign: "center", opacity: 0.6, marginTop: 20 }}>
           © {new Date().getFullYear()} Demo Transporte Escolar

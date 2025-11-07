@@ -70,52 +70,60 @@ export default function App() {
 >
   {/* Columna con ancho consistente para P y UL */}
   <div style={{ maxWidth: "none", width: "100%", display: "grid", rowGap: 10 }}>
-    <p className="heroLead" style={{ marginTop: 0, maxWidth: "inherit", lineHeight: 1.55 }}>
-      <strong>Contexto real:</strong> mi padre, administrador de dos <em>furgones</em> escolares,
-      no podía delegar porque las rutas vivían “en su cabeza”, lo que le impedía tomar días libres.
-      En pandemia, además, los apoderados pedían su ubicación por WhatsApp, generando fricción
-      y errores al compartirla.
-    </p>
+  <p className="heroLead" style={{ marginTop: 0, maxWidth: "inherit", lineHeight: 1.6 }}>
+    <strong>Contexto real:</strong> un cliente administrador de transporte escolar no podía delegar
+    eficazmente porque las rutas vivían como conocimiento tácito, lo que impedía tomar días libres
+    y generaba dependencias. Durante la pandemia, además, las familias solicitaban ubicación por
+    WhatsApp, elevando la fricción operativa y el riesgo de errores al compartirla.
+  </p>
 
-    <p className="heroLead" style={{ maxWidth: "none", lineHeight: 1.55 }}>
-      <strong>Solución implementada:</strong> (1) panel de administración para crear apoderados
-      y vincular hijos con conductores; (2) <em>rutas fijas</em>, con orden definido por el
-      administrador, que el conductor activa como <em>Ruta del día</em> (pueden incluir estudiantes
-      de distintos colegios y horarios); y (3) asistencia declarada por el apoderado que excluye
-      automáticamente a los ausentes al iniciar la ruta. Resultado: operación delegable y menos
-      llamadas/mensajes para coordinar.
-    </p>
+  <p className="heroLead" style={{ maxWidth: "none", lineHeight: 1.6 }}>
+    <strong>Objetivo del proyecto:</strong> profesionalizar la operación con un panel centralizado,
+    visibilidad por roles y trazabilidad en tiempo real, reduciendo la coordinación manual vía
+    mensajería y permitiendo la delegación segura de las rutas.
+  </p>
 
-    <div aria-hidden="true" style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "2px 0 6px" }} />
+  <p className="heroLead" style={{ maxWidth: "none", lineHeight: 1.6 }}>
+    <strong>Solución implementada:</strong> (1) panel de administración para crear apoderados y
+    vincular hijos con conductores; (2) <em>rutas fijas</em> con orden definido por el administrador
+    que el conductor activa como <em>Ruta del día</em> (pueden incluir estudiantes de distintos
+    colegios y horarios); (3) asistencia declarada por el apoderado que excluye automáticamente a
+    los ausentes al iniciar la ruta; (4) generación automática de la <em>ruta de vuelta</em> con el
+    orden invertido (<em>ida:</em> 1,2,3 → <em>vuelta:</em> 3,2,1).
+  </p>
 
-    <ul
-      className="heroList"
-      aria-label="Resultados en la operación diaria"
-      style={{
-        maxWidth: "none",
-        listStyle: "disc",
-        listStylePosition: "outside",
-        paddingLeft: "1.25rem",
-        margin: 0,
-      }}
-    ><h3>Resultados Esperados </h3>
-              
-      <li style={{ marginBottom: 6 }}>
-        <strong>Menos tiempo al teléfono:</strong> el conductor no necesita responder llamadas o
-        mensajes para confirmar <em>recogido/entregado</em> o llegada al colegio; el apoderado lo
-        ve en la aplicación en tiempo real.
-      </li>
-      <li style={{ marginBottom: 6 }}>
-        <strong>Seguimiento claro:</strong> estados de cada estudiante (<em>recogido</em> /
-        <em>entregado</em>) y avance de la ruta visibles por rol (móvil: notificaciones push;
-        web: actualización directa en pantalla).
-      </li>
-      <li>
-        <strong>Cierre de jornada:</strong> el conductor puede <em>finalizar la ruta</em> y queda
-        registro de los eventos realizados.
-      </li>
-    </ul>
-  </div>
+  <div aria-hidden="true" style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "2px 0 6px" }} />
+
+  <h3 style={{ margin: "6px 0 0" }}>Resultados esperados</h3>
+  <ul
+    className="heroList"
+    aria-label="Resultados en la operación diaria"
+    style={{
+      maxWidth: "none",
+      listStyle: "disc",
+      listStylePosition: "outside",
+      paddingLeft: "1.25rem",
+      margin: "6px 0 0",
+    }}
+  >
+    <li style={{ marginBottom: 6 }}>
+      <strong>Menos tiempo al teléfono:</strong> el conductor deja de responder llamadas/mensajes
+      para confirmar <em>recogido/entregado</em> o llegada; el apoderado lo ve en la aplicación en tiempo real.
+    </li>
+    <li style={{ marginBottom: 6 }}>
+      <strong>Seguimiento claro:</strong> estados por estudiante (<em>recogido</em>/<em>entregado</em>)
+      y avance de la ruta visibles según rol. En móvil: notificaciones push (Firebase). En web: actualización en pantalla.
+    </li>
+    <li style={{ marginBottom: 6 }}>
+      <strong>Operación delegable:</strong> las rutas quedan parametrizadas y documentadas; cualquier conductor
+      asignado puede iniciar la <em>Ruta del día</em> y ejecutar el recorrido previsto.
+    </li>
+    <li>
+      <strong>Cierre de jornada:</strong> finalización de ruta y registro de eventos, útil para control interno y trazabilidad.
+    </li>
+  </ul>
+</div>
+
 </div>
 
         {/* Celulares + texto lateral */}

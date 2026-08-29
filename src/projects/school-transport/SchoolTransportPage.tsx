@@ -1,10 +1,10 @@
-// ==== INICIO — App.tsx ====
-/* src/App.tsx */
+// ==== INICIO — SchoolTransportPage.tsx ====
+/* src/projects/school-transport/SchoolTransportPage.tsx */
 import { useMemo, useState } from "react";
-import "./App.css";
-import PhoneFrame from "./components/phoneframe";
+import "./SchoolTransportPage.css";
+import PhoneFrame from "./components/PhoneFrame";
 
-export default function App() {
+export default function SchoolTransportPage() {
   // URLs desde .env (dos variantes por cada uno)
   const envConductor = import.meta.env.VITE_URL_CONDUCTOR as string | undefined;
   const envConductorAlt = import.meta.env.VITE_CONDUCTOR_URL as string | undefined;
@@ -404,4 +404,4 @@ export default function App() {
     </div>
   );
 }
-// ==== FIN — App.tsx ====
+// ==== FIN — SchoolTransportPage.tsx ====

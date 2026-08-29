@@ -36,7 +36,7 @@ html, body {
 .read-the-docs {
   color: #888;
 }
-/* ==== INICIO <Paso 1> — App.css (clases nuevas, no toco lo demás) ==== */
+/* ==== INICIO <Paso 1> — SchoolTransportPage.css (clases existentes) ==== */
 .appContainer {
   max-width: 1200px;         /* límite de ancho en desktop */
   width: 100%;               /* responde en móvil/tablet */

@@ -134,7 +134,7 @@ export default function SchoolTransportPage() {
 >
   {/* CONDUCTOR */}
   <div className="phoneItem" aria-label="Vista Conductor y credenciales">
-    <h2 id="admin-title" className="heroTitle" style={{ marginBottom: 0, textAlign:"center"}} >
+    <h2 id="conductor-title" className="heroTitle" style={{ marginBottom: 0, textAlign:"center"}} >
                 Conductor
               </h2>
     <PhoneFrame title="" src={conductorURL} />
@@ -148,7 +148,7 @@ export default function SchoolTransportPage() {
 
   {/* APODERADO */}
   <div className="phoneItem" aria-label="Vista Apoderado y credenciales">
-    <h2 id="admin-title" className="heroTitle" style={{ marginBottom: 0, textAlign:"center"}} >
+    <h2 id="apoderado-title" className="heroTitle" style={{ marginBottom: 0, textAlign:"center"}} >
                 Apoderado
               </h2>
     <PhoneFrame title="" src={apoderadoURL} />

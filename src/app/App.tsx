@@ -1,6 +1,28 @@
 import SchoolTransportPage from "../projects/school-transport/SchoolTransportPage";
 import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
+import { useEffect } from "react";
 import "./PortfolioPage.css";
+
+type PageMetadataProps = { title: string; description: string };
+
+function PageMetadata({ title, description }: PageMetadataProps) {
+  useEffect(() => {
+    document.title = title;
+
+    const metadata = [
+      ["name", "description", description],
+      ["property", "og:title", title],
+      ["property", "og:description", description],
+    ] as const;
+
+    metadata.forEach(([attribute, value, content]) => {
+      const element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${value}"]`);
+      element?.setAttribute("content", content);
+    });
+  }, [description, title]);
+
+  return null;
+}
 
 type ActionLinkProps = { children: React.ReactNode; href: string; variant?: "primary" | "secondary" | "text"; external?: boolean };
 
@@ -47,6 +69,7 @@ function SiteFooter() {
 
 function PortfolioHome() {
   return <div className="portfolio-shell">
+    <PageMetadata title="Iván Bozo Catalán | Ingeniería de software" description="Portfolio de Iván Bozo Catalán, Ingeniero Civil en Computación. Proyectos de software, backend, datos e Inteligencia Artificial." />
     <a className="skip-link" href="#contenido">Saltar al contenido</a><SiteHeader />
     <main id="contenido">
       <section className="hero" id="inicio" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow">Ingeniería de software · Backend · Datos e IA</p><h1 id="hero-title">Diseño y construyo software para resolver problemas reales de operación.</h1><p className="hero-lead">Soy Iván Bozo Catalán, Ingeniero Civil en Computación. Trabajo con backend, datos e integración de sistemas, buscando que cada solución sea clara, útil y comprobable.</p><div className="hero-actions"><ActionLink href="#proyectos" variant="primary">Ver proyectos</ActionLink><ActionLink href="#contacto" variant="text">Contacto</ActionLink></div></div><aside className="hero-note" aria-label="Principio de trabajo"><span>01 / Enfoque</span><p>Problema</p><i aria-hidden="true" /><p>Solución</p><i aria-hidden="true" /><p>Implementación</p><i aria-hidden="true" /><p>Validación</p></aside></section>
@@ -62,7 +85,7 @@ function PortfolioHome() {
 
 export default function App() {
   const project = new URLSearchParams(window.location.search).get("project");
-  if (project === "school-transport") return <SchoolTransportPage />;
-  if (project === "gcms") return <GamingCenterCaseStudy />;
+  if (project === "school-transport") return <><PageMetadata title="Transporte Escolar | Iván Bozo Catalán" description="Proyecto de título para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." /><SchoolTransportPage /></>;
+  if (project === "gcms") return <><PageMetadata title="Gaming Center Management System | Iván Bozo Catalán" description="Caso de estudio de un sistema para administrar estaciones, clientes y sesiones de uso en gaming centers." /><GamingCenterCaseStudy /></>;
   return <PortfolioHome />;
 }

@@ -1,4 +1,5 @@
 import SchoolTransportPage from "../projects/school-transport/SchoolTransportPage";
+import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
 import "./PortfolioPage.css";
 
 type ActionLinkProps = { children: React.ReactNode; href: string; variant?: "primary" | "secondary" | "text"; external?: boolean };
@@ -32,7 +33,7 @@ function FeaturedProject({ project }: { project: "gcms" | "transport" }) {
       </div>
       <p className="project-role"><strong>Mi trabajo:</strong> análisis del problema, diseño del sistema e implementación.</p>
       <div className="project-evidence"><span className="evidence-label">Evidencia disponible</span><p>{gcms ? "Los flujos de sesiones registradas y de invitados cuentan con pruebas de reglas de negocio, permisos, base de datos y concurrencia." : "Demo navegable con vistas de conductor, apoderado, administración y documentación de la API."}</p></div>
-      {gcms ? <span className="pending-link" aria-label="Caso de estudio de GCMS pendiente">Caso de estudio en preparación</span> : <ActionLink href="?project=school-transport" variant="secondary">Abrir demo del proyecto</ActionLink>}
+      {gcms ? <ActionLink href="?project=gcms" variant="secondary">Ver caso de estudio</ActionLink> : <ActionLink href="?project=school-transport" variant="secondary">Abrir demo del proyecto</ActionLink>}
     </div>
     <div className="project-visual" aria-label={gcms ? "Captura de GCMS pendiente" : "Vista previa editorial de Transporte Escolar"}>
       {gcms ? <div className="visual-placeholder"><span>Visual del producto</span><strong>Captura real pendiente</strong><p>Este espacio se reserva para una vista validada del panel, sin representar una interfaz ficticia.</p></div> : <div className="transport-preview"><div className="route-line" aria-hidden="true"><i /><i /><i /><i /></div><div><span>Demo funcional</span><strong>Ruta, asistencia y seguimiento</strong><p>Experiencia completa preservada en su landing original.</p></div></div>}
@@ -60,5 +61,8 @@ function PortfolioHome() {
 }
 
 export default function App() {
-  return new URLSearchParams(window.location.search).get("project") === "school-transport" ? <SchoolTransportPage /> : <PortfolioHome />;
+  const project = new URLSearchParams(window.location.search).get("project");
+  if (project === "school-transport") return <SchoolTransportPage />;
+  if (project === "gcms") return <GamingCenterCaseStudy />;
+  return <PortfolioHome />;
 }

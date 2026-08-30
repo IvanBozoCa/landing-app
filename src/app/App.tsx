@@ -1,4 +1,5 @@
 import SchoolTransportPage from "../projects/school-transport/SchoolTransportPage";
+import SchoolTransportCaseStudy from "../projects/school-transport/SchoolTransportCaseStudy";
 import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
 import { useEffect } from "react";
 import "./PortfolioPage.css";
@@ -55,7 +56,7 @@ function FeaturedProject({ project }: { project: "gcms" | "transport" }) {
       </div>
       <p className="project-role"><strong>Mi trabajo:</strong> análisis del problema, diseño del sistema e implementación.</p>
       <div className="project-evidence"><span className="evidence-label">Evidencia disponible</span><p>{gcms ? "Los flujos de sesiones registradas y de invitados cuentan con pruebas de reglas de negocio, permisos, base de datos y concurrencia." : "Demo navegable con vistas de conductor, apoderado, administración y documentación de la API."}</p></div>
-      {gcms ? <ActionLink href="?project=gcms" variant="secondary">Ver caso de estudio</ActionLink> : <ActionLink href="?project=school-transport" variant="secondary">Abrir demo del proyecto</ActionLink>}
+      {gcms ? <ActionLink href="?project=gcms" variant="secondary">Ver caso de estudio</ActionLink> : <ActionLink href="?project=school-transport" variant="secondary">Ver caso de estudio</ActionLink>}
     </div>
     <div className="project-visual" aria-label={gcms ? "Captura de GCMS pendiente" : "Vista previa editorial de Transporte Escolar"}>
       {gcms ? <div className="visual-placeholder"><span>Visual del producto</span><strong>Captura real pendiente</strong><p>Este espacio se reserva para una vista validada del panel, sin representar una interfaz ficticia.</p></div> : <div className="transport-preview"><div className="route-line" aria-hidden="true"><i /><i /><i /><i /></div><div><span>Demo funcional</span><strong>Ruta, asistencia y seguimiento</strong><p>Experiencia completa preservada en su landing original.</p></div></div>}
@@ -85,7 +86,8 @@ function PortfolioHome() {
 
 export default function App() {
   const project = new URLSearchParams(window.location.search).get("project");
-  if (project === "school-transport") return <><PageMetadata title="Transporte Escolar | Iván Bozo Catalán" description="Proyecto de título para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." /><SchoolTransportPage /></>;
+  if (project === "school-transport") return <><PageMetadata title="Transporte Escolar | Iván Bozo Catalán" description="Caso de estudio de una plataforma para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." /><SchoolTransportCaseStudy /></>;
+  if (project === "school-transport-demo") return <><PageMetadata title="Demo Transporte Escolar | Iván Bozo Catalán" description="Demo funcional con vistas de administración, conductor, apoderado y documentación de la API." /><SchoolTransportPage /></>;
   if (project === "gcms") return <><PageMetadata title="Gaming Center Management System | Iván Bozo Catalán" description="Caso de estudio de un sistema para administrar estaciones, clientes y sesiones de uso en gaming centers." /><GamingCenterCaseStudy /></>;
   return <PortfolioHome />;
 }

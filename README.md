@@ -7,7 +7,8 @@ Portfolio desarrollado con React, TypeScript y Vite. Presenta experiencia profes
 
 - Home: `/`
 - Caso de estudio de GCMS: `/?project=gcms`
-- Demo preservada de Transporte Escolar: `/?project=school-transport`
+- Caso de estudio de Transporte Escolar: `/?project=school-transport`
+- Demo preservada de Transporte Escolar: `/?project=school-transport-demo`
 
 La navegación por query es temporal. No se utiliza React Router porque la estrategia definitiva de rutas se decidirá junto con el hosting.
 

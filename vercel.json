@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/caryagua/", "destination": "/carycar/", "permanent": true },
     { "source": "/caryagua", "destination": "/carycar/", "permanent": true },
     { "source": "/caryagua/:path*", "destination": "/carycar/:path*", "permanent": true }
   ]

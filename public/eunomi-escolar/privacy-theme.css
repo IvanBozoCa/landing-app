@@ -1,0 +1,13 @@
+:root, body { color: #172126; background: #f6f8f9; font-family: Arial, Roboto, sans-serif; }
+body { line-height: 1.75; }
+a, .top-link { color: #176b78; }
+a:hover, .top-link:hover { color: #105864; }
+a:focus-visible { outline: 3px solid #a76500; outline-offset: 4px; }
+.page-shell { max-width: 850px; }
+header, section, .card, .meta, .notice { background: #fff; color: #172126; border-color: #dde4e7; }
+p, li { color: #354850; }
+h1, h2, h3, strong { color: #172126; }
+.policy-card { background: #fff; border-color: #dde4e7; box-shadow: 0 12px 40px #1721260a; }
+.intro, footer { color: #53656d; }
+.eyebrow, .top-link:focus-visible { color: #176b78; }
+.notice { border-left-color: #176b78; background: #eef4f4; }

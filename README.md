@@ -6,6 +6,7 @@ Portfolio desarrollado con React, TypeScript y Vite. Presenta experiencia profes
 ## Vistas disponibles
 
 - Home: `/`
+- Servicios profesionales: `/?page=services`
 - Caso de estudio de GCMS: `/?project=gcms`
 - Caso de estudio de Transporte Escolar: `/?project=school-transport`
 - Demo preservada de Transporte Escolar: `/?project=school-transport-demo`

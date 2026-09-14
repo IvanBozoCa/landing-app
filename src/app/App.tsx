@@ -1,6 +1,7 @@
 import SchoolTransportPage from "../projects/school-transport/SchoolTransportPage";
 import SchoolTransportCaseStudy from "../projects/school-transport/SchoolTransportCaseStudy";
 import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
+import ServicesPage from "../services/ServicesPage";
 import { useEffect } from "react";
 import "./PortfolioPage.css";
 
@@ -50,7 +51,7 @@ function ServicesOverview() {
     { number: "03", title: "MVP y modernización", description: "Primeras versiones funcionales e incrementos para conectar frontend, backend, datos e integraciones sin intentar resolver todo de una vez." },
   ];
 
-  return <section className="services-section" id="servicios" aria-labelledby="services-title"><SectionHeading eyebrow="Servicios" title="Soluciones digitales construidas alrededor de una necesidad concreta" titleId="services-title" intro="Puedo ayudarte a presentar mejor un servicio, ordenar una operación o convertir una idea en una primera versión funcional." /><div className="services-grid">{services.map((service) => <article key={service.number}><span>{service.number}</span><h3>{service.title}</h3><p>{service.description}</p><a href="#contacto">Conversemos <span aria-hidden="true">→</span></a></article>)}</div></section>;
+  return <section className="services-section" id="servicios" aria-labelledby="services-title"><SectionHeading eyebrow="Servicios" title="Soluciones digitales construidas alrededor de una necesidad concreta" titleId="services-title" intro="Puedo ayudarte a presentar mejor un servicio, ordenar una operación o convertir una idea en una primera versión funcional." /><div className="services-grid">{services.map((service, index) => <article key={service.number}><span>{service.number}</span><h3>{service.title}</h3><p>{service.description}</p><a href={"?page=services#" + ["sitios-web", "software-gestion", "mvp-modernizacion"][index]}>Conocer el servicio <span aria-hidden="true">→</span></a></article>)}</div></section>;
 }
 
 function ProductsOverview() {
@@ -102,6 +103,8 @@ function PortfolioHome() {
 
 export default function App() {
   const project = new URLSearchParams(window.location.search).get("project");
+  const page = new URLSearchParams(window.location.search).get("page");
+  if (page === "services") return <><PageMetadata title="Servicios de desarrollo web y software | Iván Bozo Catalán" description="Sitios web comerciales, software de gestión a medida, MVP y modernización de aplicaciones desarrollados por Iván Bozo Catalán." /><ServicesPage /></>;
   if (project === "school-transport") return <><PageMetadata title="Transporte Escolar | Iván Bozo Catalán" description="Caso de estudio de una plataforma para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." /><SchoolTransportCaseStudy /></>;
   if (project === "school-transport-demo") return <><PageMetadata title="Demo Transporte Escolar | Iván Bozo Catalán" description="Demo funcional con vistas de administración, conductor, apoderado y documentación de la API." /><SchoolTransportPage /></>;
   if (project === "gcms") return <><PageMetadata title="Gaming Center Management System | Iván Bozo Catalán" description="Caso de estudio de un sistema para administrar estaciones, clientes y sesiones de uso en gaming centers." /><GamingCenterCaseStudy /></>;

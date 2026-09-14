@@ -3,6 +3,7 @@ import SchoolTransportCaseStudy from "../projects/school-transport/SchoolTranspo
 import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
 import ServicesPage from "../services/ServicesPage";
 import ProductsPage from "../products/ProductsPage";
+import ContactPage from "../contact/ContactPage";
 import { useEffect } from "react";
 import "./PortfolioPage.css";
 
@@ -42,7 +43,7 @@ function SectionHeading({ eyebrow, title, titleId, intro }: { eyebrow: string; t
 }
 
 function SiteHeader() {
-  return <header className="site-header"><a className="brand" href="#inicio" aria-label="Ir al inicio"><span className="brand-mark" aria-hidden="true">IB</span><span>Iván Bozo Catalán</span></a><nav aria-label="Navegación principal"><a href="#servicios">Servicios</a><a href="#productos">Productos</a><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav></header>;
+  return <header className="site-header"><a className="brand" href="#inicio" aria-label="Ir al inicio"><span className="brand-mark" aria-hidden="true">IB</span><span>Iván Bozo Catalán</span></a><nav aria-label="Navegación principal"><a href="#servicios">Servicios</a><a href="#productos">Productos</a><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href="?page=contact">Contacto</a></nav></header>;
 }
 
 function ServicesOverview() {
@@ -97,7 +98,7 @@ function PortfolioHome() {
       <section className="capabilities-section" aria-labelledby="capabilities-title"><SectionHeading eyebrow="Experiencia técnica" title="Áreas en las que he trabajado" titleId="capabilities-title" /><div className="capabilities-grid"><div><span>01</span><h3>Backend y APIs</h3><p>Desarrollo de servicios con Python y FastAPI, reglas de negocio, autenticación y bases de datos.</p></div><div><span>02</span><h3>Datos y automatización</h3><p>Procesamiento y análisis con Python, Pandas, SQL, MongoDB y Amazon Redshift.</p></div><div><span>03</span><h3>Integración de sistemas</h3><p>Comunicación entre servicios, sincronización de estado y flujos con distintos tipos de usuario.</p></div><div><span>04</span><h3>Inteligencia Artificial</h3><p>Proyectos de clasificación, detección de fraude, redes neuronales y aprendizaje semi-supervisado.</p></div></div></section>
       <section className="about-section" id="sobre-mi" aria-labelledby="about-title"><div><p className="eyebrow">Sobre mí</p><h2 id="about-title">Me interesa entender cómo funciona un sistema completo, no solo una parte del código.</h2></div><div className="about-copy"><p>Mi experiencia combina desarrollo backend, procesamiento de datos y proyectos de Inteligencia Artificial. Me gusta trabajar desde una necesidad concreta y entender cómo cada decisión técnica afecta a quienes usarán el sistema.</p><p>En este portfolio muestro proyectos en distintos estados de avance, separando con claridad lo que ya está implementado, la evidencia disponible y el trabajo que todavía continúa.</p></div></section>
       <section className="journey-section" aria-labelledby="journey-title"><SectionHeading eyebrow="Trayectoria" title="Experiencia profesional y académica" titleId="journey-title" /><div className="journey-line"><article><span>2023 — 2024 · Práctica profesional</span><h3>Datos y automatización · WherEx</h3><p>Automaticé y analicé procesos de datos con Python, Pandas, MongoDB, SQL y Amazon Redshift para necesidades del área de Producto.</p></article><article><span>2023 — 2025 · Universidad de O’Higgins</span><h3>Ayudantía de programación y datos</h3><p>Apoyé cursos de programación y procesamiento masivo de datos, incluyendo programación orientada a objetos y programación paralela.</p></article></div></section>
-      <section className="contact-section" id="contacto" aria-labelledby="contact-title"><p className="eyebrow">Contacto</p><h2 id="contact-title">Cuéntame qué necesitas resolver.</h2><p>Si tienes un negocio, un proceso que quieres ordenar o una idea que necesita su primera versión, podemos conversar sobre el problema y evaluar el siguiente paso.</p><div className="contact-actions"><ActionLink href="mailto:iv.bozo.catalan@gmail.com" variant="primary">Escribir por correo</ActionLink><ActionLink href="https://github.com/IvanBozoCa" variant="text" external>Revisar GitHub</ActionLink></div></section>
+      <section className="contact-section" id="contacto" aria-labelledby="contact-title"><p className="eyebrow">Contacto</p><h2 id="contact-title">Cuéntame qué necesitas resolver.</h2><p>Si tienes un negocio, un proceso que quieres ordenar o una idea que necesita su primera versión, podemos conversar sobre el problema y evaluar el siguiente paso.</p><div className="contact-actions"><ActionLink href="?page=contact" variant="primary">Preparar una consulta</ActionLink><ActionLink href="https://github.com/IvanBozoCa" variant="text" external>Revisar GitHub</ActionLink></div></section>
     </main><SiteFooter />
   </div>;
 }
@@ -107,6 +108,7 @@ export default function App() {
   const page = new URLSearchParams(window.location.search).get("page");
   if (page === "services") return <><PageMetadata title="Servicios de desarrollo web y software | Iván Bozo Catalán" description="Sitios web comerciales, software de gestión a medida, MVP y modernización de aplicaciones desarrollados por Iván Bozo Catalán." /><ServicesPage /></>;
   if (page === "products") return <><PageMetadata title="Productos de software | Iván Bozo Catalán" description="Eunomi Escolar y Gaming Center Management System: productos de software en desarrollo, con estado y evidencia disponibles." /><ProductsPage /></>;
+  if (page === "contact") return <><PageMetadata title="Contacto | Iván Bozo Catalán" description="Cuéntame qué necesitas resolver y prepara una consulta sobre desarrollo web, software a medida, MVP o Eunomi Escolar." /><ContactPage /></>;
   if (project === "school-transport") return <><PageMetadata title="Transporte Escolar | Iván Bozo Catalán" description="Caso de estudio de una plataforma para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." /><SchoolTransportCaseStudy /></>;
   if (project === "school-transport-demo") return <><PageMetadata title="Demo Transporte Escolar | Iván Bozo Catalán" description="Demo funcional con vistas de administración, conductor, apoderado y documentación de la API." /><SchoolTransportPage /></>;
   if (project === "gcms") return <><PageMetadata title="Gaming Center Management System | Iván Bozo Catalán" description="Caso de estudio de un sistema para administrar estaciones, clientes y sesiones de uso en gaming centers." /><GamingCenterCaseStudy /></>;

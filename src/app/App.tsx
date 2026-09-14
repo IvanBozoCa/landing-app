@@ -9,23 +9,44 @@ import { contactRoute, normalizePath, routes } from "./routes";
 import { useEffect } from "react";
 import "./PortfolioPage.css";
 
-type PageMetadataProps = { title: string; description: string };
+type PageMetadataProps = { title: string; description: string; canonicalPath: string; noIndex?: boolean };
 
-function PageMetadata({ title, description }: PageMetadataProps) {
+function PageMetadata({ title, description, canonicalPath, noIndex = false }: PageMetadataProps) {
   useEffect(() => {
     document.title = title;
+    const canonicalUrl = new URL(canonicalPath, window.location.origin).href;
+    const socialImageUrl = new URL("/og-cover.png", window.location.origin).href;
 
     const metadata = [
       ["name", "description", description],
+      ["name", "robots", noIndex ? "noindex, follow" : "index, follow"],
       ["property", "og:title", title],
       ["property", "og:description", description],
+      ["property", "og:url", canonicalUrl],
+      ["property", "og:image", socialImageUrl],
+      ["name", "twitter:title", title],
+      ["name", "twitter:description", description],
+      ["name", "twitter:image", socialImageUrl],
     ] as const;
 
     metadata.forEach(([attribute, value, content]) => {
-      const element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${value}"]`);
-      element?.setAttribute("content", content);
+      let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${value}"]`);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, value);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", content);
     });
-  }, [description, title]);
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+  }, [canonicalPath, description, noIndex, title]);
 
   return null;
 }
@@ -89,7 +110,7 @@ function SiteFooter() {
 
 function PortfolioHome() {
   return <div className="portfolio-shell">
-    <PageMetadata title="Iván Bozo Catalán | Software, productos y sitios web" description="Servicios de desarrollo de software y sitios web, productos propios y casos de estudio de Iván Bozo Catalán, Ingeniero Civil en Computación." />
+    <PageMetadata title="Iván Bozo Catalán | Software, productos y sitios web" description="Servicios de desarrollo de software y sitios web, productos propios y casos de estudio de Iván Bozo Catalán, Ingeniero Civil en Computación." canonicalPath={routes.home} />
     <a className="skip-link" href="#contenido">Saltar al contenido</a><SiteHeader />
     <main id="contenido">
       <section className="hero" id="inicio" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow">Software a medida · Productos digitales · Sitios web</p><h1 id="hero-title">Desarrollo soluciones digitales para negocios e ideas que necesitan avanzar.</h1><p className="hero-lead">Soy Iván Bozo Catalán, Ingeniero Civil en Computación. Construyo sitios web, sistemas de gestión y productos funcionales partiendo de una necesidad concreta.</p><div className="hero-actions"><ActionLink href="#servicios" variant="primary">Conocer servicios</ActionLink><ActionLink href="#productos" variant="text">Ver productos</ActionLink></div></div><aside className="hero-note" aria-label="Principio de trabajo"><span>01 / De la necesidad al resultado</span><p>Entender</p><i aria-hidden="true" /><p>Diseñar</p><i aria-hidden="true" /><p>Construir</p><i aria-hidden="true" /><p>Comprobar</p></aside></section>
@@ -110,12 +131,12 @@ export default function App() {
   const project = new URLSearchParams(window.location.search).get("project");
   const page = new URLSearchParams(window.location.search).get("page");
   const legacyRoute = path === routes.home;
-  if (path === routes.services || (legacyRoute && page === "services")) return <><PageMetadata title="Servicios de desarrollo web y software | Iván Bozo Catalán" description="Sitios web comerciales, software de gestión a medida, MVP y modernización de aplicaciones desarrollados por Iván Bozo Catalán." /><ServicesPage /></>;
-  if (path === routes.products || (legacyRoute && page === "products")) return <><PageMetadata title="Productos de software | Iván Bozo Catalán" description="Eunomi Escolar y Gaming Center Management System: productos de software en desarrollo, con estado y evidencia disponibles." /><ProductsPage /></>;
-  if (path === routes.contact || (legacyRoute && page === "contact")) return <><PageMetadata title="Contacto | Iván Bozo Catalán" description="Cuéntame qué necesitas resolver y prepara una consulta sobre desarrollo web, software a medida, MVP o Eunomi Escolar." /><ContactPage /></>;
-  if (path === routes.eunomi || (legacyRoute && project === "school-transport")) return <><PageMetadata title="Eunomi Escolar | Iván Bozo Catalán" description="Caso de estudio de una plataforma para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." /><SchoolTransportCaseStudy /></>;
-  if (path === routes.eunomiDemo || (legacyRoute && project === "school-transport-demo")) return <><PageMetadata title="Demo Eunomi Escolar | Iván Bozo Catalán" description="Demo funcional con vistas de administración, conductor, apoderado y documentación de la API." /><SchoolTransportPage /></>;
-  if (path === routes.gcms || (legacyRoute && project === "gcms")) return <><PageMetadata title="Gaming Center Management System | Iván Bozo Catalán" description="Caso de estudio de un sistema para administrar estaciones, clientes y sesiones de uso en gaming centers." /><GamingCenterCaseStudy /></>;
+  if (path === routes.services || (legacyRoute && page === "services")) return <><PageMetadata title="Servicios de desarrollo web y software | Iván Bozo Catalán" description="Sitios web comerciales, software de gestión a medida, MVP y modernización de aplicaciones desarrollados por Iván Bozo Catalán." canonicalPath={routes.services} /><ServicesPage /></>;
+  if (path === routes.products || (legacyRoute && page === "products")) return <><PageMetadata title="Productos de software | Iván Bozo Catalán" description="Eunomi Escolar y Gaming Center Management System: productos de software en desarrollo, con estado y evidencia disponibles." canonicalPath={routes.products} /><ProductsPage /></>;
+  if (path === routes.contact || (legacyRoute && page === "contact")) return <><PageMetadata title="Contacto | Iván Bozo Catalán" description="Cuéntame qué necesitas resolver y prepara una consulta sobre desarrollo web, software a medida, MVP o Eunomi Escolar." canonicalPath={routes.contact} /><ContactPage /></>;
+  if (path === routes.eunomi || (legacyRoute && project === "school-transport")) return <><PageMetadata title="Eunomi Escolar | Iván Bozo Catalán" description="Caso de estudio de una plataforma para coordinar rutas, asistencia y seguimiento entre administración, conductores y apoderados." canonicalPath={routes.eunomi} /><SchoolTransportCaseStudy /></>;
+  if (path === routes.eunomiDemo || (legacyRoute && project === "school-transport-demo")) return <><PageMetadata title="Demo Eunomi Escolar | Iván Bozo Catalán" description="Demo funcional con vistas de administración, conductor, apoderado y documentación de la API." canonicalPath={routes.eunomiDemo} /><SchoolTransportPage /></>;
+  if (path === routes.gcms || (legacyRoute && project === "gcms")) return <><PageMetadata title="Gaming Center Management System | Iván Bozo Catalán" description="Caso de estudio de un sistema para administrar estaciones, clientes y sesiones de uso en gaming centers." canonicalPath={routes.gcms} /><GamingCenterCaseStudy /></>;
   if (path === routes.home) return <PortfolioHome />;
-  return <><PageMetadata title="Página no encontrada | Iván Bozo Catalán" description="La dirección solicitada no corresponde a una página disponible del portfolio." /><NotFoundPage /></>;
+  return <><PageMetadata title="Página no encontrada | Iván Bozo Catalán" description="La dirección solicitada no corresponde a una página disponible del portfolio." canonicalPath={path} noIndex /><NotFoundPage /></>;
 }

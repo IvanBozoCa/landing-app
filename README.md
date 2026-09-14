@@ -6,12 +6,14 @@ Portfolio desarrollado con React, TypeScript y Vite. Presenta experiencia profes
 ## Vistas disponibles
 
 - Home: `/`
-- Servicios profesionales: `/?page=services`
-- Productos propios: `/?page=products`
-- Contacto guiado: `/?page=contact`
-- Caso de estudio de GCMS: `/?project=gcms`
-- Caso de estudio de Transporte Escolar: `/?project=school-transport`
-- Demo preservada de Transporte Escolar: `/?project=school-transport-demo`
+- Servicios profesionales: `/servicios`
+- Productos propios: `/productos`
+- Contacto guiado: `/contacto`
+- Caso de estudio de GCMS: `/proyectos/gcms`
+- Caso de estudio de Eunomi Escolar: `/proyectos/eunomi`
+- Demo preservada de Eunomi Escolar: `/proyectos/eunomi/demo`
+
+Las direcciones anteriores basadas en `?page=` y `?project=` se conservan temporalmente por compatibilidad.
 
 La navegación por query es temporal. No se utiliza React Router porque la estrategia definitiva de rutas se decidirá junto con el hosting.
 

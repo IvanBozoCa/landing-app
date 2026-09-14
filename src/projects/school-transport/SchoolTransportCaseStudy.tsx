@@ -1,7 +1,8 @@
 import "./SchoolTransportCaseStudy.css";
+import { routes } from "../../app/routes";
 
 function TransportHeader() {
-  return <header className="transport-case-header"><a href="/" aria-label="Volver al portfolio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><a href="/#proyectos">← Volver a proyectos</a></header>;
+  return <header className="transport-case-header"><a href={routes.home} aria-label="Volver al portfolio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><a href={`${routes.home}#proyectos`}>← Volver a proyectos</a></header>;
 }
 
 function TransportSection({ number, eyebrow, title, children, dark = false }: { number: string; eyebrow: string; title: string; children: React.ReactNode; dark?: boolean }) {
@@ -16,7 +17,7 @@ export default function SchoolTransportCaseStudy() {
       <header className="transport-case-hero">
         <div className="transport-hero-meta"><span>Proyecto de título</span><span>Plataforma por roles · Demo disponible</span></div>
         <div className="transport-hero-grid">
-          <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href="?project=school-transport-demo">Abrir demo completa <span aria-hidden="true">→</span></a></div>
+          <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href={routes.eunomiDemo}>Abrir demo completa <span aria-hidden="true">→</span></a></div>
           <div className="transport-hero-art"><img src="/movilapp.png" alt="Ícono de la aplicación Transporte Escolar: un bus protegido por un escudo" /><div aria-hidden="true"><i /><i /><i /><i /></div></div>
         </div>
       </header>
@@ -52,7 +53,7 @@ export default function SchoolTransportCaseStudy() {
         <div className="transport-large-copy"><p>Desarrollé este sistema como proyecto de título, desde el análisis de la necesidad y el modelado de los roles hasta la implementación del backend, las experiencias de usuario y la integración de notificaciones.</p><p>El proyecto continúa en modernización. La versión actual permite demostrar el flujo funcional y, al mismo tiempo, mantiene documentada la deuda técnica que debe abordarse antes de considerarlo un producto preparado para una operación más amplia.</p></div>
       </TransportSection>
 
-      <section className="transport-case-closing"><p>Demo funcional</p><h2>Prueba el flujo preservado de Transporte Escolar.</h2><a href="?project=school-transport-demo">Abrir demo completa <span aria-hidden="true">→</span></a></section>
+      <section className="transport-case-closing"><p>Demo funcional</p><h2>Prueba el flujo preservado de Transporte Escolar.</h2><a href={routes.eunomiDemo}>Abrir demo completa <span aria-hidden="true">→</span></a></section>
     </main>
     <footer className="transport-case-footer"><p>© {new Date().getFullYear()} Iván Bozo Catalán</p><a href="#transport-case-content">Volver arriba ↑</a></footer>
   </div>;

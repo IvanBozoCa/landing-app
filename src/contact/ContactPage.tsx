@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import "./ContactPage.css";
+import { routes } from "../app/routes";
 
 const CONTACT_EMAIL = "iv.bozo.catalan@gmail.com";
 
@@ -19,7 +20,7 @@ function initialTopic(): Topic {
 }
 
 function ContactHeader() {
-  return <header className="contact-page-header"><a className="contact-brand" href="/" aria-label="Volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación de contacto"><a href="?page=services">Servicios</a><a href="?page=products">Productos</a><a href="#como-funciona">Cómo funciona</a></nav><a className="contact-back" href="/">← Portfolio</a></header>;
+  return <header className="contact-page-header"><a className="contact-brand" href={routes.home} aria-label="Volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación de contacto"><a href={routes.services}>Servicios</a><a href={routes.products}>Productos</a><a href="#como-funciona">Cómo funciona</a></nav><a className="contact-back" href={routes.home}>← Portfolio</a></header>;
 }
 
 export default function ContactPage() {

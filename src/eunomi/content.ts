@@ -24,12 +24,12 @@ type Step = { title: string; description: string; benefits: Record<Profile, stri
 
 export const steps: readonly Step[] = [
   {
-    title: 'Preparar la salida',
-    description: 'El transportista organiza la ruta y consulta la asistencia del día.',
+    title: 'Hoy un estudiante no asistirá',
+    description: 'En este ejemplo, una familia informa una ausencia antes de la salida. El transportista y el conductor consultan la asistencia para preparar el recorrido de quienes sí viajarán.',
     benefits: {
-      transportista: 'Reunir la ruta y la asistencia para coordinar la salida.',
-      conductor: 'Consultar qué estudiantes forman parte del recorrido del día.',
-      apoderado: 'Informar la asistencia de tu estudiante para que se considere al organizar la ruta.',
+      transportista: 'Tener el aviso junto a la información del recorrido, en lugar de buscarlo entre conversaciones.',
+      conductor: 'Consultar quién viajará ese día antes de iniciar el recorrido.',
+      apoderado: 'Informar que tu estudiante no viajará para que el transportista lo tenga en cuenta.',
     },
   },
   {

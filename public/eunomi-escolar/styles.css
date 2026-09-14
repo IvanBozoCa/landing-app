@@ -309,3 +309,34 @@ button:disabled { cursor: default; opacity: .5; transform: none; }
 @media (min-width: 721px) {
   .journey .phone { transform: rotate(-5deg) scale(.94); transform-origin: top center; }
 }
+/* Business fit, scope and assisted onboarding. */
+.fit-grid, .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.fit-grid article { padding: 28px; border: 1px solid var(--line); border-radius: 12px; }
+.fit-grid h3 { margin: 20px 0 14px; }
+.fit-grid p, .private-transport p, .scope-intro, .scope-boundary, .start-steps p { font-size: 16px; }
+.private-transport { display: flex; align-items: center; gap: 35px; background: #eef4f4; padding: 28px; border-radius: 12px; margin-top: 24px; }
+.private-transport>div { flex: 1; }
+.private-transport h3 { font-size: 23px; margin-bottom: 12px; }
+.private-transport .button { flex-shrink: 0; }
+.private-transport .fit-note { font-size: 14px; color: #105864; margin-bottom: 0; }
+.scope-section { background: #f6f8f9; }
+.scope-intro { max-width: 750px; }
+.scope-grid { margin-top: 28px; }
+.scope-grid article { padding: 25px; background: white; border: 1px solid var(--line); border-radius: 10px; }
+.scope-grid h3 { font-size: 23px; }
+.scope-grid ul { padding-left: 22px; margin-bottom: 0; }
+.scope-grid li { color: #43565f; font-size: 16px; line-height: 1.65; padding-left: 4px; margin-top: 10px; }
+.scope-grid li::marker { color: #176b78; }
+.scope-boundary { border-top: 1px solid var(--line); padding-top: 22px; margin: 25px 0 0; }
+.start-steps { list-style: none; display: grid; grid-template-columns: repeat(3,1fr); gap: 30px; padding: 0; margin: 30px 0; }
+.start-steps li { border-top: 2px solid #c4dadc; padding-top: 22px; }
+.start-steps li>span { color: #176b78; font-size: 16px; }
+.start-steps h3 { margin: 16px 0 12px; font-size: 22px; }
+.start-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; background: #eef4f4; padding: 22px; border-radius: 10px; }
+.start-bottom p { margin: 0; font-size: 15px; }
+@media (max-width: 720px) {
+ .fit-grid, .scope-grid, .start-steps { grid-template-columns: 1fr; gap: 18px; }
+ .private-transport, .start-bottom { flex-direction: column; align-items: stretch; gap: 20px; padding: 22px; }
+ .fit-grid article, .scope-grid article { padding: 22px; }
+ .start-steps p { margin-bottom: 0; }
+}

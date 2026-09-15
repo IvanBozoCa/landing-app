@@ -4,6 +4,7 @@ export const routes = {
   products: "/productos",
   contact: "/contacto",
   hello: "/hola",
+  pichilemu: "/desarrollo-software-pichilemu",
   gcms: "/proyectos/gcms",
   eunomi: "/proyectos/eunomi",
   eunomiDemo: "/proyectos/eunomi/demo",

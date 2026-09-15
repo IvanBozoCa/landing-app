@@ -39,7 +39,7 @@ const businessSituations = [
 ] as const;
 
 function ServicesHeader() {
-  return <header className="services-page-header"><a className="services-brand" href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación de servicios"><a href="#servicios-detalle">Servicios</a><a href="#proceso">Proceso</a><a href="#preguntas">Preguntas</a></nav><a className="services-back" href={routes.home}>← Portfolio</a></header>;
+  return <header className="services-page-header"><a className="services-brand" href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación de servicios"><a href="#servicios-detalle">Servicios</a><a href="#proceso">Proceso</a><a href={routes.pichilemu}>Pichilemu</a><a href="#preguntas">Preguntas</a></nav><a className="services-back" href={routes.home}>← Portfolio</a></header>;
 }
 
 function ServiceBlock({ service }: { service: (typeof services)[number] }) {

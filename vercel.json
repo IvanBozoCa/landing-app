@@ -10,6 +10,7 @@
     { "source": "/productos", "destination": "/productos.html" },
     { "source": "/contacto", "destination": "/contacto.html" },
     { "source": "/hola", "destination": "/hola.html" },
+    { "source": "/desarrollo-software-pichilemu", "destination": "/desarrollo-software-pichilemu.html" },
     { "source": "/proyectos/gcms", "destination": "/proyectos/gcms.html" },
     { "source": "/proyectos/eunomi", "destination": "/proyectos/eunomi.html" },
     { "source": "/proyectos/eunomi/demo", "destination": "/proyectos/eunomi/demo.html" }

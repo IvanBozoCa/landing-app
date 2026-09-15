@@ -3,13 +3,18 @@ export const routes = {
   services: "/servicios",
   products: "/productos",
   contact: "/contacto",
+  hello: "/hola",
   gcms: "/proyectos/gcms",
   eunomi: "/proyectos/eunomi",
   eunomiDemo: "/proyectos/eunomi/demo",
 } as const;
 
-export function contactRoute(topic?: string) {
-  return topic ? `${routes.contact}?topic=${encodeURIComponent(topic)}` : routes.contact;
+export function contactRoute(topic?: string, origin?: string) {
+  const search = new URLSearchParams();
+  if (topic) search.set("topic", topic);
+  if (origin) search.set("origin", origin);
+  const query = search.toString();
+  return query ? `${routes.contact}?${query}` : routes.contact;
 }
 
 export function normalizePath(pathname: string) {

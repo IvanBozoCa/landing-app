@@ -11,3 +11,4 @@
 @media(max-width:900px){.services-grid article:nth-child(2),.services-grid article:nth-child(2):hover{transform:none}.product-card,.featured-project{border-radius:28px}}
 @media(max-width:768px){.hero:before{right:-22%;top:5%}.hero-note{border-radius:22px}.about-section{border-radius:30px}.contact-section{border-radius:32px 32px 0 0}}
 @media(max-width:480px){.services-grid{gap:12px}.services-grid article{border-radius:22px}.product-card,.featured-project{border-radius:22px}.visual-placeholder,.transport-preview{border-radius:18px}.about-section{border-radius:0}.contact-section{border-radius:26px 26px 0 0}}
+.about-section .eyebrow{color:#9ad1c2}

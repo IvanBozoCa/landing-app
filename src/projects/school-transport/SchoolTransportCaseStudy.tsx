@@ -2,11 +2,11 @@ import "./SchoolTransportCaseStudy.css";
 import { routes } from "../../app/routes";
 
 function TransportHeader() {
-  return <header className="transport-case-header"><a href={routes.home} aria-label="Volver al portfolio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><a href={`${routes.home}#proyectos`}>← Volver a proyectos</a></header>;
+  return <header className="transport-case-header"><a href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al portfolio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación del caso de estudio"><a className="transport-case-back" href={`${routes.home}#proyectos`}>← Volver a proyectos</a></nav></header>;
 }
 
-function TransportSection({ number, eyebrow, title, children, dark = false }: { number: string; eyebrow: string; title: string; children: React.ReactNode; dark?: boolean }) {
-  return <section className={`transport-case-section ${dark ? "transport-case-section--dark" : ""}`}><div className="transport-section-title"><span>{number}</span><div><p>{eyebrow}</p><h2>{title}</h2></div></div><div className="transport-section-content">{children}</div></section>;
+function TransportSection({ number, eyebrow, title, children, dark = false, wide = false }: { number: string; eyebrow: string; title: string; children: React.ReactNode; dark?: boolean; wide?: boolean }) {
+  return <section className={`transport-case-section ${dark ? "transport-case-section--dark" : ""}`}><div className="transport-section-title"><span>{number}</span><div><p>{eyebrow}</p><h2>{title}</h2></div></div><div className={`transport-section-content ${wide ? "transport-section-content--wide" : ""}`}>{children}</div></section>;
 }
 
 export default function SchoolTransportCaseStudy() {
@@ -18,7 +18,7 @@ export default function SchoolTransportCaseStudy() {
         <div className="transport-hero-meta"><span>Proyecto de título</span><span>Plataforma por roles · Demo disponible</span></div>
         <div className="transport-hero-grid">
           <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href={routes.eunomiDemo}>Abrir demo completa <span aria-hidden="true">→</span></a></div>
-          <div className="transport-hero-art"><img src="/movilapp.png" alt="Ícono de la aplicación Transporte Escolar: un bus protegido por un escudo" /><div aria-hidden="true"><i /><i /><i /><i /></div></div>
+          <div className="transport-hero-art"><picture><source type="image/webp" srcSet="/movilapp-256.webp 256w, /movilapp-384.webp 384w, /movilapp-509.webp 509w" sizes="(max-width: 480px) 200px, 330px" /><img src="/movilapp.png" width="509" height="490" decoding="async" fetchPriority="high" alt="Ícono de la aplicación Transporte Escolar: un bus protegido por un escudo" /></picture><div aria-hidden="true"><i /><i /><i /><i /></div></div>
         </div>
       </header>
 
@@ -30,9 +30,9 @@ export default function SchoolTransportCaseStudy() {
         <div className="transport-objectives"><article><span>01</span><h3>Centralizar</h3><p>Administrar conductores, apoderados, estudiantes y rutas desde un panel común.</p></article><article><span>02</span><h3>Coordinar</h3><p>Preparar la ruta del día usando la asistencia declarada por cada apoderado.</p></article><article><span>03</span><h3>Informar</h3><p>Mostrar el avance y los estados de cada estudiante según el rol del usuario.</p></article></div>
       </TransportSection>
 
-      <section className="transport-visual-break" aria-label="Ilustraciones utilizadas por el proyecto"><img src="/movil.png" alt="Ilustración de un vehículo amarillo de transporte" /><img src="/movil2.png" alt="Ilustración de un bus escolar amarillo" /></section>
+      <section className="transport-visual-break" aria-label="Ilustraciones utilizadas por el proyecto"><picture><source type="image/webp" srcSet="/movil-480.webp 480w, /movil-768.webp 768w, /movil-1024.webp 1024w" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1280px) calc((100vw - 96px) / 2), 596px" /><img src="/movil.png" width="1024" height="1024" loading="lazy" decoding="async" alt="Ilustración de un vehículo amarillo de transporte" /></picture><picture><source type="image/webp" srcSet="/movil2-480.webp 480w, /movil2-768.webp 768w, /movil2-1024.webp 1024w" sizes="(max-width: 768px) calc(100vw - 72px), (max-width: 1280px) calc((100vw - 96px) / 2), 596px" /><img src="/movil2.png" width="1024" height="1024" loading="lazy" decoding="async" alt="Ilustración de un bus escolar amarillo" /></picture></section>
 
-      <TransportSection number="03" eyebrow="Producto" title="Tres roles conectados por el mismo recorrido" dark>
+      <TransportSection number="03" eyebrow="Producto" title="Tres roles conectados por el mismo recorrido" dark wide>
         <div className="role-flow"><article><span>Administración</span><h3>Prepara la operación</h3><ul><li>Gestiona usuarios y estudiantes</li><li>Vincula estudiantes con conductores</li><li>Define rutas fijas y el orden de paradas</li></ul></article><i aria-hidden="true">→</i><article><span>Conductor</span><h3>Ejecuta la ruta del día</h3><ul><li>Genera el recorrido desde una ruta fija</li><li>Inicia la ruta</li><li>Marca estudiantes recogidos y entregados</li></ul></article><i aria-hidden="true">→</i><article><span>Apoderado</span><h3>Declara y consulta</h3><ul><li>Informa la asistencia</li><li>Revisa el estado de sus hijos</li><li>Recibe notificaciones en la aplicación móvil</li></ul></article></div>
       </TransportSection>
 

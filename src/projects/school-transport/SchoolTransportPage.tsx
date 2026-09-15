@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import "./SchoolTransportPage.css";
 import PhoneFrame from "./components/PhoneFrame";
+import { routes } from "../../app/routes";
 
 export default function SchoolTransportPage() {
   // URLs desde .env (dos variantes por cada uno)
@@ -19,7 +20,7 @@ export default function SchoolTransportPage() {
   const envAdminAlt = import.meta.env.VITE_ADMIN_URL as string | undefined;
 
   // Overrides por query
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
   const qConductor = params.get("conductor") || undefined;
   const qApoderado = params.get("apoderado") || undefined;
   const qSwagger = params.get("swagger") || undefined;
@@ -35,6 +36,7 @@ export default function SchoolTransportPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#0b1220", color: "#e7e9ee" }}>
+      <a className="skip-link" href="#demo-content">Saltar al contenido</a>
       <div className="appContainer">
         <header
           style={{
@@ -49,8 +51,9 @@ export default function SchoolTransportPage() {
           <h1 style={{ margin: 0, fontSize: "clamp(18px, 2.6vw, 24px)", alignContent:"center"}}>
             Demo — Transporte Escolar
           </h1>
-          <div style={{ display: "flex", gap: 8 }} />
+          <nav className="demoNav" aria-label="Navegación de la demo"><a href={routes.eunomi}>Ver caso de estudio</a><a href={routes.contact}>Contacto</a></nav>
         </header>
+        <main id="demo-content">
           {/* Contexto en rectángulo bajo el título */}
 <div
   role="region"
@@ -96,7 +99,7 @@ export default function SchoolTransportPage() {
 
   <div aria-hidden="true" style={{ height: 1, background: "rgba(255,255,255,0.08)", margin: "2px 0 6px" }} />
 
-  <h3 style={{ margin: "6px 0 0" }}>Resultados esperados</h3>
+  <h2 className="heroTitle" style={{ margin: "6px 0 0" }}>Resultados esperados</h2>
   <ul
     className="heroList"
     aria-label="Resultados en la operación diaria"
@@ -397,6 +400,7 @@ export default function SchoolTransportPage() {
 </div>
 
 
+        </main>
         <footer style={{ textAlign: "center", opacity: 0.6, marginTop: 20 }}>
           © {new Date().getFullYear()} Demo Transporte Escolar
         </footer>

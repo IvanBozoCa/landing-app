@@ -2,7 +2,7 @@ import "./ProductsPage.css";
 import { contactRoute, routes } from "../app/routes";
 
 function ProductsHeader() {
-  return <header className="products-page-header"><a className="products-brand" href={routes.home} aria-label="Volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación de productos"><a href="#eunomi">Eunomi</a><a href="#gcms-product">GCMS</a><a href="#producto-o-servicio">Producto o servicio</a></nav><a className="products-back" href={routes.home}>← Portfolio</a></header>;
+  return <header className="products-page-header"><a className="products-brand" href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación de productos"><a href="#eunomi">Eunomi</a><a href="#gcms-product">GCMS</a><a href="#producto-o-servicio">Producto o servicio</a></nav><a className="products-back" href={routes.home}>← Portfolio</a></header>;
 }
 
 function Status({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export default function ProductsPage() {
 
       <article className="product-feature product-feature--eunomi" id="eunomi">
         <div className="product-feature-copy"><div className="product-feature-meta"><span>01 / Transporte escolar</span><Status>En desarrollo</Status></div><p className="product-feature-name">Eunomi Escolar</p><h2>Organizar recorridos y mantener informadas a las familias.</h2><p className="product-feature-lead">Eunomi busca reunir rutas, asistencia y avisos de recogida y entrega para acompañar el servicio de transporte escolar.</p><dl><div><dt>Para quién</dt><dd>Transportistas escolares; conductores y apoderados participan por invitación.</dd></div><div><dt>Qué existe hoy</dt><dd>Base funcional por roles, aplicación móvil, panel administrativo, backend y una demo preservada.</dd></div><div><dt>Qué continúa</dt><dd>Modernización, validación comercial e integración definitiva de su landing al dominio.</dd></div></dl><div className="product-feature-actions"><a href={routes.eunomi}>Ver caso de estudio <span aria-hidden="true">→</span></a><a href={contactRoute("eunomi")}>Consultar por Eunomi</a></div></div>
-        <div className="product-feature-art"><span>Identidad del producto</span><img src="/movilapp.png" alt="Ícono de Eunomi Escolar con un bus protegido por un escudo" /><div className="product-route" aria-hidden="true"><i /><i /><i /><i /></div><small>La imagen corresponde a la identidad visual; no es una captura de la interfaz.</small></div>
+        <div className="product-feature-art"><span>Identidad del producto</span><picture><source type="image/webp" srcSet="/movilapp-256.webp 256w, /movilapp-384.webp 384w, /movilapp-509.webp 509w" sizes="(max-width: 480px) 180px, 330px" /><img src="/movilapp.png" width="509" height="490" loading="lazy" decoding="async" alt="Ícono de Eunomi Escolar con un bus protegido por un escudo" /></picture><div className="product-route" aria-hidden="true"><i /><i /><i /><i /></div><small>La imagen corresponde a la identidad visual; no es una captura de la interfaz.</small></div>
       </article>
 
       <article className="product-feature product-feature--gcms" id="gcms-product">

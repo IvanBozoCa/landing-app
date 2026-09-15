@@ -4,21 +4,22 @@ import { routes } from "../../app/routes";
 function CaseHeader() {
   return (
     <header className="case-header">
-      <a className="case-brand" href={routes.home} aria-label="Volver al portfolio">
+      <a className="case-brand" href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al portfolio">
         <span aria-hidden="true">IB</span>
         <strong>Iván Bozo Catalán</strong>
       </a>
-      <a className="case-back" href={`${routes.home}#proyectos`}>← Volver a proyectos</a>
+      <nav aria-label="Navegación del caso de estudio"><a className="case-back" href={`${routes.home}#proyectos`}>← Volver a proyectos</a></nav>
     </header>
   );
 }
 
-function CaseSection({ number, eyebrow, title, children, dark = false }: {
+function CaseSection({ number, eyebrow, title, children, dark = false, wide = false }: {
   number: string;
   eyebrow: string;
   title: string;
   children: React.ReactNode;
   dark?: boolean;
+  wide?: boolean;
 }) {
   return (
     <section className={`case-section ${dark ? "case-section--dark" : ""}`}>
@@ -26,7 +27,7 @@ function CaseSection({ number, eyebrow, title, children, dark = false }: {
         <span>{number}</span>
         <div><p>{eyebrow}</p><h2>{title}</h2></div>
       </div>
-      <div className="case-section-body">{children}</div>
+      <div className={`case-section-body ${wide ? "case-section-body--wide" : ""}`}>{children}</div>
     </section>
   );
 }
@@ -78,7 +79,7 @@ export default function GamingCenterCaseStudy() {
           </div>
         </CaseSection>
 
-        <CaseSection number="03" eyebrow="Funcionamiento" title="Del panel administrativo a la estación" dark>
+        <CaseSection number="03" eyebrow="Funcionamiento" title="Del panel administrativo a la estación" dark wide>
           <div className="architecture-flow" aria-label="Flujo técnico desde el panel hasta la interfaz de la estación">
             <div><span>01</span><strong>Sala</strong><small>El administrador inicia la operación</small></div><i aria-hidden="true">→</i>
             <div><span>02</span><strong>Backend</strong><small>Valida y guarda el estado autoritativo</small></div><i aria-hidden="true">→</i>

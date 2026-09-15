@@ -45,6 +45,31 @@ html, body {
   box-sizing: border-box;
 }
 
+.demoNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.demoNav a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border: 1px solid rgba(231, 233, 238, 0.2);
+  border-radius: 999px;
+  color: #e7e9ee;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.demoNav a:hover {
+  background: rgba(231, 233, 238, 0.08);
+}
+.demoNav a:focus-visible {
+  outline: 2px solid #e7e9ee;
+  outline-offset: 2px;
+}
+
 /* Grid responsivo para los 2 "celulares" (y preparado para crecer en pasos siguientes) */
 .phonesGrid {
   display: grid;

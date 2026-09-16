@@ -8,6 +8,7 @@ export const routes = {
   gcms: "/proyectos/gcms",
   eunomi: "/proyectos/eunomi",
   eunomiDemo: "/proyectos/eunomi/demo",
+  eunomiLanding: "/eunomi-escolar",
 } as const;
 
 export function contactRoute(topic?: string, origin?: string) {

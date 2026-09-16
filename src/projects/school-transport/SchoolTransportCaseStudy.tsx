@@ -17,7 +17,7 @@ export default function SchoolTransportCaseStudy() {
       <header className="transport-case-hero">
         <div className="transport-hero-meta"><span>Proyecto de título</span><span>Plataforma por roles · Demo disponible</span></div>
         <div className="transport-hero-grid">
-          <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href={routes.eunomiDemo}>Abrir demo completa <span aria-hidden="true">→</span></a></div>
+          <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href={routes.eunomiLanding}>Conocer Eunomi Escolar <span aria-hidden="true">→</span></a></div>
           <div className="transport-hero-art"><picture><source type="image/webp" srcSet="/movilapp-256.webp 256w, /movilapp-384.webp 384w, /movilapp-509.webp 509w" sizes="(max-width: 480px) 200px, 330px" /><img src="/movilapp.png" width="509" height="490" decoding="async" fetchPriority="high" alt="Ícono de la aplicación Transporte Escolar: un bus protegido por un escudo" /></picture><div aria-hidden="true"><i /><i /><i /><i /></div></div>
         </div>
       </header>

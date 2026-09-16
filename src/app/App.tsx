@@ -10,7 +10,7 @@ import SiteStructuredData from "../seo/SiteStructuredData";
 import NotFoundPage from "./NotFoundPage";
 import { contactRoute, normalizePath, routes } from "./routes";
 import { routeMetadata } from "./routeMetadata";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./PortfolioPage.css";
 
 type PageMetadataProps = { title: string; description: string; canonicalPath: string; noIndex?: boolean };
@@ -89,14 +89,35 @@ function ServicesOverview() {
 }
 
 function ProductsOverview() {
-  return <section className="products-section" id="productos" aria-labelledby="products-title"><SectionHeading eyebrow="Productos propios" title="Software que estoy convirtiendo en productos reales" titleId="products-title" intro="Cada producto parte de un problema específico. Muestro con transparencia qué está funcionando, qué sigue en desarrollo y qué puede revisarse hoy." /><div className="products-grid"><article className="product-card product-card--eunomi"><div className="product-card-top"><span>01 / En desarrollo</span><strong>Producto para transporte escolar</strong></div><div><p className="product-name">Eunomi Escolar</p><h3>Rutas, asistencia y avisos en un mismo lugar.</h3><p>Una solución para ayudar a transportistas a organizar sus recorridos y mantener informadas a las familias.</p><ActionLink href={`${routes.products}#eunomi`} variant="secondary">Conocer producto</ActionLink></div></article><article className="product-card product-card--gcms"><div className="product-card-top"><span>02 / En desarrollo</span><strong>Producto para gaming centers</strong></div><div><p className="product-name">GCMS</p><h3>La operación diaria, centralizada.</h3><p>Gestión de estaciones, clientes y sesiones con reglas de negocio comprobadas y una base preparada para seguir creciendo.</p><ActionLink href={`${routes.products}#gcms-product`} variant="secondary">Conocer producto</ActionLink></div></article></div></section>;
+  return <section className="products-section" id="productos" aria-labelledby="products-title"><SectionHeading eyebrow="Producto principal" title="Software que estoy convirtiendo en productos reales" titleId="products-title" intro="Eunomi Escolar concentra hoy la prioridad de desarrollo. Cada producto declara con transparencia qué está funcionando, qué sigue en construcción y qué puede revisarse." /><div className="products-grid"><article className="product-card product-card--eunomi"><div className="product-card-top"><span>01 / Prioridad actual</span><strong>Producto para transporte escolar</strong></div><div><p className="product-name">Eunomi Escolar</p><h3>Rutas, asistencia y avisos en un mismo lugar.</h3><p>Una solución para ayudar a transportistas a organizar sus recorridos y mantener informadas a las familias.</p><ActionLink href={routes.eunomiLanding} variant="secondary">Conocer Eunomi</ActionLink></div></article><article className="product-card product-card--gcms"><div className="product-card-top"><span>02 / En desarrollo</span><strong>Producto para gaming centers</strong></div><div><p className="product-name">GCMS</p><h3>La operación diaria, centralizada.</h3><p>Gestión de estaciones, clientes y sesiones con reglas de negocio comprobadas y una base preparada para seguir creciendo.</p><ActionLink href={`${routes.products}#gcms-product`} variant="secondary">Conocer producto</ActionLink></div></article></div></section>;
+}
+
+function ProfilePortrait() {
+  const [available, setAvailable] = useState(false);
+
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => setAvailable(true);
+    image.src = "/profile/ivan-bozo.webp";
+    return () => {
+      image.onload = null;
+    };
+  }, []);
+
+  return available
+    ? <img src="/profile/ivan-bozo.webp" width="96" height="96" alt="Retrato de Iván Bozo Catalán" />
+    : <span aria-hidden="true">IB</span>;
+}
+
+function AboutOverview() {
+  return <section className="about-section" id="sobre-mi" aria-labelledby="about-title"><div className="about-intro"><p className="eyebrow">Sobre mí</p><h2 id="about-title">Me interesa entender cómo funciona un sistema completo, no solo una parte del código.</h2><div className="about-identity"><ProfilePortrait /><p><strong>Iván Bozo Catalán</strong><small>Ingeniero Civil en Computación · Pichilemu, Chile</small></p></div></div><div className="about-copy"><p>Mi experiencia combina desarrollo backend, procesamiento de datos y proyectos de Inteligencia Artificial. Me gusta trabajar desde una necesidad concreta y entender cómo cada decisión técnica afecta a quienes usarán el sistema.</p><p>Trabajo desde Pichilemu con personas y equipos que necesitan presentar un servicio, ordenar un proceso o comprobar una idea. También puedo colaborar de manera remota con proyectos de otras zonas de Chile.</p><p>En este portfolio muestro proyectos en distintos estados de avance, separando con claridad lo que ya está implementado, la evidencia disponible y el trabajo que todavía continúa.</p></div></section>;
 }
 
 function FeaturedProject({ project }: { project: "gcms" | "transport" }) {
   const gcms = project === "gcms";
   return <article className={`featured-project ${gcms ? "featured-project--dark" : ""}`}>
     <div className="project-copy">
-      <div className="project-meta"><span>0{gcms ? "1" : "2"}</span><Badge tone={gcms ? "accent" : "default"}>{gcms ? "En desarrollo" : "Proyecto de título"}</Badge></div>
+      <div className="project-meta"><span>0{gcms ? "2" : "1"}</span><Badge tone={gcms ? "accent" : "default"}>{gcms ? "En desarrollo" : "Proyecto de título"}</Badge></div>
       <p className="project-context">{gcms ? "Software de operación" : "Plataforma de coordinación"}</p>
       <h3>{gcms ? "Gaming Center Management System" : "Transporte Escolar"}</h3>
       <div className="project-story">
@@ -123,12 +144,12 @@ function PortfolioHome() {
     <a className="skip-link" href="#contenido">Saltar al contenido</a><SiteHeader />
     <main id="contenido">
       <section className="hero" id="inicio" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow">Software a medida · Productos digitales · Sitios web</p><h1 id="hero-title">Desarrollo soluciones digitales para negocios e ideas que necesitan avanzar.</h1><p className="hero-lead">Soy Iván Bozo Catalán, Ingeniero Civil en Computación en Pichilemu. Construyo sitios web, sistemas de gestión y productos funcionales partiendo de una necesidad concreta.</p><div className="hero-actions"><ActionLink href="#servicios" variant="primary">Conocer servicios</ActionLink><ActionLink href={routes.pichilemu} variant="text">Servicios en Pichilemu</ActionLink><ActionLink href="#productos" variant="text">Ver productos</ActionLink></div></div><aside className="hero-note" aria-label="Principio de trabajo"><span>01 / De la necesidad al resultado</span><p>Entender</p><i aria-hidden="true" /><p>Diseñar</p><i aria-hidden="true" /><p>Construir</p><i aria-hidden="true" /><p>Comprobar</p></aside></section>
-      <ServicesOverview />
       <ProductsOverview />
-      <section className="projects-section" id="proyectos" aria-labelledby="projects-title"><SectionHeading eyebrow="Casos de estudio" title="El trabajo detrás de cada solución" titleId="projects-title" intro="Estos proyectos muestran el problema abordado, las decisiones tomadas, la implementación disponible y los límites actuales de cada solución." /><div className="projects-list"><FeaturedProject project="gcms" /><FeaturedProject project="transport" /></div></section>
+      <AboutOverview />
+      <ServicesOverview />
+      <section className="projects-section" id="proyectos" aria-labelledby="projects-title"><SectionHeading eyebrow="Casos de estudio" title="El trabajo detrás de cada solución" titleId="projects-title" intro="Estos proyectos muestran el problema abordado, las decisiones tomadas, la implementación disponible y los límites actuales de cada solución." /><div className="projects-list"><FeaturedProject project="transport" /><FeaturedProject project="gcms" /></div></section>
       <section className="approach-section" id="enfoque" aria-labelledby="approach-title"><SectionHeading eyebrow="Cómo trabajo" title="Primero entiendo el contexto; después construyo" titleId="approach-title" /><ol className="process-list"><li><span>01</span><div><h3>Entender el problema</h3><p>Reviso quiénes usarán la solución, cómo trabajan hoy y qué restricciones existen.</p></div></li><li><span>02</span><div><h3>Diseñar una solución</h3><p>Organizo las reglas del negocio y defino las responsabilidades de cada parte del sistema.</p></div></li><li><span>03</span><div><h3>Construir por etapas</h3><p>Avanzo en incrementos pequeños que permitan revisar el resultado y ajustar el rumbo.</p></div></li><li><span>04</span><div><h3>Comprobar que funciona</h3><p>Pruebo los flujos principales, los errores esperables y las condiciones que podrían afectar la operación.</p></div></li></ol></section>
       <section className="capabilities-section" aria-labelledby="capabilities-title"><SectionHeading eyebrow="Experiencia técnica" title="Áreas en las que he trabajado" titleId="capabilities-title" /><div className="capabilities-grid"><div><span>01</span><h3>Backend y APIs</h3><p>Desarrollo de servicios con Python y FastAPI, reglas de negocio, autenticación y bases de datos.</p></div><div><span>02</span><h3>Datos y automatización</h3><p>Procesamiento y análisis con Python, Pandas, SQL, MongoDB y Amazon Redshift.</p></div><div><span>03</span><h3>Integración de sistemas</h3><p>Comunicación entre servicios, sincronización de estado y flujos con distintos tipos de usuario.</p></div><div><span>04</span><h3>Inteligencia Artificial</h3><p>Proyectos de clasificación, detección de fraude, redes neuronales y aprendizaje semi-supervisado.</p></div></div></section>
-      <section className="about-section" id="sobre-mi" aria-labelledby="about-title"><div><p className="eyebrow">Sobre mí</p><h2 id="about-title">Me interesa entender cómo funciona un sistema completo, no solo una parte del código.</h2></div><div className="about-copy"><p>Mi experiencia combina desarrollo backend, procesamiento de datos y proyectos de Inteligencia Artificial. Me gusta trabajar desde una necesidad concreta y entender cómo cada decisión técnica afecta a quienes usarán el sistema.</p><p>Trabajo desde Pichilemu con personas y equipos que necesitan presentar un servicio, ordenar un proceso o comprobar una idea. También puedo colaborar de manera remota con proyectos de otras zonas de Chile.</p><p>En este portfolio muestro proyectos en distintos estados de avance, separando con claridad lo que ya está implementado, la evidencia disponible y el trabajo que todavía continúa.</p></div></section>
       <section className="journey-section" aria-labelledby="journey-title"><SectionHeading eyebrow="Trayectoria" title="Experiencia profesional y académica" titleId="journey-title" /><div className="journey-line"><article><span>2023 — 2024 · Práctica profesional</span><h3>Datos y automatización · WherEx</h3><p>Automaticé y analicé procesos de datos con Python, Pandas, MongoDB, SQL y Amazon Redshift para necesidades del área de Producto.</p></article><article><span>2023 — 2025 · Universidad de O’Higgins</span><h3>Ayudantía de programación y datos</h3><p>Apoyé cursos de programación y procesamiento masivo de datos, incluyendo programación orientada a objetos y programación paralela.</p></article></div></section>
       <section className="contact-section" id="contacto" aria-labelledby="contact-title"><p className="eyebrow">Contacto</p><h2 id="contact-title">Cuéntame qué necesitas resolver.</h2><p>Si tienes un negocio, un proceso que quieres ordenar o una idea que necesita su primera versión, podemos conversar sobre el problema y evaluar el siguiente paso.</p><div className="contact-actions"><ActionLink href={contactRoute()} variant="primary">Preparar una consulta</ActionLink><ActionLink href="https://github.com/IvanBozoCa" variant="text" external>Revisar GitHub</ActionLink></div></section>
     </main><SiteFooter />

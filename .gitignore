@@ -28,3 +28,5 @@ dist/
 .env
 .DS_Store
 .vercel
+.env*
+*-check.png

@@ -2,24 +2,24 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
-      "source": "/",
+      "source": "/:path((?!eunomi-escolar/).*)",
       "has": [
         {
           "type": "host",
           "value": "eunomi.cl"
         }
       ],
-      "destination": "/eunomi-escolar/"
+      "destination": "/eunomi-escolar/:path*"
     },
     {
-      "source": "/",
+      "source": "/:path((?!eunomi-escolar/).*)",
       "has": [
         {
           "type": "host",
           "value": "www.eunomi.cl"
         }
       ],
-      "destination": "/eunomi-escolar/"
+      "destination": "/eunomi-escolar/:path*"
     }
   ]
 }

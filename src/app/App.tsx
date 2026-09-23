@@ -1,0 +1,178 @@
+import SchoolTransportPage from "../projects/school-transport/SchoolTransportPage";
+import SchoolTransportCaseStudy from "../projects/school-transport/SchoolTransportCaseStudy";
+import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
+import ServicesPage from "../services/ServicesPage";
+import ProductsPage from "../products/ProductsPage";
+import ContactPage from "../contact/ContactPage";
+import HelloPage from "../hello/HelloPage";
+import PichilemuServicesPage from "../local/PichilemuServicesPage";
+import SiteStructuredData from "../seo/SiteStructuredData";
+import NotFoundPage from "./NotFoundPage";
+import { contactRoute, normalizePath, routes } from "./routes";
+import { routeMetadata } from "./routeMetadata";
+import { useEffect, useState } from "react";
+import "./PortfolioPage.css";
+
+type PageMetadataProps = { title: string; description: string; canonicalPath: string; noIndex?: boolean };
+
+function PageMetadata({ title, description, canonicalPath, noIndex = false }: PageMetadataProps) {
+  useEffect(() => {
+    document.title = title;
+    const canonicalUrl = new URL(canonicalPath, window.location.origin).href;
+    const socialImageUrl = new URL("/og-cover.png", window.location.origin).href;
+
+    const metadata = [
+      ["name", "description", description],
+      ["name", "robots", noIndex ? "noindex, follow" : "index, follow"],
+      ["property", "og:title", title],
+      ["property", "og:description", description],
+      ["property", "og:url", canonicalUrl],
+      ["property", "og:image", socialImageUrl],
+      ["name", "twitter:title", title],
+      ["name", "twitter:description", description],
+      ["name", "twitter:image", socialImageUrl],
+    ] as const;
+
+    metadata.forEach(([attribute, value, content]) => {
+      let element = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${value}"]`);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, value);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", content);
+    });
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+  }, [canonicalPath, description, noIndex, title]);
+
+  return null;
+}
+
+function MetadataForRoute({ path }: { path: keyof typeof routeMetadata }) {
+  const metadata = routeMetadata[path];
+  return <PageMetadata {...metadata} canonicalPath={path} />;
+}
+
+type ActionLinkProps = { children: React.ReactNode; href: string; variant?: "primary" | "secondary" | "text"; external?: boolean };
+
+function ActionLink({ children, href, variant = "text", external = false }: ActionLinkProps) {
+  return <a className={`action-link action-link--${variant}`} href={href} {...(external ? { target: "_blank", rel: "noreferrer" } : {})}>{children}<span aria-hidden="true">{external ? " ↗" : " →"}</span></a>;
+}
+
+function Badge({ children, tone = "default" }: { children: React.ReactNode; tone?: "default" | "accent" }) {
+  return <span className={`badge badge--${tone}`}>{children}</span>;
+}
+
+function SectionHeading({ eyebrow, title, titleId, intro }: { eyebrow: string; title: string; titleId: string; intro?: string }) {
+  return <div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2 id={titleId}>{title}</h2>{intro && <p className="section-intro">{intro}</p>}</div>;
+}
+
+function SiteHeader() {
+  return <header className="site-header"><a className="brand" href="#inicio" aria-label="IB — Iván Bozo Catalán — ir al inicio"><span className="brand-mark" aria-hidden="true">IB</span><span>Iván Bozo Catalán</span></a><nav aria-label="Navegación principal"><a href="#servicios">Servicios</a><a href="#productos">Productos</a><a href="#proyectos">Proyectos</a><a href="#sobre-mi">Sobre mí</a><a href={routes.contact}>Contacto</a></nav></header>;
+}
+
+function ServicesOverview() {
+  const services = [
+    { number: "01", title: "Sitios web comerciales", description: "Páginas para presentar un negocio o servicio con claridad, adaptadas a móvil y preparadas para convertir visitas en conversaciones." },
+    { number: "02", title: "Software de gestión a medida", description: "Sistemas para centralizar información, usuarios y operaciones que hoy dependen de planillas, mensajes o tareas manuales." },
+    { number: "03", title: "MVP y modernización", description: "Primeras versiones funcionales e incrementos para conectar frontend, backend, datos e integraciones sin intentar resolver todo de una vez." },
+  ];
+
+  return <section className="services-section" id="servicios" aria-labelledby="services-title"><SectionHeading eyebrow="Servicios" title="Soluciones digitales construidas alrededor de una necesidad concreta" titleId="services-title" intro="Puedo ayudarte a presentar mejor un servicio, ordenar una operación o convertir una idea en una primera versión funcional." /><div className="services-grid">{services.map((service, index) => <article key={service.number}><span>{service.number}</span><h3>{service.title}</h3><p>{service.description}</p><a href={`${routes.services}#${["sitios-web", "software-gestion", "mvp-modernizacion"][index]}`}>Conocer el servicio <span aria-hidden="true">→</span></a></article>)}</div></section>;
+}
+
+function ProductsOverview() {
+  return <section className="products-section" id="productos" aria-labelledby="products-title"><SectionHeading eyebrow="Producto principal" title="Software que estoy convirtiendo en productos reales" titleId="products-title" intro="Eunomi Escolar concentra hoy la prioridad de desarrollo. Cada producto declara con transparencia qué está funcionando, qué sigue en construcción y qué puede revisarse." /><div className="products-grid"><article className="product-card product-card--eunomi"><div className="product-card-top"><span>01 / Prioridad actual</span><strong>Producto para transporte escolar</strong></div><div><p className="product-name">Eunomi Escolar</p><h3>Rutas, asistencia y avisos en un mismo lugar.</h3><p>Una solución para ayudar a transportistas a organizar sus recorridos y mantener informadas a las familias.</p><ActionLink href={routes.eunomiLanding} variant="secondary">Conocer Eunomi</ActionLink></div></article><article className="product-card product-card--gcms"><div className="product-card-top"><span>02 / En desarrollo</span><strong>Producto para gaming centers</strong></div><div><p className="product-name">GCMS</p><h3>La operación diaria, centralizada.</h3><p>Gestión de estaciones, clientes y sesiones con reglas de negocio comprobadas y una base preparada para seguir creciendo.</p><ActionLink href={`${routes.products}#gcms-product`} variant="secondary">Conocer producto</ActionLink></div></article></div></section>;
+}
+
+function ProfilePortrait() {
+  const [available, setAvailable] = useState(false);
+
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => setAvailable(true);
+    image.src = "/profile/ivan-bozo.webp";
+    return () => {
+      image.onload = null;
+    };
+  }, []);
+
+  return available
+    ? <img src="/profile/ivan-bozo.webp" width="96" height="96" alt="Retrato de Iván Bozo Catalán" />
+    : <span aria-hidden="true">IB</span>;
+}
+
+function AboutOverview() {
+  return <section className="about-section" id="sobre-mi" aria-labelledby="about-title"><div className="about-intro"><p className="eyebrow">Sobre mí</p><h2 id="about-title">Me interesa entender cómo funciona un sistema completo, no solo una parte del código.</h2><div className="about-identity"><ProfilePortrait /><p><strong>Iván Bozo Catalán</strong><small>Ingeniero Civil en Computación · Pichilemu, Chile</small></p></div></div><div className="about-copy"><p>Mi experiencia combina desarrollo backend, procesamiento de datos y proyectos de Inteligencia Artificial. Me gusta trabajar desde una necesidad concreta y entender cómo cada decisión técnica afecta a quienes usarán el sistema.</p><p>Trabajo desde Pichilemu con personas y equipos que necesitan presentar un servicio, ordenar un proceso o comprobar una idea. También puedo colaborar de manera remota con proyectos de otras zonas de Chile.</p><p>En este portfolio muestro proyectos en distintos estados de avance, separando con claridad lo que ya está implementado, la evidencia disponible y el trabajo que todavía continúa.</p></div></section>;
+}
+
+function FeaturedProject({ project }: { project: "gcms" | "transport" }) {
+  const gcms = project === "gcms";
+  return <article className={`featured-project ${gcms ? "featured-project--dark" : ""}`}>
+    <div className="project-copy">
+      <div className="project-meta"><span>0{gcms ? "2" : "1"}</span><Badge tone={gcms ? "accent" : "default"}>{gcms ? "En desarrollo" : "Proyecto de título"}</Badge></div>
+      <p className="project-context">{gcms ? "Software de operación" : "Plataforma de coordinación"}</p>
+      <h3>{gcms ? "Gaming Center Management System" : "Transporte Escolar"}</h3>
+      <div className="project-story">
+        <div><span>Problema</span><p>{gcms ? "Administrar estaciones, clientes y sesiones desde herramientas separadas dificulta tener una visión clara de la operación diaria." : "Las rutas dependían de conocimiento tácito y la coordinación manual dificultaba delegar y mantener informadas a las familias."}</p></div>
+        <div><span>Solución</span><p>{gcms ? "Un sistema centralizado para gestionar estaciones, clientes y sesiones, tanto de usuarios registrados como de invitados." : "Una plataforma por roles con rutas definidas, control de asistencia y seguimiento para conductores, apoderados y administración."}</p></div>
+      </div>
+      <p className="project-role"><strong>Mi trabajo:</strong> análisis del problema, diseño del sistema e implementación.</p>
+      <div className="project-evidence"><span className="evidence-label">Evidencia disponible</span><p>{gcms ? "Los flujos de sesiones registradas y de invitados cuentan con pruebas de reglas de negocio, permisos, base de datos y concurrencia." : "Demo navegable con vistas de conductor, apoderado, administración y documentación de la API."}</p></div>
+      {gcms ? <ActionLink href={routes.gcms} variant="secondary">Ver caso de estudio</ActionLink> : <ActionLink href={routes.eunomi} variant="secondary">Ver caso de estudio</ActionLink>}
+    </div>
+    <div className="project-visual" aria-label={gcms ? "Captura de GCMS pendiente" : "Vista previa editorial de Transporte Escolar"}>
+      {gcms ? <div className="visual-placeholder"><span>Visual del producto</span><strong>Captura real pendiente</strong><p>Este espacio se reserva para una vista validada del panel, sin representar una interfaz ficticia.</p></div> : <div className="transport-preview"><div className="route-line" aria-hidden="true"><i /><i /><i /><i /></div><div><span>Demo funcional</span><strong>Ruta, asistencia y seguimiento</strong><p>Experiencia completa preservada en su landing original.</p></div></div>}
+    </div>
+  </article>;
+}
+
+function SiteFooter() {
+  return <footer className="site-footer"><p>© {new Date().getFullYear()} Iván Bozo Catalán</p><a href="#inicio">Volver arriba ↑</a></footer>;
+}
+
+function PortfolioHome() {
+  return <div className="portfolio-shell">
+    <MetadataForRoute path={routes.home} />
+    <a className="skip-link" href="#contenido">Saltar al contenido</a><SiteHeader />
+    <main id="contenido">
+      <section className="hero" id="inicio" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow">Software a medida · Productos digitales · Sitios web</p><h1 id="hero-title">Desarrollo soluciones digitales para negocios e ideas que necesitan avanzar.</h1><p className="hero-lead">Soy Iván Bozo Catalán, Ingeniero Civil en Computación en Pichilemu. Construyo sitios web, sistemas de gestión y productos funcionales partiendo de una necesidad concreta.</p><div className="hero-actions"><ActionLink href="#servicios" variant="primary">Conocer servicios</ActionLink><ActionLink href={routes.pichilemu} variant="text">Servicios en Pichilemu</ActionLink><ActionLink href="#productos" variant="text">Ver productos</ActionLink></div></div><aside className="hero-note" aria-label="Principio de trabajo"><span>01 / De la necesidad al resultado</span><p>Entender</p><i aria-hidden="true" /><p>Diseñar</p><i aria-hidden="true" /><p>Construir</p><i aria-hidden="true" /><p>Comprobar</p></aside></section>
+      <ProductsOverview />
+      <AboutOverview />
+      <ServicesOverview />
+      <section className="projects-section" id="proyectos" aria-labelledby="projects-title"><SectionHeading eyebrow="Casos de estudio" title="El trabajo detrás de cada solución" titleId="projects-title" intro="Estos proyectos muestran el problema abordado, las decisiones tomadas, la implementación disponible y los límites actuales de cada solución." /><div className="projects-list"><FeaturedProject project="transport" /><FeaturedProject project="gcms" /></div></section>
+      <section className="approach-section" id="enfoque" aria-labelledby="approach-title"><SectionHeading eyebrow="Cómo trabajo" title="Primero entiendo el contexto; después construyo" titleId="approach-title" /><ol className="process-list"><li><span>01</span><div><h3>Entender el problema</h3><p>Reviso quiénes usarán la solución, cómo trabajan hoy y qué restricciones existen.</p></div></li><li><span>02</span><div><h3>Diseñar una solución</h3><p>Organizo las reglas del negocio y defino las responsabilidades de cada parte del sistema.</p></div></li><li><span>03</span><div><h3>Construir por etapas</h3><p>Avanzo en incrementos pequeños que permitan revisar el resultado y ajustar el rumbo.</p></div></li><li><span>04</span><div><h3>Comprobar que funciona</h3><p>Pruebo los flujos principales, los errores esperables y las condiciones que podrían afectar la operación.</p></div></li></ol></section>
+      <section className="capabilities-section" aria-labelledby="capabilities-title"><SectionHeading eyebrow="Experiencia técnica" title="Áreas en las que he trabajado" titleId="capabilities-title" /><div className="capabilities-grid"><div><span>01</span><h3>Backend y APIs</h3><p>Desarrollo de servicios con Python y FastAPI, reglas de negocio, autenticación y bases de datos.</p></div><div><span>02</span><h3>Datos y automatización</h3><p>Procesamiento y análisis con Python, Pandas, SQL, MongoDB y Amazon Redshift.</p></div><div><span>03</span><h3>Integración de sistemas</h3><p>Comunicación entre servicios, sincronización de estado y flujos con distintos tipos de usuario.</p></div><div><span>04</span><h3>Inteligencia Artificial</h3><p>Proyectos de clasificación, detección de fraude, redes neuronales y aprendizaje semi-supervisado.</p></div></div></section>
+      <section className="journey-section" aria-labelledby="journey-title"><SectionHeading eyebrow="Trayectoria" title="Experiencia profesional y académica" titleId="journey-title" /><div className="journey-line"><article><span>2023 — 2024 · Práctica profesional</span><h3>Datos y automatización · WherEx</h3><p>Automaticé y analicé procesos de datos con Python, Pandas, MongoDB, SQL y Amazon Redshift para necesidades del área de Producto.</p></article><article><span>2023 — 2025 · Universidad de O’Higgins</span><h3>Ayudantía de programación y datos</h3><p>Apoyé cursos de programación y procesamiento masivo de datos, incluyendo programación orientada a objetos y programación paralela.</p></article></div></section>
+      <section className="contact-section" id="contacto" aria-labelledby="contact-title"><p className="eyebrow">Contacto</p><h2 id="contact-title">Cuéntame qué necesitas resolver.</h2><p>Si tienes un negocio, un proceso que quieres ordenar o una idea que necesita su primera versión, podemos conversar sobre el problema y evaluar el siguiente paso.</p><div className="contact-actions"><ActionLink href={contactRoute()} variant="primary">Preparar una consulta</ActionLink><ActionLink href="https://github.com/IvanBozoCa" variant="text" external>Revisar GitHub</ActionLink></div></section>
+    </main><SiteFooter />
+  </div>;
+}
+
+export default function App({ pathname, search }: { pathname?: string; search?: string } = {}) {
+  const path = normalizePath(pathname ?? (typeof window === "undefined" ? routes.home : window.location.pathname));
+  const searchParams = new URLSearchParams(search ?? (typeof window === "undefined" ? "" : window.location.search));
+  const project = searchParams.get("project");
+  const page = searchParams.get("page");
+  const legacyRoute = path === routes.home;
+  let pageContent: React.ReactNode;
+  if (path === routes.services || (legacyRoute && page === "services")) pageContent = <><MetadataForRoute path={routes.services} /><ServicesPage /></>;
+  else if (path === routes.products || (legacyRoute && page === "products")) pageContent = <><MetadataForRoute path={routes.products} /><ProductsPage /></>;
+  else if (path === routes.contact || (legacyRoute && page === "contact")) pageContent = <><MetadataForRoute path={routes.contact} /><ContactPage /></>;
+  else if (path === routes.hello) pageContent = <><MetadataForRoute path={routes.hello} /><HelloPage /></>;
+  else if (path === routes.pichilemu) pageContent = <><MetadataForRoute path={routes.pichilemu} /><PichilemuServicesPage /></>;
+  else if (path === routes.eunomi || (legacyRoute && project === "school-transport")) pageContent = <><MetadataForRoute path={routes.eunomi} /><SchoolTransportCaseStudy /></>;
+  else if (path === routes.eunomiDemo || (legacyRoute && project === "school-transport-demo")) pageContent = <><MetadataForRoute path={routes.eunomiDemo} /><SchoolTransportPage /></>;
+  else if (path === routes.gcms || (legacyRoute && project === "gcms")) pageContent = <><MetadataForRoute path={routes.gcms} /><GamingCenterCaseStudy /></>;
+  else if (path === routes.home) pageContent = <PortfolioHome />;
+  else pageContent = <><PageMetadata title="Página no encontrada | Iván Bozo Catalán" description="La dirección solicitada no corresponde a una página disponible del portfolio." canonicalPath={path} noIndex /><NotFoundPage /></>;
+
+  return <><SiteStructuredData path={path} />{pageContent}</>;
+}

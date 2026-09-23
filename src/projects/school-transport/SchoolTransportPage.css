@@ -36,13 +36,38 @@ html, body {
 .read-the-docs {
   color: #888;
 }
-/* ==== INICIO <Paso 1> — App.css (clases nuevas, no toco lo demás) ==== */
+/* ==== INICIO <Paso 1> — SchoolTransportPage.css (clases existentes) ==== */
 .appContainer {
   max-width: 1200px;         /* límite de ancho en desktop */
   width: 100%;               /* responde en móvil/tablet */
   margin-inline: auto;       /* centra en horizontal */
   padding-inline: 16px;      /* respiración a los lados */
   box-sizing: border-box;
+}
+
+.demoNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.demoNav a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border: 1px solid rgba(231, 233, 238, 0.2);
+  border-radius: 999px;
+  color: #e7e9ee;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.demoNav a:hover {
+  background: rgba(231, 233, 238, 0.08);
+}
+.demoNav a:focus-visible {
+  outline: 2px solid #e7e9ee;
+  outline-offset: 2px;
 }
 
 /* Grid responsivo para los 2 "celulares" (y preparado para crecer en pasos siguientes) */

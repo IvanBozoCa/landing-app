@@ -1,6 +1,9 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/", "has": [{ "type": "host", "value": "eunomi.cl" }], "destination": "/eunomi-escolar/index.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "www.eunomi.cl" }], "destination": "/eunomi-escolar/index.html" },
     { "source": "/carycar", "destination": "https://carycar.vercel.app/" },
     { "source": "/carycar/:path*", "destination": "https://carycar.vercel.app/:path*" },
     { "source": "/assets/index-BC_hc7bm.js", "destination": "https://carycar.vercel.app/assets/index-BC_hc7bm.js" },

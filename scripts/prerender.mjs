@@ -22,7 +22,7 @@ function replaceMeta(html, attribute, name, content) {
 }
 
 function pageDocument(pathname, metadata, robots = "index, follow") {
-  const canonicalUrl = new URL(pathname, siteUrl).href;
+  const canonicalUrl = new URL(pathname, metadata.canonicalOrigin ?? siteUrl).href;
   let html = template
     .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(metadata.title)}</title>`)
     .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, `<link rel="canonical" href="${canonicalUrl}" />`)

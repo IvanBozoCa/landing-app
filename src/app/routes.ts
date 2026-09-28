@@ -3,6 +3,7 @@ export const routes = {
   services: "/servicios",
   products: "/productos",
   contact: "/contacto",
+  eunomiContact: "/eunomi/contacto",
   hello: "/hola",
   pichilemu: "/desarrollo-software-pichilemu",
   gcms: "/proyectos/gcms",

@@ -4,6 +4,7 @@ import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStu
 import ServicesPage from "../services/ServicesPage";
 import ProductsPage from "../products/ProductsPage";
 import ContactPage from "../contact/ContactPage";
+import EunomiContactPage from "../contact/EunomiContactPage";
 import HelloPage from "../hello/HelloPage";
 import PichilemuServicesPage from "../local/PichilemuServicesPage";
 import SiteStructuredData from "../seo/SiteStructuredData";
@@ -13,13 +14,14 @@ import { routeMetadata } from "./routeMetadata";
 import { useEffect, useState } from "react";
 import "./PortfolioPage.css";
 
-type PageMetadataProps = { title: string; description: string; canonicalPath: string; noIndex?: boolean };
+type PageMetadataProps = { title: string; description: string; canonicalPath: string; canonicalOrigin?: string; noIndex?: boolean };
 
-function PageMetadata({ title, description, canonicalPath, noIndex = false }: PageMetadataProps) {
+function PageMetadata({ title, description, canonicalPath, canonicalOrigin, noIndex = false }: PageMetadataProps) {
   useEffect(() => {
     document.title = title;
-    const canonicalUrl = new URL(canonicalPath, window.location.origin).href;
-    const socialImageUrl = new URL("/og-cover.png", window.location.origin).href;
+    const origin = canonicalOrigin ?? window.location.origin;
+    const canonicalUrl = new URL(canonicalPath, origin).href;
+    const socialImageUrl = new URL("/og-cover.png", origin).href;
 
     const metadata = [
       ["name", "description", description],
@@ -50,7 +52,7 @@ function PageMetadata({ title, description, canonicalPath, noIndex = false }: Pa
       document.head.appendChild(canonical);
     }
     canonical.href = canonicalUrl;
-  }, [canonicalPath, description, noIndex, title]);
+  }, [canonicalOrigin, canonicalPath, description, noIndex, title]);
 
   return null;
 }
@@ -165,6 +167,7 @@ export default function App({ pathname, search }: { pathname?: string; search?: 
   let pageContent: React.ReactNode;
   if (path === routes.services || (legacyRoute && page === "services")) pageContent = <><MetadataForRoute path={routes.services} /><ServicesPage /></>;
   else if (path === routes.products || (legacyRoute && page === "products")) pageContent = <><MetadataForRoute path={routes.products} /><ProductsPage /></>;
+  else if (path === routes.eunomiContact) pageContent = <><MetadataForRoute path={routes.eunomiContact} /><EunomiContactPage /></>;
   else if (path === routes.contact || (legacyRoute && page === "contact")) pageContent = <><MetadataForRoute path={routes.contact} /><ContactPage /></>;
   else if (path === routes.hello) pageContent = <><MetadataForRoute path={routes.hello} /><HelloPage /></>;
   else if (path === routes.pichilemu) pageContent = <><MetadataForRoute path={routes.pichilemu} /><PichilemuServicesPage /></>;

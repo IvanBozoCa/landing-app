@@ -2,7 +2,7 @@ import "./SchoolTransportCaseStudy.css";
 import { routes } from "../../app/routes";
 
 function TransportHeader() {
-  return <header className="transport-case-header"><a href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al portfolio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación del caso de estudio"><a className="transport-case-back" href={`${routes.home}#proyectos`}>← Volver a proyectos</a></nav></header>;
+  return <header className="transport-case-header"><a href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al inicio"><span aria-hidden="true">IB</span><strong>Iván Bozo Catalán</strong></a><nav aria-label="Navegación del caso de estudio"><a className="transport-case-back" href={`${routes.home}#trabajo`}>← Volver al trabajo seleccionado</a></nav></header>;
 }
 
 function TransportSection({ number, eyebrow, title, children, dark = false, wide = false }: { number: string; eyebrow: string; title: string; children: React.ReactNode; dark?: boolean; wide?: boolean }) {
@@ -15,9 +15,9 @@ export default function SchoolTransportCaseStudy() {
     <TransportHeader />
     <main id="transport-case-content">
       <header className="transport-case-hero">
-        <div className="transport-hero-meta"><span>Proyecto de título</span><span>Plataforma por roles · Demo disponible</span></div>
+        <div className="transport-hero-meta"><span>Proyecto de título · hoy Eunomi Escolar (en desarrollo)</span><span>Plataforma por roles · Demo disponible</span></div>
         <div className="transport-hero-grid">
-          <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href={routes.eunomiLanding}>Conocer Eunomi Escolar <span aria-hidden="true">→</span></a></div>
+          <div><h1>Transporte<br />Escolar</h1><p>Una plataforma para organizar rutas, asistencia y seguimiento entre administración, conductores y apoderados.</p><a href={routes.eunomiLanding} target="_blank" rel="noopener noreferrer">Conocer Eunomi Escolar en eunomi.cl <span aria-hidden="true">↗</span></a></div>
           <div className="transport-hero-art"><picture><source type="image/webp" srcSet="/movilapp-256.webp 256w, /movilapp-384.webp 384w, /movilapp-509.webp 509w" sizes="(max-width: 480px) 200px, 330px" /><img src="/movilapp.png" width="509" height="490" decoding="async" fetchPriority="high" alt="Ícono de la aplicación Transporte Escolar: un bus protegido por un escudo" /></picture><div aria-hidden="true"><i /><i /><i /><i /></div></div>
         </div>
       </header>
@@ -50,7 +50,7 @@ export default function SchoolTransportCaseStudy() {
       </TransportSection>
 
       <TransportSection number="07" eyebrow="Participación" title="Mi trabajo en el proyecto">
-        <div className="transport-large-copy"><p>Desarrollé este sistema como proyecto de título, desde el análisis de la necesidad y el modelado de los roles hasta la implementación del backend, las experiencias de usuario y la integración de notificaciones.</p><p>El proyecto continúa en modernización. La versión actual permite demostrar el flujo funcional y, al mismo tiempo, mantiene documentada la deuda técnica que debe abordarse antes de considerarlo un producto preparado para una operación más amplia.</p></div>
+        <div className="transport-large-copy"><p>Desarrollé este sistema como proyecto de título, desde el análisis de la necesidad y el modelado de los roles hasta la implementación del backend, las experiencias de usuario y la integración de notificaciones.</p><p>Hoy el proyecto evoluciona como Eunomi Escolar, uno de los productos de Eunomi, la empresa que fundé. Está en desarrollo y abierto a un piloto; todavía no está disponible para uso general.</p><p>El proyecto continúa en modernización. La versión actual permite demostrar el flujo funcional y, al mismo tiempo, mantiene documentada la deuda técnica que debe abordarse antes de considerarlo un producto preparado para una operación más amplia.</p></div>
       </TransportSection>
 
       <section className="transport-case-closing"><p>Demo funcional</p><h2>Prueba el flujo preservado de Transporte Escolar.</h2><a href={routes.eunomiDemo}>Abrir demo completa <span aria-hidden="true">→</span></a></section>

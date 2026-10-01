@@ -4,11 +4,11 @@ import { routes } from "../../app/routes";
 function CaseHeader() {
   return (
     <header className="case-header">
-      <a className="case-brand" href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al portfolio">
+      <a className="case-brand" href={routes.home} aria-label="IB — Iván Bozo Catalán — volver al inicio">
         <span aria-hidden="true">IB</span>
         <strong>Iván Bozo Catalán</strong>
       </a>
-      <nav aria-label="Navegación del caso de estudio"><a className="case-back" href={`${routes.home}#proyectos`}>← Volver a proyectos</a></nav>
+      <nav aria-label="Navegación del caso de estudio"><a className="case-back" href={`${routes.home}#trabajo`}>← Volver al trabajo seleccionado</a></nav>
     </header>
   );
 }
@@ -131,7 +131,7 @@ export default function GamingCenterCaseStudy() {
 
         <section className="case-closing">
           <p>Próximo paso</p><h2>Convertir la implementación actual en una experiencia demostrable de extremo a extremo.</h2>
-          <a href={`${routes.home}#proyectos`}>Volver al portfolio <span aria-hidden="true">→</span></a>
+          <a href={`${routes.home}#trabajo`}>Volver al trabajo seleccionado <span aria-hidden="true">→</span></a>
         </section>
       </main>
       <footer className="case-footer"><p>© {new Date().getFullYear()} Iván Bozo Catalán</p><a href="#caso-contenido">Volver arriba ↑</a></footer>

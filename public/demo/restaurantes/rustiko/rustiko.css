@@ -1,0 +1,35 @@
+/* Prototipo Rustiko: inspirado en su fachada de madera, su letrero y su logo (no los reproduce). */
+:root{--green:#3b2518;--muted:#6f5a4a;--border:#e2d5c3;--wood:#3b2518;--wood2:#7a4b2a;--sand:#c88a45;--cream:#f7f0e4;color:#2b1c12;background:#f3ece1;font-family:Lora,Georgia,serif}
+button,input,select{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.presenter{background:#eadfce;border-bottom-color:#d9c7ae}
+.presenter details{border-top-color:#d9c7ae}
+button:hover{background:#f1e7d8}
+.primary,button[aria-pressed=true]{background:var(--wood);border-color:var(--wood);color:#fff}
+.primary:hover,button[aria-pressed=true]:hover{background:#5a3924;color:#fff}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline-color:var(--sand)}
+#notice:not(:empty){background:#f6e3c8;color:#5a3417}
+h1{font-family:Lora,Georgia,serif;font-weight:700;letter-spacing:-.5px}
+.brand.rk{letter-spacing:0;line-height:1;text-align:left;font-family:Lora,Georgia,serif}
+.brand.rk .rk-name{display:block;font-family:"Alfa Slab One",Georgia,serif;font-size:34px;color:#1c120b;letter-spacing:.5px}
+.brand.rk small{font:700 8.5px system-ui,sans-serif;letter-spacing:1.6px;color:var(--wood2);margin:4px 0 6px}
+.brand.rk .rk-board{display:inline-block;font:italic 600 11px Lora,Georgia,serif;color:#fff;background:linear-gradient(180deg,#d39a55,#a8692e);padding:3px 16px;border-radius:40px;letter-spacing:.5px}
+.phone{background:#fffaf2;border-color:#e6d8c4;box-shadow:0 15px 45px #3b251814}
+.phone>header{border-bottom-color:#efe4d4}
+.pill{background:#f1e6d6;color:#5a3924}
+.ocean{background:repeating-linear-gradient(135deg,#4a2e1d 0 10px,#3b2518 10px 20px)}
+.ocean span{color:#f7f0e4;top:14px;bottom:auto;font-family:system-ui,sans-serif}
+.eyebrow{color:var(--wood2)}
+.balance{background:var(--wood)}
+.balance small{color:#e0c8a8}
+.reward-art{background:#f1e6d6;color:var(--wood);font-family:"Alfa Slab One",Georgia,serif;font-size:24px}
+.reward:nth-of-type(2) .reward-art{background:var(--wood);color:#f7f0e4}
+.reward:nth-of-type(3) .reward-art{background:var(--sand);color:#fff}
+.track{background:#efe4d4}.track span{background:var(--sand)}
+.conditions{background:#f5ecdf}
+.code{border-color:#c9ab85}
+.step span{background:#f1e6d6}
+.box{border-color:var(--border)}
+.method.chosen{border-color:var(--wood);box-shadow:0 0 0 2px var(--wood) inset}
+.phone>section.caja{background:#f5ecdf;border-bottom-color:#efe4d4}
+.qr-card{border-color:var(--wood)}.qr-card .brand.rk{text-align:center}.qr-code{color:#1c120b}
+a{color:var(--wood2)}

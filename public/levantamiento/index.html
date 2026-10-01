@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#077580">
+<title>Eunomi · Levantamiento</title>
+<link rel="manifest" href="/levantamiento.webmanifest">
+<link rel="icon" href="/brand-mark.svg">
+<style>
+:root{--t:#077580;--td:#05545c;--tl:#e6f1f1;--bg:#f6f8f8;--card:#fff;--tx:#1b1b1b;--mu:#5d6b6d;--bd:#d3dfe0;--warn:#fff4e0;--warnb:#e0a040;--ok:#e8f6ee;--okb:#3c9a63;--red:#b3261e}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--tx);background:var(--bg)}
+button,input,textarea{font:inherit;color:inherit}
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top));background:var(--t);color:#fff}
+.bar>div{flex:1;min-width:0}
+.bar b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar span{font-size:12.5px;opacity:.85}
+.back{background:none;border:0;color:#fff;font-size:24px;padding:4px 8px;min-height:44px}
+.wrap{max-width:720px;margin:0 auto;padding:14px 16px 90px}
+h2{font-size:20px;margin:6px 0 10px;color:var(--td)}
+h2 small{display:block;font-size:13px;font-weight:normal;color:var(--mu)}
+h3{font-size:15px;margin:18px 0 6px;color:var(--td)}
+.muted{color:var(--mu)}.small{font-size:13px}
+.primary,.ghost,.danger{border-radius:10px;padding:11px 16px;min-height:46px;border:1px solid var(--t);cursor:pointer}
+.primary{background:var(--t);color:#fff;font-weight:600}
+.ghost{background:#fff;color:var(--td)}
+.ghost.light{background:transparent;color:#fff;border-color:#ffffff99}
+.danger{background:#fff;color:var(--red);border-color:#e4b4b0}
+.small{min-height:38px;padding:6px 12px;font-size:14px}
+.big{width:100%;font-size:18px;padding:16px;margin:4px 0 14px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.filebtn{display:inline-flex;align-items:center;cursor:pointer}.filebtn input{display:none}
+.cards{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cards li{display:flex;gap:8px;align-items:stretch}
+.card{flex:1;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px;cursor:pointer;min-width:0}
+.card strong{display:block;font-size:16.5px}.card small{display:block;color:var(--mu)}
+.meta{font-size:12.5px;color:var(--mu)}
+.prog{display:block;height:5px;background:var(--tl);border-radius:3px;margin-top:6px;overflow:hidden}.prog i{display:block;height:100%;background:var(--t)}
+.empty{background:#fff;border:1px dashed var(--bd);border-radius:12px;padding:16px;color:var(--mu)}
+.panel{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-top:14px}
+.panel h3{margin-top:0}
+input,textarea{width:100%;border:1px solid var(--bd);border-radius:10px;padding:11px 12px;background:#fff;min-height:46px}
+input:focus,textarea:focus{outline:2px solid var(--t);border-color:var(--t)}
+textarea{resize:vertical}
+.secs,.tabs{position:sticky;top:64px;z-index:4;display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:#fff;border-bottom:1px solid var(--bd);scrollbar-width:none}
+.secs::-webkit-scrollbar,.tabs::-webkit-scrollbar{display:none}
+.secs button,.tabs button{flex:none;border:1px solid var(--bd);background:#fff;border-radius:18px;padding:6px 12px;font-size:13.5px;white-space:nowrap;cursor:pointer;min-height:36px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px}.tabs button{padding:6px 2px;font-size:13px;text-align:center}
+.secs button.on,.tabs button.on{background:var(--t);color:#fff;border-color:var(--t)}
+.fase{font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--t);margin:4px 0 0}
+.tip{background:var(--tl);border-radius:10px;padding:10px 12px;font-size:14px;margin:8px 0}
+.say{font-style:italic;border-left:3px solid var(--t);padding:4px 10px;margin:0 0 12px;color:#333;background:#fff;border-radius:0 8px 8px 0}
+.q{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:11px 12px;margin:0 0 10px}
+.ql{display:block;font-weight:600;margin-bottom:6px}.ql em{color:var(--red);font-style:normal}
+.q>small{display:block;margin:-3px 0 6px}
+.k{display:inline-block;background:var(--t);color:#fff;border-radius:5px;padding:0 6px;font-size:13px}
+.num{display:flex;align-items:center;gap:6px}.num span{color:var(--mu);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--bd);background:#fff;border-radius:20px;padding:8px 13px;min-height:40px;cursor:pointer;font-size:15px}
+.chip.on{background:var(--t);border-color:var(--t);color:#fff}
+.scale{display:flex;align-items:center;gap:10px;justify-content:space-between}
+.scale .ql{margin:0;flex:1}
+.dots{display:flex;gap:5px}
+.dot{width:40px;height:40px;border-radius:50%;border:1px solid var(--bd);background:#fff;cursor:pointer;font-weight:600}
+.dot.on{background:var(--t);border-color:var(--t);color:#fff}
+.dot[data-n="0"].on{background:#8a9a9c;border-color:#8a9a9c}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.nav .primary{flex:1}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1b1b1b;color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:20;max-width:90vw}
+/* Resultado */
+.doc{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:16px}
+.doc h1{font-size:21px;margin:0 0 2px;color:var(--td)}
+.doc h2{font-size:16px;margin:16px 0 6px;padding-bottom:3px;border-bottom:2px solid var(--t)}
+blockquote{margin:10px 0;padding:8px 12px;background:var(--tl);border-radius:8px;font-style:italic}
+.kv{width:100%;border-collapse:collapse;font-size:14.5px}
+.kv th{text-align:left;color:var(--mu);font-weight:600;padding:5px 8px 5px 0;vertical-align:top;width:36%}
+.kv td{padding:5px 0;border-bottom:1px solid #eef2f2}
+.bars{list-style:none;padding:0;margin:0}.bars li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #eef2f2}
+.bars i{font-style:normal;letter-spacing:2px;color:var(--t);white-space:nowrap}.bars i.lv3{color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.stat{border:1px solid var(--bd);border-radius:10px;padding:10px}.stat small{color:var(--mu);display:block}.stat b{display:block;font-size:18px;color:var(--td)}.stat span{font-size:13px;color:var(--mu)}
+.warn{background:var(--warn);border-left:4px solid var(--warnb);padding:9px 12px;border-radius:8px;margin-top:14px;font-size:14.5px}
+.ok{background:var(--ok);border-left:4px solid var(--okb);padding:9px 12px;border-radius:8px;margin-top:14px}
+.pre{white-space:pre-wrap}
+.sol{border:1px solid var(--bd);border-left:5px solid #b9c7c8;border-radius:10px;padding:10px 12px;margin:10px 0}
+.sol.palta{border-left-color:var(--t)}.sol.pmedia{border-left-color:#5aa9b0}
+.sol header{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.sol header b{flex:1 1 100%;font-size:16px}
+.sol p{margin:6px 0}
+.tag{font-size:12px;border:1px solid var(--bd);border-radius:12px;padding:1px 8px;color:var(--mu);white-space:nowrap}
+.tag.demo{background:var(--ok);border-color:var(--okb);color:#1f6b40}
+.why{font-size:14px}.notes{margin:4px 0 0;padding-left:18px;font-size:14px;color:#334}
+.inputs{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.inputs span{background:var(--tl);border-radius:8px;padding:3px 8px;font-size:14px}
+.calc{width:100%;border-collapse:collapse;margin-top:12px;font-size:14.5px}
+.calc th{text-align:left;font-size:13px;color:var(--mu);border-bottom:2px solid var(--t);padding:4px}
+.calc td{border-bottom:1px solid #eef2f2;padding:6px 4px;vertical-align:top}
+.calc td:last-child{text-align:right;white-space:nowrap;font-weight:600}
+.calc td small{display:block;color:var(--mu);font-size:12.5px}
+.calc tr.hl td{background:var(--tl)}
+.actions{margin-top:16px}
+.pro{margin:6px 0 10px}.pro p{margin:2px 0}
+.firma{margin-top:22px}
+.q.palabras{background:#fbfaf5;border-color:#e6dfc7}.q.palabras textarea{font-style:italic;background:#fffef9}
+.q.interno{border-style:dashed}
+.tagint{font-size:11px;font-weight:600;color:#7a4d00;background:var(--warn);border-radius:8px;padding:0 6px;margin-left:4px}
+.tiporeu{font-size:13px;color:var(--td);background:var(--tl);border-radius:8px;padding:6px 10px;margin:0 0 6px}
+.tipos{display:grid;gap:10px}
+.tipo{display:block;text-align:left;background:#fff;border:1px solid var(--bd);border-radius:12px;padding:12px 14px;cursor:pointer}
+.tipo b{display:block;font-size:17px;color:var(--td)}.tipo small{display:block;color:var(--mu);margin-bottom:4px}.tipo span{font-size:14.5px}
+.tipo.sug{border:2px solid var(--t)}
+.nro{display:inline-block;background:#fff;color:var(--t);border-radius:50%;width:20px;height:20px;line-height:20px;text-align:center;font-size:12px}
+.tabs button i{display:block;font-style:normal;font-size:10.5px;opacity:.75}
+.interno-banner{background:var(--warn);color:#7a4d00;border-radius:8px;padding:6px 10px;font-size:13.5px;font-weight:600;margin-bottom:10px}
+.acta-estado{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin-bottom:10px;font-size:14px}.acta-estado p{margin:0 0 6px}
+.acta-h{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-bottom:3px solid var(--t);padding-bottom:6px;margin-bottom:8px}
+.acta-h small{color:var(--mu);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+.acta-h span{background:var(--tl);color:var(--td);border-radius:12px;padding:2px 10px;font-size:13px;white-space:nowrap}
+.acta ul.dato{list-style:none;padding:0;margin:4px 0}.acta ul.dato li{padding:4px 0;border-bottom:1px solid #eef2f2}
+.acta ul.dato li span{color:var(--mu)}
+.acta .prio li{font-weight:600}
+.acta .conf{font-size:11px;font-weight:normal;color:#7a4d00;background:var(--warn);border-radius:8px;padding:1px 6px;vertical-align:middle}
+.acta .nota{font-size:13px;color:var(--mu);border-top:1px solid var(--bd);padding-top:8px;margin-top:16px}
+@media (max-width:420px){.grid2{grid-template-columns:1fr}.scale{flex-direction:column;align-items:flex-start}}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .noprint,.bar,.tabs,.secs,.toast{display:none!important}
+  .wrap{padding:0;max-width:none}
+  .doc{border:0;padding:0}
+  .sol,.pro,tr,.acta li,blockquote{break-inside:avoid}
+  .acta h2{break-after:avoid}
+  @page{size:Letter;margin:14mm}
+}
+</style>
+</head>
+<body>
+<div id="app"><p style="padding:20px">Cargando…</p></div>
+<noscript>Esta herramienta necesita JavaScript.</noscript>
+<script>
+/* Eunomi · Levantamiento · modelo común (app, administrador y guía en papel).
+   Cambiar preguntas aquí y reconstruir. Cada entrevista es UNA reunión de un tipo:
+   descubrimiento (primera), profundizacion o propuesta. Cada sección dice en qué reuniones aparece.
+   interno: 1 → nunca sale en el acta para el cliente. */
+var LEV_MODEL = {
+  version: 2,
+  reuniones: [
+    { id: "descubrimiento", nombre: "Descubrimiento", corto: "Primera reunión",
+      detalle: "Conocer el local, cómo trabaja y qué le gustaría mejorar. Sin números ni propuestas. ~30 min.",
+      objetivo: "Conocer cómo trabaja el local y qué le gustaría mejorar, antes de proponer cualquier solución." },
+    { id: "profundizacion", nombre: "Profundización", corto: "Segunda reunión",
+      detalle: "Sistema de caja, datos del negocio y cómo validar compras. Solo si hubo interés.",
+      objetivo: "Entender en detalle el sistema de ventas y los datos del negocio para diseñar una propuesta ajustada." },
+    { id: "propuesta", nombre: "Propuesta", corto: "Reunión de propuesta",
+      detalle: "Presentar la solución, acordar el piloto y conversar el precio con sus números.",
+      objetivo: "Revisar juntos la propuesta y acordar las condiciones de un piloto." }
+  ],
+  fases: {
+    entender: "Entender · escuchar, no proponer",
+    detalle: "Detalle del negocio",
+    proponer: "Propuesta",
+    acordar: "Cierre y acuerdos"
+  },
+  secciones: [
+    {
+      id: "local", fase: "entender", titulo: "Inicio y permiso", tema: "Participantes", reuniones: ["descubrimiento", "profundizacion", "propuesta"],
+      decir: "“Gracias por el tiempo. Voy a tomar notas para no olvidar nada; al final te envío una copia de lo conversado para que la revises y me corrijas si algo no quedó bien. ¿Te parece?”",
+      preguntas: [
+        { id: "nombre", t: "text", q: "Nombre del local", req: 1 },
+        { id: "comuna", t: "text", q: "Comuna / sector" },
+        { id: "tipo", t: "single", q: "Tipo de local", op: ["Restaurante", "Picada / cocinería", "Café", "Bar", "Comida rápida", "Food truck", "Otro"] },
+        { id: "entrevistado", t: "text", q: "Entrevistado/a" },
+        { id: "cargo", t: "single", q: "Cargo", op: ["Dueño/a", "Socio/a", "Administrador/a", "Encargado/a", "Otro"] },
+        { id: "asistentes", t: "text", q: "Otras personas presentes" },
+        { id: "permiso", t: "single", q: "¿Acepta notas y copia de lo conversado?", op: ["Sí", "Notas sí, copia no", "Prefiere sin notas"] },
+        { id: "decide", t: "text", q: "¿Quién toma las decisiones del local?", interno: 1 },
+        { id: "usuario", t: "text", q: "¿Quién usaría una herramienta día a día?" }
+      ]
+    },
+    {
+      id: "central", fase: "entender", titulo: "La pregunta central", tema: "Lo que más quiere mejorar", nota: "dejar hablar, no interrumpir",
+      reuniones: ["descubrimiento"],
+      decir: "“Eunomi viene de ‘buen orden’: ayudo a negocios locales a ordenar sus procesos y mejorar la experiencia de sus clientes. Antes de proponer nada, quiero entender cómo trabajan.”",
+      preguntas: [
+        { id: "una_cosa", t: "area", q: "Si pudieras mejorar una sola cosa del local, ¿qué sería? (anotar con sus palabras)", req: 1, lineas: 3 }
+      ]
+    },
+    {
+      id: "negocio", fase: "entender", titulo: "El negocio", tema: "El negocio", nota: "tamaño aproximado, sin cifras exactas", reuniones: ["descubrimiento"], palabras: 1,
+      preguntas: [
+        { id: "mesas_local", t: "number", q: "Mesas en el local" },
+        { id: "personal", t: "number", q: "Personas trabajando (turno normal)" },
+        { id: "anios", t: "number", q: "Años funcionando" },
+        { id: "cuenta_rango", t: "single", q: "Cuenta promedio por mesa (aprox.)", op: ["Menos de $15.000", "$15.000 – $30.000", "$30.000 – $50.000", "Más de $50.000", "Prefiere no decir"] },
+        { id: "temporada", t: "single", q: "Diferencia entre temporada alta y baja", op: ["Muy fuerte", "Moderada", "Casi no hay"] },
+        { id: "epoca_dificil", t: "text", q: "¿Época o días más difíciles?" }
+      ]
+    },
+    {
+      id: "clientes", fase: "entender", titulo: "Sus clientes", tema: "Sus clientes", reuniones: ["descubrimiento"], palabras: 1,
+      preguntas: [
+        { id: "tipos", t: "multi", q: "¿Quién viene principalmente?", op: ["Residentes", "Turistas chilenos", "Extranjeros", "Familias", "Parejas", "Grupos / delegaciones", "Trabajadores / empresas", "Eventos"] },
+        { id: "reconocen", t: "single", q: "¿Reconocen a clientes habituales?", op: ["Sí, a muchos", "A algunos", "Casi no"] },
+        { id: "vuelven_rango", t: "single", q: "¿Cuántos clientes vuelven?", op: ["Pocos", "Cerca de la mitad", "La mayoría", "No sabe"] },
+        { id: "prioridad", t: "single", q: "¿Qué le importa más?", op: ["Que el turista vuelva en la misma estadía", "Que el cliente local vuelva varias veces al año", "Ambos", "Atraer clientes nuevos"] }
+      ]
+    },
+    {
+      id: "venta", fase: "entender", titulo: "Cómo es una venta", tema: "Cómo es una venta", nota: "pedido → cuenta → pago → comprobante", reuniones: ["descubrimiento"], palabras: 1,
+      preguntas: [
+        { id: "pedido", t: "single", q: "¿Cómo se toma el pedido?", op: ["Garzón con papel", "Garzón con app / tablet", "En el mostrador", "El cliente pide solo (QR / tótem)"] },
+        { id: "cobra", t: "single", q: "¿Quién cobra?", op: ["Garzón en la mesa", "Caja", "Ambos"] },
+        { id: "pago", t: "multi", q: "Formas de pago", op: ["Efectivo", "Tarjeta", "Transferencia", "Otro"] },
+        { id: "comprobante", t: "multi", q: "El cliente recibe", op: ["Boleta impresa", "Boleta electrónica", "Boleta de la máquina de tarjeta", "Solo voucher", "Nada"] },
+        { id: "registro_total", t: "multi", q: "¿Dónde queda registrado el total de cada cuenta?", op: ["Programa de comandas / caja", "Máquina de tarjeta", "Boleta (SII)", "Cuaderno / planilla"] }
+      ]
+    },
+    {
+      id: "canales", fase: "entender", titulo: "Contacto, reservas y reputación", tema: "Contacto con clientes y reservas", reuniones: ["descubrimiento"], palabras: 1,
+      preguntas: [
+        { id: "contacto", t: "multi", q: "¿Cómo se comunican con sus clientes?", op: ["WhatsApp", "Instagram", "Facebook", "Email", "Ninguna"] },
+        { id: "base", t: "single", q: "¿Tienen un registro de clientes?", op: ["Sí, ordenado", "Sí, desordenado", "No"] },
+        { id: "reservas", t: "multi", q: "¿Cómo reciben reservas?", op: ["Teléfono", "WhatsApp", "Instagram", "Plataforma", "No toman reservas"] },
+        { id: "google", t: "single", q: "Reseñas en Google", op: ["Muchas y buenas", "Pocas", "Algunas malas", "No sabe"] },
+        { id: "hacen_hoy", t: "multi", q: "¿Qué hacen hoy para que los clientes vuelvan?", op: ["Descuentos", "Promociones", "Tarjeta física", "Premios", "Concursos", "Nada"] },
+        { id: "funciono", t: "text", q: "¿Qué funcionó y qué no?" }
+      ]
+    },
+    {
+      id: "dolores", fase: "entender", titulo: "Lo que hacen a mano · buen orden", tema: "Tareas que hoy cuestan", nota: "marcar solo lo que mencione", reuniones: ["descubrimiento"],
+      decir: "“¿Qué hacen hoy a mano (papel, WhatsApp, Excel) que les quite tiempo o genere errores?” Pedir un ejemplo concreto de cada tema. Al final: “De todo esto, ¿qué es lo más urgente para ti?”",
+      preguntas: [
+        { id: "d_vuelven", t: "scale", q: "Clientes que no vuelven", sol: "fidelizacion" },
+        { id: "d_temporada", t: "scale", q: "Temporada baja / días flojos", sol: "temporada" },
+        { id: "d_reservas", t: "scale", q: "Reservas y lista de espera", sol: "reservas" },
+        { id: "d_eventos", t: "scale", q: "Eventos, grupos y cotizaciones", sol: "eventos" },
+        { id: "d_inventario", t: "scale", q: "Inventario y mermas", sol: "inventario" },
+        { id: "d_proveedores", t: "scale", q: "Pedidos a proveedores", sol: "proveedores" },
+        { id: "d_turnos", t: "scale", q: "Turnos y coordinación del personal", sol: "turnos" },
+        { id: "d_reportes", t: "scale", q: "Saber cuánto se vende y gana", sol: "reportes" },
+        { id: "d_caja", t: "scale", q: "Cuadratura de caja", sol: "caja" },
+        { id: "d_resenas", t: "scale", q: "Reseñas, Google y redes", sol: "resenas" },
+        { id: "d_otro", t: "text", q: "Otro tema (cuál)" },
+        { id: "d_ejemplos", t: "area", q: "Ejemplos que dio, con sus palabras", lineas: 3 },
+        { id: "urgente", t: "rank", q: "Lo más urgente para el cliente (tocar en orden: 1.º, 2.º, 3.º)", de: "dolores" }
+      ]
+    },
+    {
+      id: "sistema", fase: "detalle", titulo: "Programa y sistemas", tema: "Sistema de ventas y equipos", nota: "define qué se puede automatizar", reuniones: ["profundizacion"], palabras: 1,
+      preguntas: [
+        { id: "programa", t: "text", q: "Programa de comandas / caja (si tienen)" },
+        { id: "proveedor", t: "text", q: "Proveedor / soporte" },
+        { id: "numero_unico", t: "single", q: "¿La boleta tiene número único?", op: ["Sí", "No", "No sabe"] },
+        { id: "reporte", t: "single", q: "¿Saca un reporte de ventas del día?", op: ["Sí", "No", "No sabe"] },
+        { id: "exporta", t: "single", q: "¿Exporta a Excel/CSV o tiene conexión (API)?", op: ["Sí", "No", "No sabe"] },
+        { id: "comensales", t: "single", q: "¿Registra cuántos comensales hay en la mesa?", op: ["Sí", "No", "No sabe"] },
+        { id: "platos", t: "single", q: "¿Guarda los platos de cada cuenta?", op: ["Sí", "No", "No sabe"] },
+        { id: "anulan", t: "text", q: "¿Cómo anulan una venta o corrigen un error?" },
+        { id: "otros_sistemas", t: "text", q: "Otros sistemas que usan o pagan" },
+        { id: "dispositivos", t: "multi", q: "Dispositivos en el local", op: ["Computador", "Tablet", "Celular del local", "Celulares del personal"] },
+        { id: "wifi", t: "single", q: "¿Hay buena señal o wifi en el local?", op: ["Sí", "Débil", "No"] },
+        { id: "nivel_tec", t: "single", q: "Comodidad del equipo con la tecnología", op: ["Alta", "Media", "Baja"], interno: 1 },
+        { id: "fotos", t: "multi", q: "Material recibido", op: ["Foto de boleta", "Foto de reporte de ventas", "Carta", "Otro"] }
+      ]
+    },
+    {
+      id: "numeros", fase: "detalle", titulo: "Los números del negocio", tema: "Datos del negocio", nota: "aproximados · confidenciales", reuniones: ["profundizacion", "propuesta"], confidencial: 1,
+      decir: "“Estos datos son solo para calcular si la solución se paga sola. Quedan confidenciales y no se comparten con nadie.”",
+      preguntas: [
+        { id: "A", t: "number", k: "A", q: "Cuenta promedio por mesa", pre: "$" },
+        { id: "cuenta_alta", t: "number", q: "Cuenta alta frecuente (grupos)", pre: "$" },
+        { id: "C", t: "number", k: "C", q: "Margen aproximado", suf: "%", ayuda: "si no sabe: 30" },
+        { id: "B_alta", t: "number", k: "B", q: "Mesas por día · temporada alta" },
+        { id: "B_baja", t: "number", k: "B", q: "Mesas por día · temporada baja" },
+        { id: "D", t: "number", k: "D", q: "Días abiertos al mes" },
+        { id: "E", t: "number", k: "E", q: "Personas por mesa (promedio)" },
+        { id: "F", t: "number", k: "F", q: "Costo para el local de un posible premio", pre: "$" },
+        { id: "promos", t: "number", q: "Gasto mensual en promociones / publicidad", pre: "$" }
+      ]
+    },
+    {
+      id: "propuesta", fase: "proponer", titulo: "La propuesta", tema: "Propuesta conversada", reuniones: ["propuesta"], palabras: 1,
+      preguntas: [
+        { id: "solucion", t: "text", q: "Solución presentada" },
+        { id: "reaccion", t: "single", q: "Reacción", op: ["Le interesa", "Tiene dudas", "No le interesa"] },
+        { id: "dudas", t: "area", q: "Dudas u objeciones", lineas: 2 },
+        { id: "premios", t: "text", q: "Premios que elegiría" },
+        { id: "monto_revision", t: "number", q: "Monto desde el cual revisar una boleta", pre: "$" },
+        { id: "piloto", t: "single", q: "¿Hace el piloto?", op: ["Sí", "Tal vez", "No"] },
+        { id: "piloto_inicio", t: "text", q: "Inicio del piloto" },
+        { id: "piloto_resp", t: "text", q: "Responsable del piloto en el local" },
+        { id: "precio_conversado", t: "text", q: "Precio / condiciones conversadas", interno: 1 }
+      ]
+    },
+    {
+      id: "acuerdo", fase: "acordar", titulo: "Cierre y acuerdos", tema: "Acuerdos", nota: "leer el resumen en voz alta", reuniones: ["descubrimiento", "profundizacion", "propuesta"],
+      preguntas: [
+        { id: "exito", t: "area", q: "¿Qué tendría que lograr una solución para que diga “realmente nos sirve”?", lineas: 2, solo: ["descubrimiento"] },
+        { id: "no_fallar", t: "text", q: "¿Qué no podría fallar desde el primer día?", solo: ["descubrimiento"] },
+        { id: "interes", t: "single", q: "¿Cómo seguimos?", op: ["Quiere ver una propuesta", "Quiere pensarlo", "No por ahora"] },
+        { id: "proximo", t: "text", q: "Próximo paso", req: 1 },
+        { id: "responsable", t: "text", q: "Responsable" },
+        { id: "fecha", t: "text", q: "Fecha del próximo paso" },
+        { id: "pendientes", t: "area", q: "Preguntas o temas que quedaron abiertos", lineas: 2 },
+        { id: "observado", t: "area", q: "Lo que observé sin preguntar (dispositivos, papel, WhatsApp, esperas)", lineas: 2, interno: 1 },
+        { id: "notas", t: "area", q: "Notas internas (I = hipótesis mía)", lineas: 2, interno: 1 }
+      ]
+    }
+  ],
+
+  /* Catálogo de soluciones. estado: "demo" = hay prototipo para mostrar; "diseno" = por diseñar. */
+  soluciones: [
+    { id: "fidelizacion", nombre: "Club de clientes (puntos y premios)", estado: "demo",
+      resuelve: "Que los clientes vuelvan y el local sepa quiénes son, sin sumar trabajo al garzón.",
+      incluye: "QR en la mesa, puntos por boleta con validación automática, premios con código, panel con datos de la visita (locales/turistas, con quién vienen)." },
+    { id: "temporada", nombre: "Campañas para temporada baja", estado: "diseno",
+      resuelve: "Llenar días y meses flojos invitando a quienes ya vinieron.",
+      incluye: "Premios o invitaciones válidas en días flojos, enviadas a la base de clientes del club." },
+    { id: "reservas", nombre: "Reservas y lista de espera ordenadas", estado: "diseno",
+      resuelve: "Reservas perdidas o duplicadas entre teléfono, WhatsApp e Instagram.",
+      incluye: "Un solo lugar para anotar reservas, confirmación al cliente y vista del día." },
+    { id: "eventos", nombre: "Cotizaciones de eventos y grupos", estado: "diseno",
+      resuelve: "Cotizar grupos y eventos rápido y sin errores.",
+      incluye: "Plantilla de cotización con menús y precios, seguimiento de cada solicitud." },
+    { id: "inventario", nombre: "Inventario y mermas simple", estado: "diseno",
+      resuelve: "Quiebres de stock, pérdidas y compras a ojo.",
+      incluye: "Conteo rápido desde el celular, alertas de mínimo y registro de mermas." },
+    { id: "proveedores", nombre: "Pedidos a proveedores", estado: "diseno",
+      resuelve: "Pedidos por WhatsApp sin registro ni control de precios.",
+      incluye: "Lista de proveedores, pedido sugerido y registro de lo recibido." },
+    { id: "turnos", nombre: "Turnos del personal", estado: "diseno",
+      resuelve: "Coordinar turnos y cambios por WhatsApp.",
+      incluye: "Calendario de turnos compartido y avisos de cambios." },
+    { id: "reportes", nombre: "Reporte simple de ventas y margen", estado: "diseno",
+      resuelve: "No saber con claridad cuánto se vende y gana por día, plato o temporada.",
+      incluye: "Resumen semanal a partir del reporte de la caja, sin digitar de nuevo." },
+    { id: "caja", nombre: "Cuadratura de caja", estado: "diseno",
+      resuelve: "Diferencias de caja y cierres a mano.",
+      incluye: "Cierre guiado por turno con registro de diferencias." },
+    { id: "resenas", nombre: "Más reseñas en Google", estado: "diseno",
+      resuelve: "Pocas reseñas o reseñas malas que espantan a turistas.",
+      incluye: "Invitar a dejar reseña a clientes contentos, justo después de la visita." }
+  ]
+};
+if (typeof module !== "undefined") module.exports = LEV_MODEL;
+
+/* Eunomi · Levantamiento · reglas: diagnóstico, soluciones sugeridas y cálculos.
+   Funciones puras sobre las respuestas (v). Se usan en la app y en las pruebas. */
+var LEV_LOGIC = (function () {
+  function num(x) { if (x == null) return null; var n = Number(String(x == null ? "" : x).replace(/[^0-9.,-]/g, "").replace(",", ".")); return isFinite(n) && String(x).trim() !== "" ? n : null; }
+  function has(v, id, op) { var a = v[id]; return Array.isArray(a) ? a.indexOf(op) >= 0 : a === op; }
+  function d(v, id) { var n = Number(v[id]); return isFinite(n) ? n : 0; }
+  function filled(v, id) { var a = v[id]; return Array.isArray(a) ? a.length > 0 : a != null && String(a).trim() !== ""; }
+
+  var KEYWORDS = [
+    [/vuelv|volv|fideli|habitual|recurrent|conocer a (mis|los) clientes/i, "fidelizacion"],
+    [/invierno|temporada|baja|flojo|vac[ií]o/i, "temporada"],
+    [/reserva|espera/i, "reservas"],
+    [/evento|grupo|cotiz|delegaci/i, "eventos"],
+    [/invent|stock|merma|bodega/i, "inventario"],
+    [/proveedor|compra/i, "proveedores"],
+    [/turno|personal|equipo|garz/i, "turnos"],
+    [/venta|report|gan|n[uú]mero|margen/i, "reportes"],
+    [/caja|cuadr|cierre/i, "caja"],
+    [/rese[nñ]a|google|redes|instagram/i, "resenas"]
+  ];
+
+  function soluciones(v, model) {
+    var s = {}, r = {};
+    model.soluciones.forEach(function (x) { s[x.id] = 0; r[x.id] = []; });
+    function add(id, pts, why) { if (pts > 0) { s[id] += pts; if (why) r[id].push(why); } }
+    var dol = function (id, sol, label) { var n = d(v, id); add(sol, n * 3, n ? label + ": duele " + n + " de 3" : null); };
+
+    dol("d_vuelven", "fidelizacion", "Clientes que no vuelven");
+    if (has(v, "prioridad", "Que el cliente local vuelva varias veces al año") || has(v, "prioridad", "Ambos")) add("fidelizacion", 2, "Le importa que el cliente vuelva");
+    if (has(v, "prioridad", "Que el turista vuelva en la misma estadía")) add("fidelizacion", 2, "Quiere que el turista vuelva en su estadía");
+    if (has(v, "hacen_hoy", "Nada") || (filled(v, "reconocen") && !filled(v, "hacen_hoy"))) add("fidelizacion", 1, "Hoy no hacen nada para que vuelvan");
+    if (has(v, "reconocen", "Sí, a muchos")) add("fidelizacion", 1, "Ya reconocen a muchos clientes habituales");
+
+    dol("d_temporada", "temporada", "Temporada baja");
+    if (has(v, "temporada", "Muy fuerte")) add("temporada", 3, "Diferencia muy fuerte entre temporadas");
+    else if (has(v, "temporada", "Moderada")) add("temporada", 1, "Diferencia moderada entre temporadas");
+    if (d(v, "d_temporada") || has(v, "temporada", "Muy fuerte")) add("fidelizacion", 1, "El club da la base de clientes para la temporada baja");
+
+    dol("d_reservas", "reservas", "Reservas");
+    var canales = (v.reservas || []).filter(function (c) { return c !== "No toman reservas" && c !== "Plataforma"; });
+    if (canales.length >= 2) add("reservas", 2, "Reservas repartidas en " + canales.join(", "));
+
+    dol("d_eventos", "eventos", "Eventos y grupos");
+    if (has(v, "tipos", "Grupos / delegaciones") || has(v, "tipos", "Eventos")) add("eventos", 2, "Atienden grupos o eventos");
+
+    dol("d_inventario", "inventario", "Inventario y mermas");
+    dol("d_proveedores", "proveedores", "Proveedores");
+    dol("d_turnos", "turnos", "Turnos");
+    if ((num(v.personal) || 0) >= 8) add("turnos", 1, "Equipo de " + num(v.personal) + " personas");
+
+    dol("d_reportes", "reportes", "Saber cuánto se vende y gana");
+    if (has(v, "reporte", "No")) add("reportes", 1, "Hoy no sacan reporte diario");
+
+    dol("d_caja", "caja", "Cuadratura de caja");
+    if (has(v, "pago", "Efectivo") && has(v, "cobra", "Garzón en la mesa")) add("caja", 1, "El garzón cobra y hay efectivo");
+
+    dol("d_resenas", "resenas", "Reseñas y redes");
+    if (has(v, "google", "Pocas") || has(v, "google", "Algunas malas")) add("resenas", 2, "Reseñas en Google: " + v.google.toLowerCase());
+    if (has(v, "tipos", "Turistas chilenos") || has(v, "tipos", "Extranjeros")) add("resenas", 1, "Muchos turistas eligen por Google");
+
+    // Lo que el propio cliente marcó como más urgente pesa más que cualquier otra señal.
+    var mapa = {}; seccion(model, "dolores").preguntas.forEach(function (q) { if (q.sol) mapa[q.q] = q.sol; });
+    (Array.isArray(v.urgente) ? v.urgente : []).forEach(function (op, i) {
+      if (mapa[op]) add(mapa[op], [6, 4, 2][i] || 1, "El cliente lo puso como prioridad " + (i + 1));
+    });
+
+    var texto = [v.una_cosa, v.d_otro, v.d_ejemplos, v.exito].filter(Boolean).join(" ");
+    KEYWORDS.forEach(function (k) { if (k[0].test(texto)) add(k[1], 3, "Lo nombró con sus palabras"); });
+
+    var lista = model.soluciones.map(function (x) {
+      var p = s[x.id];
+      return Object.assign({}, x, {
+        puntaje: p, razones: r[x.id],
+        prioridad: p >= 7 ? "Alta" : p >= 4 ? "Media" : p > 0 ? "Baja" : "",
+        notas: notas(x.id, v)
+      });
+    }).sort(function (a, b) { return b.puntaje - a.puntaje || (a.estado === "demo" ? -1 : 1); });
+    // Las campañas de temporada baja necesitan una base de clientes: si no existe, el club va primero.
+    if (!has(v, "base", "Sí, ordenado")) {
+      var it = lista.findIndex(function (x) { return x.id === "temporada"; }), ic = lista.findIndex(function (x) { return x.id === "fidelizacion"; });
+      if (it >= 0 && ic > it && lista[ic].puntaje > 0) lista.splice(it, 0, lista.splice(ic, 1)[0]);
+    }
+    return lista;
+  }
+
+  function validacion(v) {
+    if (has(v, "exporta", "Sí")) return { nivel: "auto", texto: "Cruce automático con el reporte de la caja: casi cero revisión." };
+    if (has(v, "numero_unico", "Sí")) return { nivel: "parcial", texto: "El cliente declara n.º de boleta y monto; se revisan solo las boletas raras." };
+    if (filled(v, "numero_unico")) return { nivel: "manual", texto: "Boleta sin número único: validar con un código que entrega el garzón (más trabajo para el local)." };
+    return { nivel: "pendiente", texto: "Falta saber si la boleta tiene número único y si la caja exporta ventas." };
+  }
+
+  function notas(id, v) {
+    var n = [];
+    if (id === "fidelizacion") {
+      n.push(validacion(v).texto);
+      if (has(v, "comensales", "Sí")) n.push("El programa registra comensales: se puede comprobar “con quién vino”.");
+      var t = topeRevision(v); if (t) n.push("Monto sugerido para revisar una boleta: " + money(t.porPersona) + " por persona declarada (≈ " + money(t.mesa) + " en una mesa promedio).");
+      if (has(v, "wifi", "No")) n.push("Sin señal en el local: el cliente necesita datos móviles para escanear el QR.");
+      if (has(v, "nivel_tec", "Baja")) n.push("Equipo poco familiarizado con tecnología: el panel debe ser mínimo y con capacitación en persona.");
+    }
+    if (id === "temporada" && !has(v, "base", "Sí, ordenado")) n.push("Necesita una base de clientes ordenada: el club la va armando, por eso conviene partir por él.");
+    if (id === "reportes" && !has(v, "exporta", "Sí")) n.push("Requiere que la caja exporte ventas: confirmar con el proveedor" + (v.proveedor ? " (" + v.proveedor + ")" : "") + ".");
+    if (id === "reservas" && has(v, "reservas", "Plataforma")) n.push("Ya usan una plataforma: revisar qué le falta antes de proponer otra.");
+    if (id === "resenas") n.push("Se puede sumar al club: pedir la reseña después de canjear un premio.");
+    return n;
+  }
+
+  function topeRevision(v) {
+    var A = num(v.A), E = num(v.E);
+    if (!A || !E) return null;
+    var pp = Math.round(A / E * 2 / 1000) * 1000;
+    return { porPersona: pp, mesa: pp * E };
+  }
+
+  function calculos(v, P) {
+    var A = num(v.A), Craw = num(v.C), C = Craw == null ? 30 : Craw, B = num(v.B_baja) || num(v.B_alta), D = num(v.D), E = num(v.E), F = num(v.F);
+    P = num(P);
+    var out = { supuestoC: Craw == null, filas: [] };
+    function row(n, label, formula, val, unit) { out.filas.push({ n: n, label: label, formula: formula, val: val, unit: unit }); }
+    var g = A != null ? A * C / 100 : null;
+    var piva = P != null ? P * 1.19 : null;
+    var mesas = g && piva ? Math.ceil(piva / g) : null;
+    var mm = B != null && D != null ? B * D : null;
+    row(1, "Ganancia por cada mesa que vuelve", "A × C ÷ 100", g, "$");
+    row(2, "Precio con IVA", "P × 1,19", piva, "$");
+    row(3, "Mesas extra al mes para pagar Eunomi", "(2) ÷ (1), hacia arriba", mesas, "mesas");
+    row(4, "Mesas atendidas al mes (temporada baja)", "B × D", mm, "mesas");
+    row(5, "% de mesas que debe volver para pagarlo", "(3) ÷ (4) × 100", mesas != null && mm ? mesas / mm * 100 : null, "%");
+    var ve = mm != null && A != null ? mm * 0.05 * A : null;
+    row(6, "Si vuelve un 5% más de mesas: venta extra", "(4) × 0,05 × A", ve, "$");
+    row(7, "… y ganancia extra", "(6) × C ÷ 100", ve != null ? ve * C / 100 : null, "$");
+    row(8, "% que devuelve un premio de 300 puntos ($30.000 gastados)", "F ÷ 30.000 × 100", F != null ? F / 30000 * 100 : null, "%");
+    row(9, "Gasto por persona", "A ÷ E", A != null && E ? A / E : null, "$");
+    var t = topeRevision(v);
+    row(10, "Monto para revisar una boleta, por persona declarada", "(9) × 2", t ? t.porPersona : null, "$");
+    return out;
+  }
+
+  function madurez(v) {
+    var p = 0;
+    if (filled(v, "programa")) p++;
+    if (has(v, "reporte", "Sí")) p++;
+    if (has(v, "exporta", "Sí")) p++;
+    if ((v.dispositivos || []).length >= 2) p++;
+    if (has(v, "nivel_tec", "Alta")) p++; else if (has(v, "nivel_tec", "Media")) p += 0.5;
+    return { puntos: p, nivel: p >= 4 ? "Avanzada" : p >= 2 ? "Intermedia" : "Básica" };
+  }
+
+  /* Datos clave por tipo de reunión: si faltan, pasan a "temas por completar". */
+  var CLAVE = {
+    descubrimiento: [["nombre", "Nombre del local"], ["una_cosa", "Lo que más quiere mejorar"], ["urgente", "Sus prioridades"], ["registro_total", "Dónde queda registrado el total de cada cuenta"], ["proximo", "Próximo paso"]],
+    profundizacion: [["programa", "Programa de ventas"], ["numero_unico", "Si la boleta tiene número único"], ["exporta", "Si el sistema exporta las ventas"], ["A", "Cuenta promedio"], ["B_baja", "Mesas por día en temporada baja"], ["D", "Días abiertos al mes"], ["E", "Personas por mesa"], ["proximo", "Próximo paso"]],
+    propuesta: [["solucion", "Solución presentada"], ["piloto", "Decisión sobre el piloto"], ["premios", "Premios del piloto"], ["proximo", "Próximo paso"]]
+  };
+  function faltantes(v, tipo) { return (CLAVE[tipo || "descubrimiento"] || []).filter(function (c) { return !filled(v, c[0]); }).map(function (c) { return c[1]; }); }
+
+  function seccion(model, id) { return model.secciones.filter(function (s) { return s.id === id; })[0]; }
+  /* Secciones y preguntas que corresponden a un tipo de reunión. */
+  function secciones(model, tipo) {
+    tipo = tipo || "descubrimiento";
+    return model.secciones.filter(function (s) { return s.reuniones.indexOf(tipo) >= 0; }).map(function (s) {
+      var ps = s.preguntas.filter(function (q) { return !q.solo || q.solo.indexOf(tipo) >= 0; });
+      if (s.palabras) ps = ps.concat([{ id: s.id + "_palabras", t: "area", q: "En sus palabras (frases textuales)", lineas: 2, palabras: 1 }]);
+      return Object.assign({}, s, { preguntas: ps });
+    });
+  }
+
+  var INTENSIDAD = ["", "Algo", "Bastante", "Mucho"];
+  function dolores(v, model) {
+    return seccion(model, "dolores").preguntas.filter(function (q) { return q.t === "scale" && d(v, q.id) > 0; })
+      .map(function (q) { return { q: q.q, n: d(v, q.id), texto: INTENSIDAD[d(v, q.id)] }; })
+      .sort(function (a, b) { return b.n - a.n; });
+  }
+
+  function progreso(v, model, tipo) {
+    var total = 0, ok = 0;
+    secciones(model, tipo).forEach(function (s) { s.preguntas.forEach(function (q) { if (q.t === "scale" || q.interno) return; total++; if (filled(v, q.id)) ok++; }); });
+    return total ? Math.round(ok / total * 100) : 0;
+  }
+
+  function money(n) { return n == null ? "—" : "$" + Math.round(n).toLocaleString("es-CL"); }
+
+  return { secciones: secciones, seccion: seccion, soluciones: soluciones, calculos: calculos, madurez: madurez, validacion: validacion, faltantes: faltantes, dolores: dolores, progreso: progreso, money: money, num: num, filled: filled };
+})();
+if (typeof module !== "undefined") module.exports = LEV_LOGIC;
+
+/* Eunomi · Levantamiento · piezas de interfaz compartidas (app sin conexión y administrador).
+   Registro de una entrevista: { id, tipo, v: respuestas, P, creado, actualizado, acta: { enviada, confirmada, v } } */
+var LEV_UI = (function () {
+  var M = LEV_MODEL, L = LEV_LOGIC;
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fecha(t) { var d = new Date(t); return d.toLocaleDateString("es-CL", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+  function money(n) { return L.money(n); }
+  function tipoDe(x) { return x.tipo || "descubrimiento"; }
+  function reunion(tipo) { return M.reuniones.filter(function (r) { return r.id === tipo; })[0] || M.reuniones[0]; }
+  function secs(x) { return L.secciones(M, tipoDe(x)); }
+  function limpio(q) { return q.replace(/\s*\([^)]*\)/g, "").replace(/\s+$/, ""); }
+  function valorTexto(q, val) {
+    if (Array.isArray(val)) return val.join(", ");
+    if (q.t === "number") { var n = L.num(val); return n == null ? String(val) : (q.pre || "") + n.toLocaleString("es-CL") + (q.suf ? " " + q.suf : ""); }
+    return String(val);
+  }
+
+  /* ---------- Campos ---------- */
+  function opcionesRank(v) {
+    var ops = L.seccion(M, "dolores").preguntas.filter(function (q) { return q.t === "scale"; }).map(function (q) { return q.q; });
+    if (v.d_otro && String(v.d_otro).trim()) ops.push(String(v.d_otro).trim());
+    return ops;
+  }
+  function campo(q, v) {
+    var val = v[q.id], cls = "q" + (q.palabras ? " palabras" : "") + (q.interno ? " interno" : "");
+    var h = '<div class="' + cls + '" data-q="' + q.id + '"><label class="ql">' + (q.k ? '<b class="k">' + q.k + '</b> ' : '') + esc(q.q) + (q.req ? ' <em>*</em>' : '') + (q.interno ? ' <span class="tagint">interno</span>' : '') + '</label>';
+    if (q.ayuda) h += '<small class="muted">' + esc(q.ayuda) + '</small>';
+    if (q.t === "text") h += '<input data-f="' + q.id + '" value="' + esc(val) + '" autocomplete="off">';
+    else if (q.t === "area") h += '<textarea data-f="' + q.id + '" rows="' + ((q.lineas || 2) + 1) + '"' + (q.palabras ? ' placeholder="“…”"' : '') + '>' + esc(val) + '</textarea>';
+    else if (q.t === "number") h += '<div class="num">' + (q.pre ? '<span>' + q.pre + '</span>' : '') + '<input data-f="' + q.id + '" inputmode="numeric" value="' + esc(val) + '" autocomplete="off">' + (q.suf ? '<span>' + q.suf + '</span>' : '') + '</div>';
+    else if (q.t === "single" || q.t === "multi") {
+      var arr = q.t === "multi" ? (val || []) : [val];
+      h += '<div class="chips">' + q.op.map(function (o) {
+        var on = arr.indexOf(o) >= 0;
+        return '<button type="button" class="chip' + (on ? " on" : "") + '" aria-pressed="' + on + '" data-c="' + q.id + '" data-o="' + esc(o) + '" data-m="' + (q.t === "multi" ? 1 : 0) + '">' + esc(o) + '</button>';
+      }).join("") + '</div>';
+    } else if (q.t === "rank") {
+      var sel = Array.isArray(val) ? val : [];
+      h += '<div class="chips">' + opcionesRank(v).map(function (o) {
+        var i = sel.indexOf(o);
+        return '<button type="button" class="chip' + (i >= 0 ? " on" : "") + '" aria-pressed="' + (i >= 0) + '" data-r="' + q.id + '" data-o="' + esc(o) + '">' + (i >= 0 ? '<b class="nro">' + (i + 1) + '</b> ' : '') + esc(o) + '</button>';
+      }).join("") + '</div>';
+    } else if (q.t === "scale") {
+      h = '<div class="q scale" data-q="' + q.id + '"><span class="ql">' + esc(q.q) + '</span><div class="dots">' + [0, 1, 2, 3].map(function (n) {
+        var on = Number(val || 0) === n;
+        return '<button type="button" class="dot' + (on ? " on" : "") + '" aria-pressed="' + on + '" aria-label="' + ["No es problema", "Algo", "Bastante", "Mucho"][n] + '" data-s="' + q.id + '" data-n="' + n + '">' + n + '</button>';
+      }).join("") + '</div>';
+    }
+    return h + '</div>';
+  }
+
+  /* ---------- Elegir tipo de reunión ---------- */
+  function elegirTipo(sugerido) {
+    return '<div class="tipos">' + M.reuniones.map(function (r) {
+      return '<button class="tipo' + (r.id === sugerido ? " sug" : "") + '" data-a="crearTipo" data-tipo="' + r.id + '"><b>' + esc(r.nombre) + '</b><small>' + esc(r.corto) + (r.id === sugerido ? " · sugerida" : "") + '</small><span>' + esc(r.detalle) + '</span></button>';
+    }).join("") + '</div>';
+  }
+
+  /* ---------- Entrevista ---------- */
+  function secsNav(x, sec) {
+    return '<nav class="secs">' + secs(x).map(function (z, i) {
+      return '<button class="' + (i === sec ? "on" : "") + '" data-a="sec" data-i="' + i + '">' + (i + 1) + '. ' + esc(z.titulo) + '</button>';
+    }).join("") + '</nav>';
+  }
+  function seccion(x, sec) {
+    var lista = secs(x), s = lista[sec], last = sec === lista.length - 1;
+    var prevFase = sec > 0 ? lista[sec - 1].fase : null;
+    return (sec === 0 ? '<p class="tiporeu">' + esc(reunion(tipoDe(x)).nombre) + ' · ' + esc(reunion(tipoDe(x)).detalle) + '</p>' : '') +
+      (s.fase !== prevFase ? '<p class="fase">' + esc(M.fases[s.fase]) + '</p>' : '') +
+      (s.id === "acuerdo" && tipoDe(x) === "descubrimiento" ? '<div class="tip">Si el cliente lo pide y calza una solución con demo (ver <b>Soluciones</b>), se puede mostrar. Si no, no proponer todavía.</div>' : '') +
+      (s.confidencial ? '<div class="tip">Datos confidenciales: se usan solo para el cálculo de valor.</div>' : '') +
+      '<h2>' + (sec + 1) + '. ' + esc(s.titulo) + (s.nota ? ' <small>' + esc(s.nota) + '</small>' : '') + '</h2>' +
+      (s.decir ? '<p class="say">' + esc(s.decir) + '</p>' : '') +
+      s.preguntas.map(function (q) { return campo(q, x.v); }).join("") +
+      '<div class="nav">' + (sec > 0 ? '<button class="ghost" data-a="prev">← Anterior</button>' : '<span></span>') +
+      (last ? '<button class="primary" data-a="resultado" data-id="' + esc(x.id) + '">Ver acta y análisis →</button>' : '<button class="primary" data-a="next">Siguiente →</button>') + '</div>';
+  }
+  function numSecs(x) { return secs(x).length; }
+
+  /* ---------- Resultado ---------- */
+  function tabs(x) {
+    var t = [["acta", "Acta"], ["diag", "Diagnóstico"], ["sol", "Soluciones"]];
+    if (tipoDe(x) !== "descubrimiento") t.push(["calc", "Cálculos"]);
+    return t;
+  }
+  function tabsNav(x, tab) {
+    var t = tabs(x);
+    return '<nav class="tabs noprint" style="grid-template-columns:repeat(' + t.length + ',1fr)">' + t.map(function (z) {
+      return '<button class="' + (tab === z[0] ? "on" : "") + '" data-a="tab" data-t="' + z[0] + '">' + z[1] + (z[0] !== "acta" ? '<i>interno</i>' : '<i>cliente</i>') + '</button>';
+    }).join("") + '</nav>';
+  }
+  function resultado(x, tab, firma, verEnviada) {
+    if (tab === "calc" && tipoDe(x) === "descubrimiento") tab = "acta";
+    var interno = '<div class="interno-banner noprint">Uso interno · no compartir con el cliente</div>';
+    return tab === "acta" ? rActa(x, firma, verEnviada) : interno + (tab === "diag" ? rDiag(x) : tab === "sol" ? rSol(x) : rCalc(x));
+  }
+
+  /* Acta para el cliente: solo lo conversado y acordado, sin evaluaciones internas. */
+  function rActa(x, firma, verEnviada) {
+    firma = firma || {};
+    var snap = verEnviada && x.acta && x.acta.v ? x.acta : null;
+    var v = snap ? snap.v : x.v, tipo = snap && snap.tipo || tipoDe(x), r = reunion(tipo);
+    var lista = L.secciones(M, tipo);
+    var partes = [v.entrevistado && (v.entrevistado + (v.cargo ? " (" + v.cargo + ")" : "")), v.asistentes, (firma.nombre || "Iván Bozo") + " (Eunomi)"].filter(Boolean).join(" · ");
+    var h = '';
+    if (!snap && (v.permiso === "Notas sí, copia no" || v.permiso === "Prefiere sin notas")) h += '<div class="warn noprint">El cliente prefirió <b>no recibir copia</b>. Usa este resumen solo como registro interno.</div>';
+    h += estadoActa(x, verEnviada);
+    h += '<div class="doc acta"><header class="acta-h"><div><small>Eunomi · Acta de reunión</small><h1>' + esc(v.nombre || "Local") + '</h1></div><span>' + esc(r.nombre) + '</span></header>' +
+      '<table class="kv">' + tr("Fecha", fecha(x.creado || Date.now())) + tr("Lugar", v.comuna) + tr("Participantes", partes) + '</table>' +
+      '<h2>Objetivo</h2><p>' + esc(r.objetivo) + '</p>';
+    lista.forEach(function (s) {
+      if (s.id === "local" || s.id === "acuerdo") return;
+      if (s.id === "central") { if (v.una_cosa) h += '<h2>' + esc(s.tema) + '</h2><blockquote>“' + esc(v.una_cosa) + '”</blockquote>'; return; }
+      if (s.id === "dolores") {
+        var dol = L.dolores(v, M);
+        if (dol.length || v.d_otro || v.d_ejemplos) {
+          h += '<h2>' + esc(s.tema) + '</h2><ul>' + dol.map(function (d) { return '<li>' + esc(d.q) + ' · <span class="muted">' + d.texto.toLowerCase() + '</span></li>'; }).join("") +
+            (v.d_otro ? '<li>' + esc(v.d_otro) + '</li>' : '') + '</ul>' + (v.d_ejemplos ? '<blockquote>' + esc(v.d_ejemplos) + '</blockquote>' : '');
+        }
+        if (Array.isArray(v.urgente) && v.urgente.length) h += '<h2>Sus prioridades</h2><ol class="prio">' + v.urgente.map(function (u) { return '<li>' + esc(u) + '</li>'; }).join("") + '</ol>';
+        return;
+      }
+      var items = s.preguntas.filter(function (q) { return !q.interno && !q.palabras && L.filled(v, q.id); });
+      var pal = v[s.id + "_palabras"];
+      if (!items.length && !pal) return;
+      h += '<h2>' + esc(s.tema) + (s.confidencial ? ' <small class="conf">confidencial</small>' : '') + '</h2>' +
+        (items.length ? '<ul class="dato">' + items.map(function (q) { return '<li><span>' + esc(limpio(q.q)) + '</span> ' + esc(valorTexto(q, v[q.id])) + '</li>'; }).join("") + '</ul>' : '') +
+        (pal ? '<blockquote>' + esc(pal) + '</blockquote>' : '');
+    });
+    var esp = [v.exito && ["Para que “realmente sirva”", v.exito], v.no_fallar && ["No puede fallar", v.no_fallar]].filter(Boolean);
+    if (esp.length) h += '<h2>Qué espera de una solución</h2><ul class="dato">' + esp.map(function (e) { return '<li><span>' + e[0] + ':</span> ' + esc(e[1]) + '</li>'; }).join("") + '</ul>';
+    h += '<h2>Acuerdos y próximos pasos</h2><table class="kv">' + tr("Cómo seguimos", v.interes) + tr("Próximo paso", v.proximo || "Por definir") + tr("Responsable", v.responsable) + tr("Fecha", v.fecha) + '</table>';
+    var pend = L.faltantes(v, tipo).filter(function (f) { return f !== "Próximo paso" && f !== "Nombre del local"; });
+    if (v.pendientes || pend.length) h += '<h2>Temas pendientes</h2>' + (v.pendientes ? '<p class="pre">' + esc(v.pendientes) + '</p>' : '') +
+      (pend.length ? '<ul>' + pend.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join("") + '</ul>' : '');
+    h += '<p class="nota">Este documento resume lo conversado. Si algo no quedó bien, avísanos y lo corregimos. La información del local es confidencial y no se comparte con terceros.</p>' +
+      '<p class="firma"><b>' + esc(firma.nombre || "Iván Bozo") + '</b> · Eunomi' + (firma.contacto ? '<br>' + esc(firma.contacto) : '') + '</p></div>';
+    return h;
+  }
+
+  function mismoContenido(a, b) { return JSON.stringify(a || {}) === JSON.stringify(b || {}); }
+  function estadoActa(x, verEnviada) {
+    var a = x.acta || {};
+    var partes = [];
+    if (a.enviada) partes.push("Enviada el " + fecha(a.enviada));
+    if (a.confirmada) partes.push("confirmada por el cliente el " + fecha(a.confirmada));
+    var cambios = a.enviada && a.v && !mismoContenido(a.v, x.v);
+    return '<div class="acta-estado noprint">' +
+      '<p>' + (partes.length ? esc(partes.join(" · ")) : "Acta aún no enviada al cliente.") + (cambios ? ' <b>Hay cambios después del envío.</b>' : '') + '</p>' +
+      '<div class="row">' +
+      (cambios ? '<button class="ghost small" data-a="actaVer">' + (verEnviada ? "Ver versión actual" : "Ver versión enviada") + '</button>' : '') +
+      '<button class="ghost small" data-a="actaEnviada">' + (a.enviada ? (cambios ? "Registrar nuevo envío" : "Registrar envío de nuevo") : "Marcar como enviada") + '</button>' +
+      (a.enviada && !a.confirmada ? '<button class="ghost small" data-a="actaConfirmada">Cliente la confirmó</button>' : '') +
+      '</div></div>';
+  }
+  /* Acciones sobre el acta. Devuelve true si cambió el registro. */
+  function accionActa(a, x) {
+    if (a === "actaEnviada") { x.acta = { enviada: Date.now(), confirmada: null, v: JSON.parse(JSON.stringify(x.v)), tipo: tipoDe(x) }; return true; }
+    if (a === "actaConfirmada" && x.acta) { x.acta.confirmada = Date.now(); return true; }
+    return false;
+  }
+  function estadoActaCorto(x) {
+    var a = x.acta || {};
+    return a.confirmada ? "Acta confirmada" : a.enviada ? "Acta enviada" : "Acta sin enviar";
+  }
+
+  function lista(arr) { return arr && arr.length ? arr.join(", ") : "—"; }
+  function tr(k, val) { return val ? '<tr><th>' + k + '</th><td>' + esc(val) + '</td></tr>' : ''; }
+
+  function rDiag(x) {
+    var v = x.v, tipo = tipoDe(x), m = L.madurez(v), val = L.validacion(v), dol = L.dolores(v, M), falt = L.faltantes(v, tipo),
+      sol = L.soluciones(v, M).filter(function (s) { return s.puntaje > 0; }).slice(0, 3);
+    var prof = tipo !== "descubrimiento";
+    return '<div class="doc"><h1>Diagnóstico · ' + esc(v.nombre || "Local") + '</h1><p class="muted">' + esc(reunion(tipo).nombre) + ' · ' + esc([v.tipo, v.comuna].filter(Boolean).join(" · ")) + ' · ' + fecha(x.creado || Date.now()) + '</p>' +
+      (v.una_cosa ? '<blockquote>“' + esc(v.una_cosa) + '”</blockquote>' : '') +
+      (Array.isArray(v.urgente) && v.urgente.length ? '<h3>Prioridades del cliente</h3><ol>' + v.urgente.map(function (u) { return '<li>' + esc(u) + '</li>'; }).join("") + '</ol>' : '') +
+      (dol.length ? '<h3>Lo que más cuesta</h3><ul class="bars">' + dol.map(function (d) { return '<li><span>' + esc(d.q) + '</span><i class="lv' + d.n + '">' + "●".repeat(d.n) + "○".repeat(3 - d.n) + '</i></li>'; }).join("") + '</ul>' : '') +
+      '<h3>Perfil</h3><table class="kv">' +
+      tr("Tamaño", [v.mesas_local && v.mesas_local + " mesas", v.personal && v.personal + " personas", v.anios && v.anios + " años", v.cuenta_rango && "cuenta " + v.cuenta_rango].filter(Boolean).join(" · ")) +
+      tr("Temporada", [v.temporada, v.epoca_dificil].filter(Boolean).join(" · ")) +
+      tr("Clientes", v.tipos && v.tipos.length ? lista(v.tipos) + (v.vuelven_rango ? " · vuelven: " + v.vuelven_rango.toLowerCase() : "") : "") +
+      tr("Le importa", v.prioridad) +
+      tr("Venta", [v.pedido, v.cobra && "cobra: " + v.cobra.toLowerCase(), v.pago && v.pago.length && lista(v.pago)].filter(Boolean).join(" · ")) +
+      tr("Registro del total", v.registro_total && v.registro_total.length ? lista(v.registro_total) : "") +
+      tr("Programa", [v.programa, v.proveedor].filter(Boolean).join(" · ")) +
+      tr("Hoy para que vuelvan", v.hacen_hoy && v.hacen_hoy.length ? lista(v.hacen_hoy) + (v.funciono ? " · " + v.funciono : "") : "") +
+      tr("Decide", v.decide) +
+      '</table>' +
+      (prof ? '<div class="grid2"><div class="stat"><small>Madurez digital</small><b>' + m.nivel + '</b><span>' + String(m.puntos).replace(".", ",") + ' de 5</span></div>' +
+        '<div class="stat"><small>Validación de compras</small><b>' + { auto: "Automática", parcial: "Por excepción", manual: "Manual", pendiente: "Pendiente" }[val.nivel] + '</b><span>' + esc(val.texto) + '</span></div></div>' : '') +
+      '<h3>Soluciones que más calzan</h3>' + (sol.length ? '<ol>' + sol.map(function (s) { return '<li><b>' + esc(s.nombre) + '</b> · prioridad ' + s.prioridad.toLowerCase() + '</li>'; }).join("") + '</ol>' : '<p class="muted">Aún no hay señales suficientes.</p>') +
+      (falt.length ? '<div class="warn"><b>Falta:</b> ' + esc(falt.join(" · ")) + '</div>' : '<div class="ok">Están todos los datos clave de esta reunión.</div>') +
+      (v.observado ? '<h3>Observado</h3><p class="pre">' + esc(v.observado) + '</p>' : '') +
+      (v.notas ? '<h3>Notas internas</h3><p class="pre">' + esc(v.notas) + '</p>' : '') + '</div>';
+  }
+
+  function rSol(x) {
+    var v = x.v, all = L.soluciones(v, M), con = all.filter(function (s) { return s.puntaje > 0; }), sin = all.filter(function (s) { return !s.puntaje; });
+    return '<div class="doc"><h1>Soluciones sugeridas</h1><p class="muted">Ordenadas según lo conversado; lo que el cliente marcó como urgente pesa más. Es una guía para preparar la propuesta, no una propuesta.</p>' +
+      (con.length ? con.map(function (s) {
+        return '<article class="sol p' + s.prioridad.toLowerCase() + '"><header><b>' + esc(s.nombre) + '</b><span class="tag">' + s.prioridad + '</span>' + (s.estado === "demo" ? '<span class="tag demo">Demo lista</span>' : '<span class="tag">Por diseñar</span>') + '</header>' +
+          '<p>' + esc(s.resuelve) + '</p><p class="muted">' + esc(s.incluye) + '</p>' +
+          '<p class="why"><b>Por qué:</b> ' + esc(s.razones.join(" · ")) + '</p>' +
+          (s.notas.length ? '<ul class="notes">' + s.notas.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join("") + '</ul>' : '') + '</article>';
+      }).join("") : '<p class="empty">Todavía no hay señales. Completa la pregunta central y las tareas que hoy cuestan.</p>') +
+      (sin.length ? '<p class="muted small">Sin señales: ' + esc(sin.map(function (s) { return s.nombre; }).join(" · ")) + '.</p>' : '') + '</div>';
+  }
+
+  function rCalc(x) {
+    var v = x.v, P = x.P == null ? 35000 : x.P, c = L.calculos(v, P);
+    function fmt(r) { if (r.val == null) return "—"; if (r.unit === "$") return money(r.val); if (r.unit === "%") return r.val.toLocaleString("es-CL", { maximumFractionDigits: 1 }) + "%"; return Math.round(r.val).toLocaleString("es-CL") + " " + r.unit; }
+    return '<div class="doc"><h1>Cálculo de valor</h1><p class="muted">Con los datos que entregó el local en “Los números del negocio”. Para preparar o conversar la propuesta.</p>' +
+      '<div class="inputs"><span>A ' + money(L.num(v.A)) + '</span><span>C ' + (c.supuestoC ? "30% (supuesto)" : L.num(v.C) + "%") + '</span><span>B ' + (L.num(v.B_baja) || L.num(v.B_alta) || "—") + '</span><span>D ' + (L.num(v.D) || "—") + '</span><span>E ' + (L.num(v.E) || "—") + '</span><span>F ' + money(L.num(v.F)) + '</span></div>' +
+      '<label class="ql">P · Precio mensual que se evalúa (+ IVA)</label><div class="num"><span>$</span><input id="precio" inputmode="numeric" value="' + esc(P) + '"></div>' +
+      '<table class="calc"><thead><tr><th>#</th><th>Qué</th><th>Resultado</th></tr></thead><tbody>' + c.filas.map(function (r) {
+        return '<tr' + (r.n === 3 ? ' class="hl"' : '') + '><td>' + r.n + '</td><td>' + esc(r.label) + '<small>' + esc(r.formula) + '</small></td><td>' + fmt(r) + '</td></tr>';
+      }).join("") + '</tbody></table>' +
+      '<p class="muted small">Referencias de mercado (sept. 2026): Lazoo $24.990–$99.990 + IVA · Welcome Back desde US$59 · Eunomi (hipótesis D5): $25.000–$45.000 + IVA tras un piloto de 30–60 días.</p></div>';
+  }
+
+  /* Aplica un toque sobre una opción (chip, escala o prioridad). Devuelve true si cambió una respuesta. */
+  function tocarOpcion(b, x) {
+    if (b.dataset.c) {
+      var id = b.dataset.c, o = b.dataset.o;
+      if (b.dataset.m === "1") { var a = (x.v[id] || []).slice(), i = a.indexOf(o); if (i >= 0) a.splice(i, 1); else a.push(o); x.v[id] = a; }
+      else x.v[id] = x.v[id] === o ? "" : o;
+      return true;
+    }
+    if (b.dataset.r) {
+      var r = (x.v[b.dataset.r] || []).slice(), j = r.indexOf(b.dataset.o);
+      if (j >= 0) r.splice(j, 1); else if (r.length < 3) r.push(b.dataset.o); else return false;
+      x.v[b.dataset.r] = r; return true;
+    }
+    if (b.dataset.s) {
+      x.v[b.dataset.s] = Number(b.dataset.n);
+      // Si deja de ser un problema, sale también de las prioridades.
+      if (!Number(b.dataset.n) && Array.isArray(x.v.urgente)) {
+        var q = L.seccion(M, "dolores").preguntas.filter(function (z) { return z.id === b.dataset.s; })[0];
+        if (q) x.v.urgente = x.v.urgente.filter(function (u) { return u !== q.q; });
+      }
+      return true;
+    }
+    return false;
+  }
+
+  /* Tipo de reunión sugerido según el estado del local. */
+  function tipoSugerido(estado) { return estado === "propuesta" || estado === "piloto" ? "propuesta" : estado === "entrevistado" ? "profundizacion" : "descubrimiento"; }
+
+  return { esc: esc, fecha: fecha, campo: campo, secsNav: secsNav, seccion: seccion, numSecs: numSecs, tabsNav: tabsNav, resultado: resultado,
+    tocarOpcion: tocarOpcion, accionActa: accionActa, elegirTipo: elegirTipo, tipoSugerido: tipoSugerido, reunion: reunion, estadoActaCorto: estadoActaCorto, tipoDe: tipoDe };
+})();
+
+/* Eunomi · Levantamiento · app (sin servidor: todo queda en este dispositivo). */
+(function () {
+  var M = LEV_MODEL, L = LEV_LOGIC, U = LEV_UI, KEY = "eunomi-levantamiento-v1";
+  var app = document.getElementById("app");
+  var st = { vista: "lista", id: null, sec: 0, tab: "acta", borrar: null, base: null, verEnviada: false };
+  var db = cargar();
+
+  function cargar() {
+    try { var d = JSON.parse(localStorage.getItem(KEY) || "null"); if (d && Array.isArray(d.items)) return d; } catch (e) {}
+    return { items: [], ajustes: { contacto: "" } };
+  }
+  var avisoGuardado = false;
+  function guardar() {
+    try { localStorage.setItem(KEY, JSON.stringify(db)); avisoGuardado = false; }
+    catch (e) { if (!avisoGuardado) { avisoGuardado = true; toast("No se pudo guardar en este navegador. Exporta un respaldo."); } }
+  }
+  function actual() { return db.items.filter(function (x) { return x.id === st.id; })[0]; }
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fecha(t) { var d = new Date(t); return d.toLocaleDateString("es-CL", { day: "2-digit", month: "2-digit", year: "numeric" }); }
+  function money(n) { return L.money(n); }
+  function toast(msg) {
+    var t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t);
+    setTimeout(function () { t.remove(); }, 2600);
+  }
+
+  /* ---------- Lista ---------- */
+  function vLista() {
+    var items = db.items.slice().sort(function (a, b) { return b.actualizado - a.actualizado; });
+    return '<header class="bar"><div><b>Eunomi</b><span>Levantamiento de restaurantes</span></div></header>' +
+      '<main class="wrap">' +
+      '<button class="primary big" data-a="nueva">+ Nueva entrevista</button>' +
+      (items.length ? '<ul class="cards">' + items.map(function (x) {
+        var p = L.progreso(x.v, M, U.tipoDe(x));
+        return '<li><button class="card" data-a="abrir" data-id="' + x.id + '"><strong>' + esc(x.v.nombre || "Local sin nombre") + '</strong>' +
+          '<small>' + esc([U.reunion(U.tipoDe(x)).nombre, x.v.comuna, x.v.entrevistado].filter(Boolean).join(" · ")) + '</small>' +
+          '<span class="meta">' + fecha(x.creado) + ' · ' + p + '% · ' + U.estadoActaCorto(x) + '</span><span class="prog"><i style="width:' + p + '%"></i></span></button>' +
+          '<button class="ghost small" data-a="resultado" data-id="' + x.id + '">Acta</button></li>';
+      }).join("") + '</ul>' : '<p class="empty">Aún no hay entrevistas. Empieza una al llegar al local: se guarda sola en este celular.</p>') +
+      '<section class="panel"><h3>Respaldo</h3><p class="muted">Las entrevistas quedan <b>solo en este dispositivo</b>, sin internet. Exporta un respaldo después de cada visita.</p>' +
+      '<div class="row"><button class="ghost" data-a="exportar">Exportar todo</button><label class="ghost filebtn">Importar<input type="file" accept="application/json,.json" id="imp"></label></div></section>' +
+      '<section class="panel"><h3>Tu contacto</h3><p class="muted">Aparece al pie del acta para el cliente.</p><input id="contacto" value="' + esc(db.ajustes.contacto) + '" placeholder="Ej. Iván Bozo · +56 9 … · correo"></section>' +
+      '</main>';
+  }
+
+  /* ---------- Nueva entrevista: tipo de reunión ---------- */
+  function vTipo() {
+    var ult = {};
+    db.items.forEach(function (x) { var k = (x.v.nombre || "").trim(); if (k && (!ult[k] || x.creado > ult[k].creado)) ult[k] = x; });
+    var base = Object.keys(ult).map(function (k) { return ult[k]; });
+    var bx = db.items.filter(function (z) { return z.id === st.base; })[0];
+    var sug = bx ? (U.tipoDe(bx) === "descubrimiento" ? "profundizacion" : "propuesta") : "descubrimiento";
+    return '<header class="bar"><button class="back" data-a="lista" aria-label="Volver">←</button><div><b>Nueva entrevista</b><span>¿Qué reunión es?</span></div></header><main class="wrap">' +
+      (base.length ? '<h3>¿Es un local que ya visitaste?</h3><div class="chips">' + base.map(function (x) {
+        return '<button class="chip' + (st.base === x.id ? " on" : "") + '" data-a="base" data-id="' + x.id + '">' + esc(x.v.nombre) + '</button>';
+      }).join("") + '</div><p class="muted small">Si eliges uno, se copian sus datos básicos.</p>' : '') +
+      '<h3>Tipo de reunión</h3>' + U.elegirTipo(sug) + '</main>';
+  }
+
+  /* ---------- Entrevista ---------- */
+  /* ---------- Entrevista ---------- */
+  function vEditar() {
+    var x = actual(), p = L.progreso(x.v, M, U.tipoDe(x));
+    return '<header class="bar"><button class="back" data-a="lista" aria-label="Volver">←</button><div><b>' + esc(x.v.nombre || "Nueva entrevista") + '</b><span>' + p + '% respondido · se guarda solo</span></div><button class="ghost small light" data-a="resultado" data-id="' + x.id + '">Resultado</button></header>' +
+      U.secsNav(x, st.sec) + '<main class="wrap">' + U.seccion(x, st.sec) + '</main>';
+  }
+
+  /* ---------- Resultado ---------- */
+  function vResultado() {
+    var x = actual(), v = x.v;
+    return '<header class="bar noprint"><button class="back" data-a="editar" aria-label="Volver a la entrevista">←</button><div><b>' + esc(v.nombre || "Local sin nombre") + '</b><span>Acta y análisis</span></div></header>' +
+      U.tabsNav(x, st.tab) + '<main class="wrap">' + U.resultado(x, st.tab, { contacto: db.ajustes.contacto }, st.verEnviada) +
+      '<div class="row noprint actions"><button class="primary" data-a="imprimir">Imprimir / guardar PDF</button><button class="ghost" data-a="exportar1">Exportar esta entrevista</button>' +
+      '<button class="danger" data-a="borrar">' + (st.borrar === x.id ? "Toca de nuevo para borrar" : "Borrar entrevista") + '</button></div></main>';
+  }
+
+  /* ---------- Render y eventos ---------- */
+  function render() {
+    app.innerHTML = st.vista === "lista" ? vLista() : st.vista === "tipo" ? vTipo() : st.vista === "editar" ? vEditar() : vResultado();
+    document.body.dataset.vista = st.vista;
+    var on = app.querySelector(".secs .on"); if (on && on.scrollIntoView) on.scrollIntoView({ inline: "center", block: "nearest" });
+  }
+  function tocar(x) { x.actualizado = Date.now(); guardar(); }
+  function descargar(nombre, data) {
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = nombre; document.body.appendChild(a); a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  }
+  function slug(s) { return String(s || "local").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "local"; }
+  function hoy() { return new Date().toISOString().slice(0, 10); }
+
+  app.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    var x = actual();
+    if (x && U.tocarOpcion(b, x)) { tocar(x); var y = window.scrollY; render(); window.scrollTo(0, y); return; }
+    var act = b.dataset.a; if (!act) return;
+    if (act !== "borrar") st.borrar = null;
+    if (act === "nueva") { st.vista = "tipo"; st.base = null; }
+    else if (act === "base") { st.base = st.base === b.dataset.id ? null : b.dataset.id; }
+    else if (act === "crearTipo") {
+      var bx = db.items.filter(function (z) { return z.id === st.base; })[0], v0 = {};
+      if (bx) ["nombre", "comuna", "tipo", "entrevistado", "cargo", "permiso", "decide", "usuario"].forEach(function (k) { if (bx.v[k] != null) v0[k] = bx.v[k]; });
+      var n = { id: uid(), tipo: b.dataset.tipo, creado: Date.now(), actualizado: Date.now(), v: v0 }; db.items.push(n); guardar(); st.id = n.id; st.sec = 0; st.vista = "editar";
+    }
+    else if (act === "abrir") { st.id = b.dataset.id; st.sec = 0; st.vista = "editar"; }
+    else if (act === "resultado") { st.id = b.dataset.id; st.vista = "resultado"; st.tab = "acta"; st.verEnviada = false; }
+    else if (act === "actaVer") { st.verEnviada = !st.verEnviada; }
+    else if (U.accionActa(act, x)) { tocar(x); st.verEnviada = false; toast(act === "actaEnviada" ? "Acta registrada como enviada" : "Acta confirmada"); }
+    else if (act === "editar") { st.vista = "editar"; }
+    else if (act === "lista") { st.vista = "lista"; }
+    else if (act === "sec") { st.sec = Number(b.dataset.i); }
+    else if (act === "next") { st.sec = Math.min(st.sec + 1, U.numSecs(x) - 1); }
+    else if (act === "prev") { st.sec = Math.max(st.sec - 1, 0); }
+    else if (act === "tab") { st.tab = b.dataset.t; st.verEnviada = false; }
+    else if (act === "imprimir") { window.print(); return; }
+    else if (act === "exportar") { descargar("eunomi-levantamientos-" + hoy() + ".json", { app: "eunomi-levantamiento", version: M.version, exportado: new Date().toISOString(), items: db.items }); return; }
+    else if (act === "exportar1") { descargar("eunomi-" + slug(x.v.nombre) + "-" + hoy() + ".json", { app: "eunomi-levantamiento", version: M.version, exportado: new Date().toISOString(), items: [x] }); return; }
+    else if (act === "borrar") {
+      if (st.borrar !== x.id) { st.borrar = x.id; render(); return; }
+      db.items = db.items.filter(function (z) { return z.id !== x.id; }); guardar(); st.borrar = null; st.vista = "lista"; toast("Entrevista borrada");
+    }
+    render(); window.scrollTo(0, 0);
+  });
+
+  app.addEventListener("input", function (e) {
+    var t = e.target;
+    if (t.dataset.f) { var x = actual(); x.v[t.dataset.f] = t.value; tocar(x); if (t.dataset.f === "nombre") { var h = app.querySelector(".bar b"); if (h) h.textContent = t.value || "Nueva entrevista"; } }
+    else if (t.id === "contacto") { db.ajustes.contacto = t.value; guardar(); }
+    else if (t.id === "precio") { var y = actual(); y.P = t.value; tocar(y); var pos = t.selectionStart; render(); var p = document.getElementById("precio"); p.focus(); try { p.setSelectionRange(pos, pos); } catch (er) {} }
+  });
+
+  app.addEventListener("change", function (e) {
+    if (e.target.id !== "imp" || !e.target.files[0]) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var d = JSON.parse(r.result); if (!d || d.app !== "eunomi-levantamiento" || !Array.isArray(d.items)) throw 0;
+        var n = 0; d.items.forEach(function (it) {
+          if (!it || !it.id || typeof it.v !== "object") return;
+          var i = db.items.findIndex(function (z) { return z.id === it.id; });
+          if (i < 0) { db.items.push(it); n++; } else if ((it.actualizado || 0) > (db.items[i].actualizado || 0)) { db.items[i] = it; n++; }
+        });
+        guardar(); render(); toast(n ? n + " entrevista(s) importada(s)" : "No había nada nuevo");
+      } catch (er) { toast("El archivo no es un respaldo de Eunomi"); }
+    };
+    r.readAsText(e.target.files[0]);
+  });
+
+  render();
+  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+    navigator.serviceWorker.register("/levantamiento-sw.js", { scope: "/levantamiento" }).catch(function () {});
+  }
+})();
+
+</script>
+</body>
+</html>

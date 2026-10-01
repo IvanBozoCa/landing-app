@@ -1,0 +1,35 @@
+/* Prototipo Entre Mar: inspirado en su carta (papel celeste, azul marino, acento coral). No reproduce su logo. */
+:root{--green:#172157;--muted:#56607f;--border:#cdd6e4;--paper:#dde5ef;--navy:#172157;--coral:#ee6a5b;color:#172157;background:#eef2f7;font-family:Fraunces,Georgia,serif}
+button,input,select{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.presenter{background:#dfe6f0;border-bottom-color:#c5cfdf}
+.presenter details{border-top-color:#c5cfdf}
+.primary,button[aria-pressed=true]{background:var(--navy);border-color:var(--navy)}
+button:hover{background:#e8edf5}
+.primary:hover,button[aria-pressed=true]:hover{background:#26337a;color:#fff}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline-color:var(--coral)}
+#notice:not(:empty){background:#fde6e2;color:#7a2c22}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.5px}
+.brand.em{font-family:Fraunces,Georgia,serif;letter-spacing:0;line-height:1;text-align:left}
+.brand.em small{font:600 9px system-ui,sans-serif;letter-spacing:2.5px;color:var(--navy)}
+.brand.em .script{display:block;font-family:"Pinyon Script",cursive;font-size:38px;letter-spacing:0;color:var(--navy);margin:2px 0 4px}
+.phone{background:#f7f9fc;border-color:#d3dbe8;box-shadow:0 15px 45px #17215714}
+.phone>header{border-bottom-color:#e2e8f1}
+.pill{background:#e3e9f3;color:#2a3670}
+.ocean{background:linear-gradient(170deg,#172157 0%,#2c3f86 46%,#9fb2d3 47%,#dde5ef 100%)}
+.ocean span{color:#f7f9fc;top:14px;bottom:auto;font-family:system-ui,sans-serif}
+.eyebrow{color:var(--coral)}
+.balance{background:var(--navy)}
+.balance small{color:#b9c6e6}
+.reward{border-color:var(--border)}
+.reward-art{background:var(--paper);color:var(--navy);font-family:"Pinyon Script",cursive;font-size:32px}
+.reward:nth-of-type(2) .reward-art{background:var(--navy);color:#f7f9fc}
+.reward:nth-of-type(3) .reward-art{background:var(--coral);color:#fff}
+.track{background:#e2e8f1}.track span{background:var(--coral)}
+.conditions{background:#eaeff6}
+.code{border-color:#9fb0cf}
+.step span{background:#e3e9f3}
+.box{border-color:var(--border)}
+.method.chosen{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy) inset}
+.phone>section.caja{background:#eaeff6;border-bottom-color:#e2e8f1}
+a{color:var(--navy)}
+.qr-card .brand.em{text-align:center}.qr-card{border-color:var(--navy)}.qr-code{color:var(--navy)}

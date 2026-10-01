@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#077580">
+  <meta name="description" content="Prueba la agenda de Eunomi Barberías: reserva como cliente y organiza el día como barbero. Demo con datos ficticios.">
+  <title>Una agenda, dos lados · Demo Eunomi Barberías</title>
+  <link rel="icon" href="/eunomi-escolar/logo-web.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/demo/barberia/demo.css">
+</head>
+<body>
+<a class="skip" href="#experiencia">Saltar a la demo</a>
+<header class="top"><a class="brand" href="https://eunomi.cl/"><img src="/eunomi-escolar/logo-web.png" width="38" height="38" alt=""><span>Eunomi<small>BARBERÍAS / DEMO</small></span></a><span class="demo-label"><i></i> Datos ficticios · Sin registro</span><button id="reset" class="quiet">Reiniciar demo</button></header>
+<main>
+  <section class="intro">
+    <div><p class="eyebrow">AGENDA PARA BARBERÍAS</p><h1>Una agenda.<br><em>Dos lados de la silla.</em></h1></div>
+    <div class="intro-side">
+      <p>Reserva una hora como cliente y mira cómo aparece en la agenda del barbero. Después anota, bloquea, cierra el día y premia a quien vuelve.</p>
+      <ul class="role-chips" aria-label="Cómo accede cada persona">
+        <li><strong>Barbero</strong><span>Web en el celular, entra con Google</span></li>
+        <li><strong>Cliente</strong><span>Enlace o QR, sin cuenta ni app</span></li>
+      </ul>
+    </div>
+  </section>
+  <div class="workspace">
+    <aside class="guide" aria-label="Qué probar">
+      <p class="eyebrow" id="progress"></p>
+      <h2>Prueba esto</h2>
+      <p>Hoy son las 13:10 en Barbería Demo. Toca una tarea para ir a la pantalla correcta.</p>
+      <ol id="tasks" class="tasks"></ol>
+      <p class="disclaimer">Simulación basada en Eunomi Barberías. Las horas, los clientes y los mensajes son de ejemplo. No se crean reservas reales ni se envían mensajes.</p>
+    </aside>
+    <section id="experiencia" class="experience" aria-label="Demo interactiva">
+      <div class="role-tabs" role="tablist" aria-label="Elige una vista"><button role="tab" id="tab-barber" data-role="barber" aria-controls="screen">Barbero</button><button role="tab" id="tab-client" data-role="client" aria-controls="screen">Cliente</button></div>
+      <div id="feedback" role="status" aria-live="polite" class="feedback"></div>
+      <div class="screen-shell"><div id="screen" role="tabpanel" tabindex="0"></div></div>
+    </section>
+  </div>
+  <section class="closing"><div><p class="eyebrow">DE LA DEMO A TU BARBERÍA</p><h2>¿Te imaginas tu agenda así?</h2><p>Conversemos sobre tu barbería y cómo empezar.</p></div><a class="primary link-button" href="https://eunomi.cl/contacto?ref=demo-barberia">Conversar sobre mi barbería <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer>Eunomi Barberías · Demostración interactiva con datos ficticios · <a href="https://eunomi.cl/">Volver a eunomi.cl</a></footer>
+<noscript><p>Activa JavaScript para probar la demo.</p></noscript>
+<script type="module" src="/demo/barberia/demo.js"></script>
+</body>
+</html>

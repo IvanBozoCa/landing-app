@@ -1,0 +1,35 @@
+/* Prototipo La Casa Verde: inspirado en su identidad pública (verde, madera, reciclaje). No reproduce su logo. */
+:root{--green:#2F5132;--muted:#5d6b5a;--border:#d6dccb;--paper:#e8eddc;--leaf:#2F5132;--wood:#B7793E;color:#243424;background:#f3f1e8;font-family:Fraunces,Georgia,serif}
+button,input,select{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.presenter{background:#e7e9dc;border-bottom-color:#cfd5c0}
+.presenter details{border-top-color:#cfd5c0}
+.primary,button[aria-pressed=true]{background:var(--leaf);border-color:var(--leaf)}
+button:hover{background:#eef1e4}
+.primary:hover,button[aria-pressed=true]:hover{background:#3d6a41;color:#fff}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline-color:var(--wood)}
+#notice:not(:empty){background:#f6e6d2;color:#6b3f14}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.5px}
+.brand.cv{font-family:Fraunces,Georgia,serif;letter-spacing:0;line-height:1;text-align:left}
+.brand.cv small{font:600 9px system-ui,sans-serif;letter-spacing:2.5px;color:var(--leaf)}
+.brand.cv .name{display:block;font-family:Caveat,cursive;font-size:34px;letter-spacing:0;color:var(--leaf);margin:2px 0 4px}
+.phone{background:#fbfaf5;border-color:#dcdfd0;box-shadow:0 15px 45px #2f513214}
+.phone>header{border-bottom-color:#e6e8dc}
+.pill{background:#e6ecd9;color:#2F5132}
+.ocean{background:linear-gradient(170deg,#2F5132 0%,#4d7a45 46%,#c9a77c 47%,#efe7d6 100%)}
+.ocean span{color:#fbfaf5;top:14px;bottom:auto;font-family:system-ui,sans-serif}
+.eyebrow{color:var(--wood)}
+.balance{background:var(--leaf)}
+.balance small{color:#cfe0c4}
+.reward{border-color:var(--border)}
+.reward-art{background:var(--paper);color:var(--leaf);font-family:Caveat,cursive;font-size:30px}
+.reward:nth-of-type(2) .reward-art{background:var(--leaf);color:#fbfaf5}
+.reward:nth-of-type(3) .reward-art{background:var(--wood);color:#fff}
+.track{background:#e6e8dc}.track span{background:var(--wood)}
+.conditions{background:#eef0e4}
+.code{border-color:#a9b797}
+.step span{background:#e6ecd9}
+.box{border-color:var(--border)}
+.method.chosen{border-color:var(--leaf);box-shadow:0 0 0 2px var(--leaf) inset}
+.phone>section.caja{background:#eef0e4;border-bottom-color:#e6e8dc}
+a{color:var(--leaf)}
+.qr-card .brand.cv{text-align:center}.qr-card{border-color:var(--leaf)}.qr-code{color:var(--leaf)}

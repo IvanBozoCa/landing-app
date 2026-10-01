@@ -30,3 +30,8 @@ dist/
 .vercel
 .env*
 *-check.png
+
+# Salidas de construcción de herramientas internas
+docs/levantamiento/out/
+docs/admin/out/
+docs/admin/tmp/

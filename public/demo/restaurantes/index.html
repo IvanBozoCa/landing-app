@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#077580">
+  <meta name="description" content="Prueba el club de clientes de Eunomi Restaurantes desde las vistas del cliente, el personal y el dueño. Demo con datos ficticios.">
+  <title>Un club, tres miradas · Demo Eunomi Restaurantes</title>
+  <link rel="icon" href="/eunomi-escolar/logo-web.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/demo/restaurantes/club.css">
+</head>
+<body>
+<a class="skip" href="#experiencia">Saltar a la demo</a>
+<header class="top"><a class="brand" href="https://eunomi.cl/"><img src="/eunomi-escolar/logo-web.png" width="38" height="38" alt=""><span>Eunomi<small>RESTAURANTES / DEMO</small></span></a><span class="demo-label"><i></i> Datos ficticios · Sin registro</span><button id="reset" class="quiet">Reiniciar demo</button></header>
+<main>
+  <section class="intro">
+    <div><p class="eyebrow">CLUB DE CLIENTES PARA RESTAURANTES</p><h1>Un club.<br><em>Tres miradas en la mesa.</em></h1></div>
+    <div class="intro-side">
+      <p>Únete al club desde el QR de la mesa, escanea tu boleta y canjea un premio. Después mira qué aprende el dueño de cada visita.</p>
+      <ul class="role-chips" aria-label="Cómo accede cada persona">
+        <li><strong>Cliente</strong><span>QR de la mesa, sin app</span></li>
+        <li><strong>Personal</strong><span>Valida códigos en caja</span></li>
+        <li><strong>Dueño</strong><span>Panel con su clientela</span></li>
+      </ul>
+    </div>
+  </section>
+  <div class="workspace">
+    <aside class="guide" aria-label="Qué probar">
+      <p class="eyebrow" id="progress"></p>
+      <h2>Prueba esto</h2>
+      <p>Los tres perfiles comparten el mismo club. Toca una tarea para ir a la pantalla correcta.</p>
+      <ol id="tasks" class="tasks"></ol>
+      <p class="disclaimer">Simulación basada en Eunomi Restaurantes. El local, la carta, los clientes y las boletas son de ejemplo. No se guardan datos ni se envían mensajes. <a href="https://club.eunomi.cl/demo">Ver también el club de ejemplo real ↗</a></p>
+    </aside>
+    <section id="experiencia" class="experience" aria-label="Demo interactiva">
+      <div class="role-tabs" role="tablist" aria-label="Elige una vista"><button role="tab" id="tab-client" data-role="client" aria-controls="screen">Cliente</button><button role="tab" id="tab-staff" data-role="staff" aria-controls="screen">Personal</button><button role="tab" id="tab-owner" data-role="owner" aria-controls="screen">Dueño</button></div>
+      <div id="feedback" role="status" aria-live="polite" class="feedback"></div>
+      <div class="screen-shell"><div id="screen" role="tabpanel" tabindex="0"></div></div>
+    </section>
+  </div>
+  <section class="closing"><div><p class="eyebrow">DE LA DEMO A TU LOCAL</p><h2>¿Quieres que tus clientes vuelvan?</h2><p>Conversemos sobre tu restaurante o café y cómo empezar.</p></div><a class="primary link-button" href="https://eunomi.cl/contacto?ref=demo-restaurantes">Conversar sobre mi local <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer>Eunomi Restaurantes · Demostración interactiva con datos ficticios · <a href="https://eunomi.cl/">Volver a eunomi.cl</a></footer>
+<noscript><p>Activa JavaScript para probar la demo.</p></noscript>
+<script type="module" src="/demo/restaurantes/club.js"></script>
+</body>
+</html>

@@ -47,7 +47,10 @@ menu.addEventListener('focusout', () => {
 });
 mobile.addEventListener('change', () => closeMenu());
 
-const selector = required<HTMLSelectElement>('#perfil');
+// El ejemplo guiado anterior fue reemplazado por la demo interactiva (/demo/escolar?embed).
+// Este bloque solo se activa si la página todavía incluye ese ejemplo.
+const selector = document.querySelector<HTMLSelectElement>('#perfil');
+if (selector) {
 const previous = required<HTMLButtonElement>('#previous-step');
 const next = required<HTMLButtonElement>('#next-step');
 let profile: Profile = 'transportista';
@@ -88,6 +91,7 @@ required('.profile-picker').hidden = false;
 required('.guided-example').hidden = false;
 required('.example-steps').hidden = true;
 required('#contact-profile').hidden = false;
+}
 
 const copyButton = required<HTMLButtonElement>('#copy-email');
 copyButton.hidden = false;

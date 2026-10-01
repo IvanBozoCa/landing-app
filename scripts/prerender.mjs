@@ -21,7 +21,7 @@ function replaceMeta(html, attribute, name, content) {
   return html.replace(pattern, `$1${escapeHtml(content)}$2`);
 }
 
-function pageDocument(pathname, metadata, robots = "index, follow") {
+function pageDocument(pathname, metadata, robots = metadata.noIndex ? "noindex, follow" : "index, follow") {
   const canonicalUrl = new URL(pathname, siteUrl).href;
   let html = template
     .replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(metadata.title)}</title>`)
@@ -35,6 +35,12 @@ function pageDocument(pathname, metadata, robots = "index, follow") {
   html = replaceMeta(html, "property", "og:url", canonicalUrl);
   html = replaceMeta(html, "name", "twitter:title", metadata.title);
   html = replaceMeta(html, "name", "twitter:description", metadata.description);
+
+  // Solo la portada describe a la persona (og:type=profile); el resto son páginas del sitio.
+  if (pathname !== "/") {
+    html = replaceMeta(html, "property", "og:type", "website");
+    html = html.replace(/\s*<meta property="profile:[^"]+" content="[^"]*" \/>/g, "");
+  }
   return html;
 }
 

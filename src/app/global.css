@@ -1,0 +1,9 @@
+/* Estilos compartidos por todas las vistas del sitio. */
+html { scroll-behavior: smooth; }
+body { background: #f7f6f2; color: #17201d; }
+.skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 12px 16px; background: #111a18; color: #f4f7f5 !important; font-weight: 700; text-decoration: none; transform: translateY(-180%); }
+.skip-link:focus { transform: translateY(0); outline: 3px solid #b8661f; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

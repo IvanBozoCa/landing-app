@@ -56,9 +56,9 @@ export default function GamingCenterCaseStudy() {
               <div><dt>Estado</dt><dd>Desarrollo incremental</dd></div>
             </dl>
           </div>
-          <div className="case-hero-visual" role="img" aria-label="Espacio reservado para una captura real del Gaming Center Management System">
-            <span>Visual del producto</span><strong>Captura real pendiente</strong>
-            <p>La demostración visual se incorporará cuando el flujo completo esté preparado con datos de prueba.</p>
+          <div className="case-hero-visual">
+            <span>Evidencia técnica</span><strong>299 pruebas de backend aprobadas</strong>
+            <p>Último checkpoint registrado, más una certificación prolongada del agente en una estación de prueba. Backend en FastAPI, panel en React y agente de estación en .NET (servicio Windows e interfaz WPF) sincronizado por WebSockets.</p>
           </div>
         </header>
 

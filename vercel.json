@@ -89,10 +89,6 @@
     {
       "source": "/proyectos/eunomi",
       "destination": "/proyectos/eunomi.html"
-    },
-    {
-      "source": "/proyectos/eunomi/demo",
-      "destination": "/proyectos/eunomi/demo.html"
     }
   ],
   "redirects": [
@@ -100,6 +96,16 @@
       "source": "/admin",
       "destination": "https://equipo.eunomi.cl/",
       "permanent": false
+    },
+    {
+      "source": "/proyectos/eunomi/demo",
+      "destination": "https://eunomi.cl/demo/escolar",
+      "permanent": true
+    },
+    {
+      "source": "/proyectos/eunomi/demo.html",
+      "destination": "https://eunomi.cl/demo/escolar",
+      "permanent": true
     }
   ]
 }

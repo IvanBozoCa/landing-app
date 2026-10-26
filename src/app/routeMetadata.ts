@@ -10,6 +10,5 @@ export const routeMetadata: Record<(typeof routes)[Exclude<keyof typeof routes, 
   [routes.hello]: { title: "Hablemos de tu negocio | Iván Bozo Catalán", description: "Identifica un problema de tu negocio, revisa soluciones y prepara una primera conversación con Iván Bozo Catalán." },
   [routes.pichilemu]: { title: "Desarrollo web y software en Pichilemu | Iván Bozo Catalán", description: "Desarrollo de sitios web, software de gestión y primeras versiones de productos digitales para negocios y emprendedores de Pichilemu." },
   [routes.eunomi]: { title: "Eunomi Escolar: caso de estudio | Iván Bozo Catalán", description: "Caso de estudio de Eunomi Escolar: de trabajo de título a plataforma en producción con panel admin, app del conductor y seguimiento en vivo para apoderados." },
-  [routes.eunomiDemo]: { title: "Demo Eunomi Escolar | Iván Bozo Catalán", description: "Demo funcional con vistas de administración, conductor, apoderado y documentación de la API.", noIndex: true },
   [routes.gcms]: { title: "Gaming Center Management System: caso de estudio | Iván Bozo Catalán", description: "Caso de estudio de un sistema distribuido para gaming centers: backend autoritativo, agente Windows, WebSockets, sincronización y recuperación de estado." },
 };

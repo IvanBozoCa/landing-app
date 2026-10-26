@@ -18,8 +18,8 @@ const person = {
   familyName: "Bozo Catalán",
   url: `${SITE_URL}/`,
   email: `mailto:${profileLinks.email}`,
-  jobTitle: ["Ingeniero Civil en Computación", "Desarrollador de soluciones de software", "Fundador de Eunomi"],
-  description: "Ingeniero Civil en Computación, desarrollador de soluciones de software y fundador de Eunomi.",
+  jobTitle: ["Desarrollador full stack", "Ingeniero Civil en Computación", "Fundador de Eunomi"],
+  description: "Ingeniero Civil en Computación y desarrollador full stack. Construyó y opera Eunomi Escolar, plataforma de transporte escolar en producción.",
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Universidad de O'Higgins",

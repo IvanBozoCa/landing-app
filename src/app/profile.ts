@@ -10,15 +10,15 @@ export const profileLinks = {
   github: "https://github.com/IvanBozoCa",
   // Enlace ya utilizado en el JSON-LD original del sitio. Confirmar que sea el perfil público vigente.
   linkedin: "https://cl.linkedin.com/in/ivanbozocatalan",
-  // Pendiente: subir el CV (por ejemplo a /cv/ivan-bozo-catalan.pdf) y reemplazar `null` por la ruta.
-  cv: null as string | null,
+  // Versión web del CV 2026-10, sin número de teléfono.
+  cv: "/cv/ivan-bozo-catalan.pdf" as string | null,
   eunomi: EUNOMI_URL,
   eunomiEscolar: `${EUNOMI_URL}/escolar`,
+  eunomiEscolarDemo: `${EUNOMI_URL}/demo/escolar`,
   fragan: "https://fraganpinturas.cl",
 } as const;
 
-// Pendiente: agregar una fotografía real en /public/profile/ y reemplazar `null` por su ruta.
-// Formato sugerido: WebP vertical 4:5, mínimo 800 × 1000 px.
-export const profilePhoto: { src: string; width: number; height: number } | null = null;
+// Misma fotografía del CV 2026-10.
+export const profilePhoto: { src: string; width: number; height: number } | null = { src: "/profile/ivan-bozo-catalan.webp", width: 360, height: 360 };
 
-export type ProjectStatus = "Producción" | "Piloto" | "Prototipo" | "Investigación" | "En desarrollo" | "Proyecto académico";
+export type ProjectStatus = "Producción" | "Piloto" | "Prototipo" | "Investigación" | "En desarrollo" | "Proyecto académico" | "Piloto con cliente real";

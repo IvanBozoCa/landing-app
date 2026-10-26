@@ -1,4 +1,3 @@
-import SchoolTransportPage from "../projects/school-transport/SchoolTransportPage";
 import SchoolTransportCaseStudy from "../projects/school-transport/SchoolTransportCaseStudy";
 import GamingCenterCaseStudy from "../projects/gaming-center/GamingCenterCaseStudy";
 import ServicesPage from "../services/ServicesPage";
@@ -78,7 +77,6 @@ export default function App({ pathname, search }: { pathname?: string; search?: 
   else if (path === routes.hello) pageContent = <><MetadataForRoute path={routes.hello} /><HelloPage /></>;
   else if (path === routes.pichilemu) pageContent = <><MetadataForRoute path={routes.pichilemu} /><PichilemuServicesPage /></>;
   else if (path === routes.eunomi || (legacyRoute && project === "school-transport")) pageContent = <><MetadataForRoute path={routes.eunomi} /><SchoolTransportCaseStudy /></>;
-  else if (path === routes.eunomiDemo || (legacyRoute && project === "school-transport-demo")) pageContent = <><MetadataForRoute path={routes.eunomiDemo} /><SchoolTransportPage /></>;
   else if (path === routes.gcms || (legacyRoute && project === "gcms")) pageContent = <><MetadataForRoute path={routes.gcms} /><GamingCenterCaseStudy /></>;
   else if (path === routes.home) pageContent = <><MetadataForRoute path={routes.home} /><HomePage /></>;
   else pageContent = <><PageMetadata title="Página no encontrada | Iván Bozo Catalán" description="La dirección solicitada no corresponde a una página disponible del portfolio." canonicalPath={path} noIndex /><NotFoundPage /></>;

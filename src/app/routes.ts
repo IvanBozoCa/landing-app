@@ -7,7 +7,6 @@ export const routes = {
   pichilemu: "/desarrollo-software-pichilemu",
   gcms: "/proyectos/gcms",
   eunomi: "/proyectos/eunomi",
-  eunomiDemo: "/proyectos/eunomi/demo",
   // Eunomi Escolar vive en el sitio de la empresa; /eunomi-escolar se conserva solo por compatibilidad.
   eunomiLanding: "https://eunomi.cl/escolar",
 } as const;

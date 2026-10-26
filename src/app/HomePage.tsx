@@ -40,10 +40,10 @@ function SiteHeader() {
         </a>
         <nav aria-label="Secciones">
           <ul>
-            <li><a href="#trabajo">Trabajo</a></li>
+            <li><a href="#trabajo">Proyectos</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
             <li><a href="#eunomi">Eunomi</a></li>
-            <li><a href="#experiencia">Experiencia</a></li>
             <li><a href="#contacto">Contacto</a></li>
           </ul>
         </nav>
@@ -69,6 +69,12 @@ function Portrait() {
   );
 }
 
+const highlights = [
+  { label: "En producción", value: "Eunomi Escolar: API, panel admin, app del conductor y web de apoderados" },
+  { label: "Desde sept. 2025", value: "Fundador y desarrollador full stack en Eunomi" },
+  { label: "Stack principal", value: "Python · FastAPI · PostgreSQL · React · Flutter" },
+] as const;
+
 function Hero() {
   return (
     <section className="home-hero" id="inicio" aria-labelledby="hero-title">
@@ -77,25 +83,31 @@ function Hero() {
           <p className="home-hero-kicker">Ingeniero Civil en Computación · Pichilemu, Chile</p>
           <h1 id="hero-title">Iván Bozo Catalán</h1>
           <p className="home-hero-roles">
-            Desarrollador de soluciones de software
+            Desarrollador full stack
             <span aria-hidden="true"> · </span>
             <br className="home-break" />
-            Fundador de <a href={profileLinks.eunomi} target="_blank" rel="noopener noreferrer">Eunomi<span className="visually-hidden"> (se abre en una pestaña nueva)</span></a>
+            Python, FastAPI, React y Flutter
           </p>
           <p className="home-hero-lead">
-            Convierto necesidades reales de personas y negocios en software que funciona: entiendo el proceso, diseño la solución, la construyo y compruebo que resuelve el problema.
+            Llevo software de la idea a producción. Construí y opero Eunomi Escolar, una plataforma de transporte escolar con panel web, app del conductor y seguimiento en vivo para apoderados, hoy en uso con un transportista piloto.
           </p>
+          <p className="home-hero-availability">Abierto a roles de desarrollo full stack o backend · trabajo remoto</p>
           <div className="home-hero-actions">
-            <a className="home-button home-button--primary" href="#trabajo">Ver mi trabajo</a>
-            <a className="home-button home-button--ghost" href="#sobre-mi">Sobre mí</a>
+            <CvLink className="home-button home-button--primary" />
+            <a className="home-button home-button--ghost" href="#trabajo">Ver proyectos</a>
           </div>
-          <ul className="home-profile-links" aria-label="Perfiles y CV">
+          <ul className="home-profile-links" aria-label="Perfiles">
             <li><ExternalLink href={profileLinks.linkedin}>LinkedIn</ExternalLink></li>
             <li><ExternalLink href={profileLinks.github}>GitHub</ExternalLink></li>
-            <li><CvLink /></li>
+            <li><a href={`mailto:${profileLinks.email}`}>{profileLinks.email}</a></li>
           </ul>
         </div>
         <Portrait />
+      </div>
+      <div className="home-container">
+        <dl className="home-highlights">
+          {highlights.map((item) => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}
+        </dl>
       </div>
     </section>
   );
@@ -112,10 +124,11 @@ function Approach() {
   return (
     <section className="home-section" id="forma-de-trabajo" aria-labelledby="approach-title">
       <div className="home-container">
-        <SectionLabel number="01" label="Forma de trabajo" id="approach-title" title="Entender → Diseñar → Construir → Comprobar" />
-        <blockquote className="home-quote">
-          <p>«Me interesa entender cómo funciona un sistema completo, no solo una parte del código.»</p>
-        </blockquote>
+        <SectionLabel number="03" label="Forma de trabajo" id="approach-title" title="Entender → Diseñar → Construir → Comprobar" />
+        <div className="home-ai-note">
+          <h3>Desarrollo con asistentes de IA</h3>
+          <p>Trabajo con asistentes de código (Claude) como equipo de desarrollo: defino qué se construye, divido el trabajo en tareas pequeñas, reviso cada cambio, lo pruebo con pytest y en un entorno de demostración, y publico solo versiones verificadas. La responsabilidad sobre la arquitectura, los datos y lo que llega a producción es mía.</p>
+        </div>
         <ol className="home-principles">
           {principles.map((principle, index) => (
             <li key={principle.title}>
@@ -150,17 +163,17 @@ const work: WorkItem[] = [
   {
     id: "eunomi-escolar",
     name: "Eunomi Escolar · Transporte Escolar",
-    kind: "Producto completo: backend, app móvil e integración",
-    status: ["Proyecto académico", "En desarrollo"],
-    statusNote: "Nació como proyecto de título y hoy evoluciona como producto de Eunomi.",
+    kind: "Producto SaaS en producción: API, web y app móvil",
+    status: ["Producción", "Piloto con cliente real"],
+    statusNote: "Nació como trabajo de título (2025) y hoy es un producto de Eunomi en operación.",
     problem: "Las rutas de un transporte escolar vivían en la memoria de quien las administraba. Era difícil delegarlas y las familias pedían la ubicación por WhatsApp mientras el conductor manejaba.",
-    responsibility: "El ciclo completo: análisis de la necesidad, modelado de roles y datos, API, aplicación móvil, notificaciones y despliegue de la demo.",
-    solution: "Una plataforma por roles —administración, conductor y apoderado— con autenticación, rutas fijas, asistencia declarada por las familias, generación de la ruta del día y avisos push cuando cambia el estado de cada estudiante.",
-    result: "Demo funcional con API documentada. Como Eunomi Escolar está en desarrollo y abierto a un piloto; todavía no está disponible para uso general.",
-    stack: "Python · FastAPI · PostgreSQL · SQLAlchemy · Alembic · JWT · Flutter · Firebase Cloud Messaging · OpenRouteService · Render",
+    responsibility: "Todo el producto: levantamiento con el transportista, modelo de datos y roles, API, panel web, app del conductor, web de apoderados, despliegues y soporte diario a usuarios reales.",
+    solution: "Una plataforma con varias organizaciones y tres roles. Administración gestiona colegios, conductores, familias y rutas. El conductor ejecuta la IDA y la VUELTA con mapa por calles, próxima parada y confirmación de abordaje y entrega por deslizamiento. Las familias siguen el furgón en vivo e informan inasistencias.",
+    result: "En producción con un transportista piloto (1 conductor, 9 estudiantes). Ubicación del furgón cada 5 segundos, avisos push, inicio de sesión con Google, consentimiento de datos y acceso según rol y organización. Cambios entregados en PR pequeños con pruebas pytest.",
+    stack: "Python · FastAPI · PostgreSQL (Supabase) · SQLAlchemy · Alembic · React · Flutter · Firebase · OpenRouteService · Vercel · GitHub Actions",
     links: [
       { label: "Ver caso de estudio", href: routes.eunomi },
-      { label: "Probar la demo", href: routes.eunomiDemo },
+      { label: "Probar la demo", href: profileLinks.eunomiEscolarDemo, external: true },
       { label: "Eunomi Escolar", href: profileLinks.eunomiEscolar, external: true },
     ],
   },
@@ -231,8 +244,8 @@ function SelectedWork() {
   return (
     <section className="home-section" id="trabajo" aria-labelledby="work-title">
       <div className="home-container">
-        <SectionLabel number="02" label="Trabajo seleccionado" id="work-title" title="Proyectos que muestran capacidades distintas" />
-        <p className="home-section-intro">Un producto completo, un sistema distribuido y un sitio publicado para un cliente. Cada uno declara su estado real: producción, piloto, prototipo, desarrollo o proyecto académico.</p>
+        <SectionLabel number="01" label="Proyectos" id="work-title" title="Proyectos que muestran capacidades distintas" />
+        <p className="home-section-intro">Un producto en producción con usuarios reales, un sistema distribuido y un sitio publicado para un cliente. Cada uno declara su estado real.</p>
         <div className="home-work-list">
           {work.map((item, index) => <WorkEntry key={item.id} item={item} index={index} />)}
         </div>
@@ -245,7 +258,7 @@ function About() {
   return (
     <section className="home-section home-section--tinted" id="sobre-mi" aria-labelledby="about-title">
       <div className="home-container">
-        <SectionLabel number="03" label="Sobre mí" id="about-title" title="De escribir código a entender el sistema completo" />
+        <SectionLabel number="04" label="Sobre mí" id="about-title" title="De escribir código a entender el sistema completo" />
         <div className="home-about-grid">
           <div className="home-prose">
             <p className="home-prose-lead">Soy Ingeniero Civil en Computación de la Universidad de O'Higgins. Vivo y trabajo en Pichilemu, Chile.</p>
@@ -253,10 +266,11 @@ function About() {
             <p>Hoy desarrollo productos propios y soluciones para necesidades reales a través de Eunomi, la empresa que fundé. Me interesa todo el recorrido: desde la conversación con quien tiene el problema hasta el despliegue y la comprobación de que funciona.</p>
           </div>
           <dl className="home-facts">
-            <div><dt>Formación</dt><dd>Ingeniería Civil en Computación<br />Universidad de O'Higgins</dd></div>
+            <div><dt>Formación</dt><dd>Ingeniero Civil en Computación (titulado 2025)<br />Universidad de O'Higgins</dd></div>
             <div><dt>Base</dt><dd>Pichilemu, Chile · trabajo remoto</dd></div>
-            <div><dt>Foco</dt><dd>Backend, datos y desarrollo de productos</dd></div>
-            <div><dt>Actualmente</dt><dd>Fundador de Eunomi</dd></div>
+            <div><dt>Foco</dt><dd>Desarrollo full stack, backend y datos</dd></div>
+            <div><dt>Idiomas</dt><dd>Español nativo · Inglés A2 (lectura técnica)</dd></div>
+            <div><dt>Actualmente</dt><dd>Fundador de Eunomi SpA</dd></div>
           </dl>
         </div>
       </div>
@@ -265,8 +279,8 @@ function About() {
 }
 
 const eunomiLines = [
-  { name: "Eunomi Escolar", status: "En desarrollo · abierto a un piloto" },
-  { name: "Barberías", status: "Primer piloto en preparación" },
+  { name: "Eunomi Escolar", status: "En producción · piloto con un transportista" },
+  { name: "Eunomi Barbería", status: "En uso: agenda, sellos de fidelidad y promociones" },
   { name: "Restaurantes", status: "Prototipo en validación" },
   { name: "A medida", status: "Según cada caso" },
 ] as const;
@@ -275,7 +289,7 @@ function EunomiFounder() {
   return (
     <section className="home-section home-section--dark" id="eunomi" aria-labelledby="eunomi-title">
       <div className="home-container">
-        <SectionLabel number="04" label="Fundador de Eunomi" id="eunomi-title" title="Eunomi: buen orden para negocios y servicios" />
+        <SectionLabel number="05" label="Fundador de Eunomi" id="eunomi-title" title="Eunomi: buen orden para negocios y servicios" />
         <div className="home-eunomi-grid">
           <div className="home-prose">
             <p className="home-prose-lead">Eunomi viene de <em>eunomía</em>, «buen orden». Es la empresa que fundé para desarrollar soluciones tecnológicas adaptadas a problemas reales de negocios y servicios.</p>
@@ -297,7 +311,7 @@ function EunomiFounder() {
                 {eunomiLines.map((line) => <tr key={line.name}><th scope="row">{line.name}</th><td>{line.status}</td></tr>)}
               </tbody>
             </table>
-            <p className="home-note">Estados según eunomi.cl. Ningún producto se presenta como terminado si sigue en investigación, prototipo o piloto.</p>
+            <p className="home-note">Ningún producto se presenta como terminado si sigue en investigación, prototipo o piloto.</p>
           </div>
         </div>
         <div className="home-eunomi-cta">
@@ -312,21 +326,21 @@ function EunomiFounder() {
 const experience = [
   {
     org: "Eunomi",
-    role: "Fundador · Desarrollo de soluciones de software",
-    period: "Actualidad",
-    text: "Investigación de problemas junto a negocios, diseño de productos y desarrollo de software de punta a punta.",
+    role: "Fundador y desarrollador full stack",
+    period: "Sept. 2025 — actualidad",
+    text: "Construí y opero Eunomi Escolar: backend en Python y FastAPI sobre PostgreSQL, panel administrativo en React, app del conductor en Flutter y seguimiento en vivo para apoderados. Despliegues en Vercel, APK firmado con GitHub Actions, migraciones de base de datos y soporte directo a conductores y apoderados. También desarrollé Eunomi Barbería, hoy en uso.",
   },
   {
     org: "WherEx",
     role: "Práctica profesional · Datos y automatización",
-    period: "2023 — 2024",
-    text: "Automatización y análisis de procesos de datos con Python, Pandas, MongoDB, SQL y Amazon Redshift para necesidades del área de Producto.",
+    period: "Dic. 2023 — mar. 2024",
+    text: "Preparé y cargué datos con Python y MongoDB para demostraciones comerciales, automaticé el procesamiento de datos de facturas y extraje información con SQL y Amazon Redshift para análisis internos.",
   },
   {
     org: "Universidad de O'Higgins",
     role: "Ayudante · Programación y procesamiento masivo de datos",
     period: "2023 — 2025",
-    text: "Apoyo en cursos de programación orientada a objetos y programación paralela, con C, Pthreads y OpenMP.",
+    text: "Apoyé a estudiantes en programación orientada a objetos, recursión y resolución de problemas, y preparé ejercicios y material práctico.",
   },
 ] as const;
 
@@ -334,7 +348,7 @@ function Experience() {
   return (
     <section className="home-section" id="experiencia" aria-labelledby="experience-title">
       <div className="home-container">
-        <SectionLabel number="05" label="Experiencia" id="experience-title" title="Experiencia profesional y académica" />
+        <SectionLabel number="02" label="Experiencia" id="experience-title" title="Experiencia profesional y académica" />
         <ol className="home-timeline">
           {experience.map((item) => (
             <li key={item.org}>
@@ -354,11 +368,13 @@ function Experience() {
 
 const capabilities = [
   { area: "Backend", items: ["Python", "FastAPI", "REST APIs", "SQLAlchemy", "Pydantic", "JWT", "Alembic"] },
-  { area: "Datos", items: ["PostgreSQL", "MongoDB", "SQL", "Amazon Redshift", "Pandas"] },
-  { area: "Integraciones", items: ["Firebase", "FCM", "WebSockets", "APIs externas", "OpenRouteService"] },
-  { area: "Frontend y móvil", items: ["Flutter", "React", "TypeScript", "Vite"] },
+  { area: "Datos", items: ["PostgreSQL", "Supabase", "MongoDB", "SQL", "Amazon Redshift", "Pandas"] },
+  { area: "Frontend y móvil", items: ["React", "TypeScript", "Flutter", "Vite"] },
+  { area: "Integraciones y tiempo real", items: ["Firebase", "Push web y móvil", "Google Sign-In", "GPS en vivo", "WebSockets", "OpenRouteService"] },
+  { area: "Infraestructura y proceso", items: ["Git", "GitHub Actions", "Vercel", "Render", "Pytest", "Jira", "Scrum"] },
+  { area: "IA aplicada al desarrollo", items: ["Asistentes de código (Claude)", "Revisión de código generado", "Tareas para agentes"] },
   { area: "Sistemas", items: [".NET", "Windows Service", "WPF", "IPC", "C · Pthreads · OpenMP"] },
-  { area: "Herramientas y proceso", items: ["Git", "GitHub", "Pytest", "Jira", "Scrum", "Vercel", "Render"] },
+  { area: "Seguridad y privacidad", items: ["Roles y permisos", "Consentimiento de datos", "Auditoría de seguridad"] },
 ] as const;
 
 function Capabilities() {
@@ -385,7 +401,7 @@ function Contact() {
       <div className="home-container">
         <SectionLabel number="07" label="Contacto" id="contact-title" title="Conversemos" />
         <div className="home-contact-grid">
-          <p className="home-prose-lead">Si estás formando un equipo, buscas a alguien para un proyecto técnico o quieres conocer al fundador de Eunomi, escríbeme.</p>
+          <p className="home-prose-lead">Si estás formando un equipo y buscas a alguien que lleve software de la idea a producción, escríbeme. Respondo por correo o LinkedIn.</p>
           <ul className="home-contact-list">
             <li><span>Correo</span><a href={`mailto:${profileLinks.email}`}>{profileLinks.email}</a></li>
             <li><span>LinkedIn</span><ExternalLink href={profileLinks.linkedin}>ivanbozocatalan</ExternalLink></li>
@@ -394,7 +410,7 @@ function Contact() {
           </ul>
         </div>
         <p className="home-contact-eunomi">
-          ¿Necesitas una solución para tu negocio? Para proyectos comerciales trabajo a través de Eunomi:{" "}
+          Para proyectos comerciales de tu negocio, trabajo a través de Eunomi:{" "}
           <ExternalLink href={profileLinks.eunomi}>eunomi.cl</ExternalLink>
         </p>
       </div>
@@ -425,11 +441,11 @@ export default function HomePage() {
       <SiteHeader />
       <main id="contenido">
         <Hero />
-        <Approach />
         <SelectedWork />
+        <Experience />
+        <Approach />
         <About />
         <EunomiFounder />
-        <Experience />
         <Capabilities />
         <Contact />
       </main>

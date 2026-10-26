@@ -73,9 +73,14 @@
 .home-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
 .home-profile-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 28px; font-size: .93rem; font-weight: 600; }
 .home-profile-links a, .home-profile-links > li > span { display: inline-flex; align-items: center; gap: .3em; min-height: 44px; }
+.home-hero-availability { display: inline-block; margin-top: 18px; padding: 8px 14px; border-radius: 16px; background: var(--surface); color: var(--accent); font-size: .93rem; font-weight: 700; }
+.home-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px clamp(24px, 4vw, 48px); margin-top: clamp(48px, 7vw, 80px); border-top: 1px solid var(--text); }
+.home-highlights div { padding-top: 16px; }
+.home-highlights dt { color: var(--accent); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.home-highlights dd { margin-top: 6px; font-weight: 600; line-height: 1.45; }
 .is-pending { color: var(--muted); font-weight: 500; font-style: italic; }
 
-.home-portrait { aspect-ratio: 4 / 5; width: 100%; overflow: hidden; border-radius: 4px; background: var(--surface); }
+.home-portrait { aspect-ratio: 1; width: 100%; overflow: hidden; border-radius: 4px; background: var(--surface); }
 .home-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .home-portrait--placeholder { display: grid; place-items: center; border: 1px solid var(--rule); background: linear-gradient(180deg, var(--surface), #e6e3da); }
 .home-portrait--placeholder span { color: #9aa49f; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; letter-spacing: .06em; }
@@ -93,8 +98,9 @@
 .home-section-intro { max-width: 62ch; margin: -12px 0 clamp(36px, 5vw, 56px) calc(260px + clamp(24px, 5vw, 64px)); color: var(--muted); font-size: 1.05rem; }
 
 /* Approach */
-.home-quote { margin-bottom: clamp(40px, 6vw, 64px); padding-left: clamp(20px, 3vw, 32px); border-left: 3px solid var(--accent); }
-.home-quote p { max-width: 30ch; font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.3; font-weight: 500; letter-spacing: -.015em; }
+.home-ai-note { max-width: 78ch; margin-bottom: clamp(40px, 6vw, 64px); padding-left: clamp(20px, 3vw, 32px); border-left: 3px solid var(--accent); }
+.home-ai-note h3 { font-size: 1.15rem; }
+.home-ai-note p { margin-top: 8px; color: var(--muted); font-size: 1.05rem; line-height: 1.65; }
 .home-principles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
 .home-principles li { padding-top: 20px; border-top: 1px solid var(--text); }
 .home-principles-number { display: block; color: var(--accent); font-size: .8rem; font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -182,14 +188,13 @@
 
 @media (max-width: 760px) {
   .home-header-inner { flex-direction: column; align-items: flex-start; gap: 0; min-height: 0; padding-top: 8px; }
-  .home-header nav { width: 100%; overflow-x: auto; scrollbar-width: none; }
-  .home-header nav::-webkit-scrollbar { display: none; }
-  .home-header nav ul { gap: 2px; }
+  .home-header nav { width: 100%; }
+  .home-header nav ul { flex-wrap: wrap; gap: 0 2px; }
   .home-header nav a { padding-inline: 8px; font-size: .88rem; white-space: nowrap; }
   .home-header nav li:first-child a { padding-left: 0; }
   .home-section { scroll-margin-top: 100px; }
   .home-hero-grid { grid-template-columns: 1fr; }
-  .home-portrait { order: -1; width: min(42vw, 180px); }
+  .home-portrait { order: -1; width: min(42vw, 180px); border-radius: 50%; }
   .home-portrait--placeholder { display: none; }
   .home-section-label, .home-work-item, .home-timeline li { grid-template-columns: 1fr; }
   .home-section-intro { margin: -8px 0 32px; }
@@ -200,7 +205,7 @@
 }
 
 @media (max-width: 520px) {
-  .home-header nav li:nth-child(4) { display: none; }
+  .home-highlights { grid-template-columns: 1fr; gap: 0; }
   .home-principles, .home-capabilities { grid-template-columns: 1fr; }
   .home-hero-roles > span[aria-hidden] { display: none; }
   .home-break { display: inline; }
